@@ -24,7 +24,7 @@ gulp.task('compile', function () {
 gulp.task('sass', function () {
     console.log("Compile sass to css.")
 
-    var folder = 'app/assets/styles/';
+    var folder = 'src/assets/styles/';
     return merge(
         gulp.src(folder + '*.scss')
             .pipe(sass().on('error', sass.logError))

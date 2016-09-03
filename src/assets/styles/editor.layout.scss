@@ -1,0 +1,62 @@
+  $header-height: 60px;
+  $footer-height: 60px;
+  $title-height: 40px;
+  $editorHostHeight: $header-height + $footer-height;
+  $body-height:$editorHostHeight + $title-height;
+
+  
+  body {
+      overflow: hidden;
+  }
+  
+  html,
+  body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+  }
+  
+  header {
+      width: 100%;
+      height: $header-height;
+      position: fixed;
+      top: 0;
+  }
+  
+  footer {
+      width: 100%;
+      height: $footer-height;
+      position: fixed;
+      bottom: 0;
+      background: dimgray;
+  }
+  
+  .editorHost {
+      max-height: calc(100% - #{$editorHostHeight});
+      overflow-y: hidden;
+      padding: 0px 0px !important;
+      margin-top: $header-height !important;
+  }
+  
+  .postTitle {
+      width: 100%;     
+  }
+  
+  .postTitle input {
+      width: 100%;
+      padding: 4px;
+      font-size: 24px;
+      border: solid darkgray;
+      border-width: 0 0 1px 0;
+      height: $title-height;
+  }
+  
+  .postBody {
+      overflow-y: scroll;
+      max-height: calc(100% - #{$body-height});
+  }
+  
+  .mce-tinymce-inline{
+  width: 100% !important;
+}
