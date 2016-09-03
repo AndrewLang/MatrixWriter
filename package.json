@@ -1,0 +1,11 @@
+{
+  "name": "matrixwriter",
+  "version": "1.0.0",
+  "description": "A offline blog writer",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andy Lang",
+  "license": "ISC"
+}
