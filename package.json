@@ -2,7 +2,7 @@
   "name": "matrixwriter",
   "version": "1.0.0",
   "description": "A offline blog writer",
-  "main": "main.js",
+  "main": "src/app/main.js",
   "scripts": {
     "start": "gulp start",
         "test": "gulp sass && tsc && concurrently \"npm run tsc:w\" \"npm run lite\" && gulp sass:watch",
