@@ -49,7 +49,7 @@ export class HtmlEditorDirective {
             toolbar2: 'print preview save searchreplace | link image media |  emoticons codesample hr importcss insertdatetime table template | spellchecker',
             content_css: [
                 //'//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-                'app/assets/css/basic.min.css'
+                'src/assets/css/editor.basic.css'
             ],
             templates: [
                 { title: 'Some title 1', description: 'Some desc 1', content: 'My content' },
@@ -70,15 +70,11 @@ export class HtmlEditorDirective {
             ],
             init_instance_callback: function (editor) {
                 tinymce.activeEditor.focus();
+                console.log( "init callback");
             },
             setup: function (editor) {
-                editor.on('init', function (e) {
-                    $('div#postContent').click(function () {
-                        console.log('click triggered.')
-                    });
-                    $('div#postContent').trigger('click');
+                editor.on('init', function (e) {                    
 
-                    //$("#mceu_0").css({ "border-width": "0px" });   // Remove editor border
                 });
                 editor.on('blur', function (e) {
                     throw new Error('Tinymck hack workaround');

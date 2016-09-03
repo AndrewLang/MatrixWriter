@@ -1,10 +1,8 @@
-  $header-height: 60px;
+  $header-height: 100px;
   $footer-height: 60px;
   $title-height: 40px;
   $editorHostHeight: $header-height + $footer-height;
   $body-height:$editorHostHeight + $title-height;
-
-  
   body {
       overflow: hidden;
   }
@@ -40,7 +38,8 @@
   }
   
   .postTitle {
-      width: 100%;     
+      width: 100%;   
+      height: $title-height;  
   }
   
   .postTitle input {
@@ -49,7 +48,7 @@
       font-size: 24px;
       border: solid darkgray;
       border-width: 0 0 1px 0;
-      height: $title-height;
+      
   }
   
   .postBody {

@@ -28,7 +28,7 @@ gulp.task('sass', function () {
     return merge(
         gulp.src(folder + '*.scss')
             .pipe(sass().on('error', sass.logError))
-            .pipe(minify())
+            //.pipe(minify())
             .pipe(rename({ suffix: '.min' }))
     )
         .pipe(concat('app.css'))
