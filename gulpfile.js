@@ -33,9 +33,11 @@ gulp.task('sass', function () {
     )
         .pipe(concat('app.css'))
         .pipe(gulp.dest(dist));
-    //.pipe(reload({stream:true}));
+});
 
-
+gulp.task('electron', function () {
+  return gulp.src('/')
+    .pipe(shell('electron .'));
 });
 
 gulp.task('start:server', function () {
@@ -49,10 +51,21 @@ gulp.task('sass:watch', function () {
 });
 
 gulp.task('start', function (callback) {
-    sequence(["compile", "sass"], "start:server", function () {
+    sequence(["compile", "sass"], "electron", function () {
         console.log("gulp task finish");      
     });
 });
 
 // backup of npm
 // tsc && concurrently  && electron .
+
+/*
+
+    1. Install typings 
+    npm install typings --global
+
+    2. Install typings for jquery
+    typings install dt~jquery --global --save
+
+    
+*/
