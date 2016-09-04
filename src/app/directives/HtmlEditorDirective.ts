@@ -70,10 +70,17 @@ export class HtmlEditorDirective {
             ],
             init_instance_callback: function (editor) {
                 tinymce.activeEditor.focus();
-                console.log( "init callback");
+                console.log("init callback");
+
+                $('#postBody').css('width', '100%').css('width', '-=100px');
+                $(window).resize(function () {
+                    $('.postBody').each(function () {
+                        $(this).css('height', $(this).parent().height() - 100);
+                    })
+                });
             },
             setup: function (editor) {
-                editor.on('init', function (e) {                    
+                editor.on('init', function (e) {
 
                 });
                 editor.on('blur', function (e) {

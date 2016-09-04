@@ -1,8 +1,10 @@
-  $header-height: 100px;
+  $header-height: 105px;
   $footer-height: 60px;
-  $title-height: 40px;
+  $title-height: 50px;
   $editorHostHeight: $header-height + $footer-height;
   $body-height:$editorHostHeight + $title-height;
+  $body-top : $header-height + $title-height;
+
   body {
       overflow: hidden;
   }
@@ -32,19 +34,25 @@
   
   .editorHost {
       max-height: calc(100% - #{$editorHostHeight});
-      overflow-y: hidden;
+      max-height: -moz-calc(100% - #{$editorHostHeight});
+      max-height: -webkit-calc(100% - #{$editorHostHeight});
+      overflow-y: auto;
       padding: 0px 0px !important;
       margin-top: $header-height !important;
+      box-sizing: border-box;
+        -moz-box-sizing: border-box;
   }
   
   .postTitle {
       width: 100%;   
       height: $title-height;  
+      margin-top: $header-height !important;
+      font-size: 1.8rem;
   }
   
   .postTitle input {
       width: 100%;
-      padding: 4px;
+      padding: 4px 4px 4px 10px;
       font-size: 24px;
       border: solid darkgray;
       border-width: 0 0 1px 0;
@@ -53,7 +61,11 @@
   
   .postBody {
       overflow-y: scroll;
+      max-height: -moz-calc(100% - #{$body-height});
+      max-height: -webkit-calc(100% - #{$body-height});
       max-height: calc(100% - #{$body-height});
+      box-sizing: border-box;
+    -moz-box-sizing: border-box;
   }
   
   .mce-tinymce-inline{
