@@ -14,6 +14,7 @@ export class HtmlEditorDirective {
         tinymce.init({
             selector: 'div.htmlEditor',
             inline: true,
+            
             fixed_toolbar_container: "div#textEditorToolbar",
             theme: 'modern',
             statusbar: false,
@@ -37,7 +38,7 @@ export class HtmlEditorDirective {
                 { text: 'C#', value: 'csharp' },
                 { text: 'C++', value: 'cpp' }
             ],
-            menubar: 'file edit format insert view help',
+            menubar: false, // 'file edit format insert view help',
             plugins: [
                 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
                 'searchreplace wordcount visualblocks visualchars code fullscreen',
