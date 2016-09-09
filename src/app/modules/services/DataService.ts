@@ -28,7 +28,7 @@ export class DataService {
 
         this.http.post(url, body, { headers: this.headers })
             .map(response => {
-                callback(response.json());
+                callback(response);
             })
             .subscribe(
             response => { },

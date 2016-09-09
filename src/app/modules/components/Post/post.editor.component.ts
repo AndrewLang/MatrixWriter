@@ -26,9 +26,14 @@ export class PostEditorComponent implements OnInit {
             this.postContent = doc.head.innerHTML;// doc.documentElement.innerHTML;
 
             this.dataService.Get(rsdLink, (rsdResponse: any) => {
-                console.log(rsdResponse);
+                
                 let xml = parser.parseFromString( rsdResponse._body, "text/xml");
-                console.log( xml );
+                let node = xml.querySelector("service apis api").getAttribute("apiLink");
+                console.log( node );
+
+                this.dataService.Post( node, {},(apiResponse:any)=>{
+                    console.log(apiResponse);
+                });
             });
         });
     }
