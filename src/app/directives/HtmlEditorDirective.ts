@@ -47,7 +47,7 @@ export class HtmlEditorDirective {
                 'importcss spellchecker template '
             ],
             toolbar1: ' undo redo | cut copy paste pastetext |  bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect ',
-            toolbar2: 'print preview save searchreplace | link image media |  emoticons codesample hr importcss insertdatetime table template | spellchecker',
+            toolbar2: 'code print preview save searchreplace | link image media |  emoticons codesample hr importcss insertdatetime table template | spellchecker',
             content_css: [
                 //'//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
                 'src/assets/css/editor.basic.css'

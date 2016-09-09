@@ -17,24 +17,19 @@ export class PostEditorComponent implements OnInit {
 
 
     ngOnInit(): any {
-        // var temp = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi faucibus sem quam, quis finibus leo pretium sit amet. Sed imperdiet venenatis enim at sagittis. Praesent porta purus nec aliquet pellentesque. Nunc bibendum urna non risus lacinia, at venenatis
-        //             nisl interdum. Duis porta tristique augue vel dictum. Curabitur feugiat tincidunt risus eget semper. Aliquam quis cursus nibh, feugiat commodo arcu. Aliquam non dolor vel ex dapibus interdum vitae nec lorem. Phasellus fermentum neque ut nibh hendrerit
-        //             tempus. Pellentesque sit amet ligula dui. Donec laoreet est erat. Etiam aliquet sem sit amet quam tempus aliquam. Vivamus eleifend nunc ipsum, a viverra neque efficitur at. Duis mi nisl, accumsan quis ex et, aliquam lobortis lectus. Vestibulum luctus
-        //             diam eu mattis gravida. Quisque nisi felis, posuere vitae purus sit amet, pellentesque fermentum enim.</p>`;
-
-        // let max: number = 10;
-        // while (max > 0) {
-        //     this.postContent += temp;
-        //     max--;
-        // }
-
         this.dataService.Get('http://blog.sina.com.cn/u/1916213340', (response: any) => {
-            console.log('get data:');
-            console.log(response._body);
             var parser = new DOMParser()
             var doc = parser.parseFromString(response._body, "text/html");
-            console.log( doc );
-            this.postContent = doc.documentElement.innerHTML;
+
+            let rsdLink = doc.querySelector("link[title=RSD]").getAttribute("href");
+            console.log(rsdLink);
+            this.postContent = doc.head.innerHTML;// doc.documentElement.innerHTML;
+
+            this.dataService.Get(rsdLink, (rsdResponse: any) => {
+                console.log(rsdResponse);
+                let xml = parser.parseFromString( rsdResponse._body, "text/xml");
+                console.log( xml );
+            });
         });
     }
 }
