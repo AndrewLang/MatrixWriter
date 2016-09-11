@@ -7,11 +7,12 @@ import {PostEditorComponent}                from './components/post/post.editor.
 import {ErrorHandlingService}               from './services/ErrorHandlingService';
 import {DataService}                        from './services/DataService';
 import {HtmlEditorDirective}                from '../directives/HtmlEditorDirective';
+import {MetaweblogService}                  from './services/MetaweblogService';
 
 @NgModule({
     imports: [BrowserModule,HttpModule],
     declarations: [PostEditorComponent,HtmlEditorDirective],
-    providers:[ DataService, ErrorHandlingService ],
+    providers:[ DataService, ErrorHandlingService, MetaweblogService ],
     bootstrap: [PostEditorComponent]
 })
 export class PostEditModule { }

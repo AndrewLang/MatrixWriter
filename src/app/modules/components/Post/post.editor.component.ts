@@ -1,16 +1,17 @@
 import {Component, OnInit}          from '@angular/core';
 
 import {DataService}                from '../../services/DataService';
+import {MetaweblogService}          from '../../services/MetaweblogService';
 
 @Component({
     selector: 'app',
     templateUrl: 'src/views/post-editor.html',
-    providers: [DataService]
+    providers: [DataService, MetaweblogService]
 })
 export class PostEditorComponent implements OnInit {
     postContent: string = "";
 
-    constructor(private dataService: DataService) {
+    constructor(private dataService: DataService, private metaWeblogService: MetaweblogService) {
         console.log('constructor of app Component');
     }
 
@@ -37,17 +38,25 @@ export class PostEditorComponent implements OnInit {
                 let nameNode = xmlDoc.createElement("methodName")
                 nameNode.nodeValue = "metaWeblog.getRecentPosts";
                 root.appendChild(nameNode);
-                nameNode.appendChild(xmlDoc.createTextNode("metaWeblog.getRecentPosts"));
+                nameNode.appendChild(xmlDoc.createTextNode("metaWeblog.getPost"));
 
 
                 let paramsNode = xmlDoc.createElement("params");
-                let idNode = xmlDoc.createElement("param");
-                let idValue = xmlDoc.createElement("value");
-                idValue.nodeValue = "1916213340";
-                idValue.appendChild(xmlDoc.createTextNode("1916213340"));
-                idNode.appendChild(idValue);
-                paramsNode.appendChild(idNode);
+                // let idNode = xmlDoc.createElement("param");
+                // let idValue = xmlDoc.createElement("value");
+                // idValue.nodeValue = "1916213340";
+                // idValue.appendChild(xmlDoc.createTextNode("1916213340"));
+                // idNode.appendChild(idValue);
+                // paramsNode.appendChild(idNode);
                 root.appendChild(paramsNode);
+
+
+                let countNode = xmlDoc.createElement("param");
+                let countValue = xmlDoc.createElement("value");
+                //countValue.nodeValue = "7237185c0100luw2";
+                countValue.appendChild(xmlDoc.createTextNode("7237185c0100luw2"));
+                countNode.appendChild(countValue);
+                paramsNode.appendChild(countNode);
 
                 let userNode = xmlDoc.createElement("param");
                 let userValue = xmlDoc.createElement("value");
@@ -63,36 +72,28 @@ export class PostEditorComponent implements OnInit {
                 pwdNode.appendChild(pwdValue);
                 paramsNode.appendChild(pwdNode);
 
-                let countNode = xmlDoc.createElement("param");
-                let countValue = xmlDoc.createElement("value");
-                countValue.nodeValue = "100";
-                countValue.appendChild(xmlDoc.createTextNode("100"));
-                countNode.appendChild(countValue);
-                paramsNode.appendChild(countNode);
-
-
 
                 xmlDoc.appendChild(root);
 
                 console.log(xmlDoc);
 
-                let xmlText = `<?xml version="1.0"?>
-                <methodCall>
-                    <methodName>metaWeblog.getPost</methodName>
-                    <params>
-                        <param>
-                            <value>7237185c0100luw2</value>
-                        </param>
-                        <param>
-                            <value>msn34cefe298081@sina.cn</value>
-                        </param>
-                        <param>
-                            <value>$supernova$</value>
-                        </param>
-                    </params>
-                </methodCall>
-                `;
-                let xmlrequest = parser.parseFromString( xmlText, "text/xml" );
+                // let xmlText = `<?xml version="1.0"?>
+                // <methodCall>
+                //     <methodName>metaWeblog.getPost</methodName>
+                //     <params>
+                //         <param>
+                //             <value>7237185c0100luw2</value>
+                //         </param>
+                //         <param>
+                //             <value>msn34cefe298081@sina.cn</value>
+                //         </param>
+                //         <param>
+                //             <value>$supernova$</value>
+                //         </param>
+                //     </params>
+                // </methodCall>
+                // `;
+                // let xmlrequest = parser.parseFromString(xmlText, "text/xml");
 
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function () {
@@ -101,12 +102,8 @@ export class PostEditorComponent implements OnInit {
                     }
                 }
                 xmlhttp.open("POST", "http://upload.move.blog.sina.com.cn/blog_rebuild/blog/xmlrpc.php", true);
-                xmlhttp.send(xmlrequest);
-
-                // this.dataService.Post(node, xmlDoc, (apiResponse: any) => {
-                //     console.log(apiResponse);
-                // });
-           });
+                xmlhttp.send(xmlDoc);
+            });
         });
     }
 }
