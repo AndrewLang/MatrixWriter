@@ -1,6 +1,5 @@
 
 import { Directive, ElementRef, Input, Renderer }           from '@angular/core';
-import { ControlGroup }                                     from '@angular/common';
 
 declare var tinymce: any;
 
