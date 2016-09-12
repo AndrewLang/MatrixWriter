@@ -3,6 +3,7 @@ import {Component, OnInit}          from '@angular/core';
 import {DataService}                from '../../services/DataService';
 import {MetaweblogService}          from '../../services/MetaweblogService';
 import * as Xml                     from '../../../common/Xml/index';
+import * as XmlRpc                  from '../../../common/XmlRpc/index';
 
 @Component({
     selector: 'app',
@@ -30,23 +31,14 @@ export class PostEditorComponent implements OnInit {
             this.dataService.Get(rsdLink, (rsdResponse: any) => {
 
                 let xml = parser.parseFromString(rsdResponse._body, "text/xml");
-                let node = xml.querySelector("service apis api").getAttribute("apiLink");
-                console.log(node);
+                let apiLink = xml.querySelector("service apis api").getAttribute("apiLink");
+                console.log(apiLink);
 
-                let builder = new Xml.XDocument();
-                let xmlRequestDoc = new Xml.XDocument()
-                    .AppendChild(
-                    new Xml.XElement("methodCall")
-                        .AppendChild(new Xml.XElement("methodName", "metaWeblog.getPost"))
-                        .AppendChild(new Xml.XElement("params")
-                            .AppendChild(new Xml.XElement("param").AppendChild(new Xml.XElement("value", "7237185c0100luw2")))
-                            .AppendChild(new Xml.XElement("param").AppendChild(new Xml.XElement("value", "msn34cefe298081@sina.cn")))
-                            .AppendChild(new Xml.XElement("param").AppendChild(new Xml.XElement("value", "$supernova$")))
-                        ))
-                    .Build();
+               
+                let methods = new XmlRpc.MetaweblogMethods();
+                let request = methods.GetPost("7237185c0100luw2", "msn34cefe298081@sina.cn", "$supernova$").ToRequest();
 
-
-                console.log(xmlRequestDoc);
+                console.log(request);
 
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function () {
@@ -54,8 +46,8 @@ export class PostEditorComponent implements OnInit {
                         console.log(xmlhttp.responseText);
                     }
                 }
-                xmlhttp.open("POST", "http://upload.move.blog.sina.com.cn/blog_rebuild/blog/xmlrpc.php", true);
-                xmlhttp.send(xmlRequestDoc);
+                xmlhttp.open("POST", apiLink, true);
+                xmlhttp.send(request);
             });
         });
     }
