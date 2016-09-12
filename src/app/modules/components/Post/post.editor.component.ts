@@ -42,7 +42,7 @@ export class PostEditorComponent implements OnInit {
 
              
                 var rpcRequest = new XmlRpc.XmlRpcRequest();
-                rpcRequest.Send(apiLink, request).then(response => {
+                rpcRequest.GetPost(apiLink, request).then(response => {
                     console.log( "Respose for " + apiLink );
                     console.log(response);
                 });
