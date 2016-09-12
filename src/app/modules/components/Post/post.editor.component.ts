@@ -34,20 +34,18 @@ export class PostEditorComponent implements OnInit {
                 let apiLink = xml.querySelector("service apis api").getAttribute("apiLink");
                 console.log(apiLink);
 
-               
+
                 let methods = new XmlRpc.MetaweblogMethods();
-                let request = methods.GetPost("7237185c0100luw2", "msn34cefe298081@sina.cn", "$supernova$").ToRequest();
+                let request = methods.GetPost("7237185c0100luw2", "msn34cefe298081@sina.cn", "$supernova$");
 
                 console.log(request);
 
-                var xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange = function () {
-                    if (xmlhttp.readyState == XMLHttpRequest.DONE) {
-                        console.log(xmlhttp.responseText);
-                    }
-                }
-                xmlhttp.open("POST", apiLink, true);
-                xmlhttp.send(request);
+             
+                var rpcRequest = new XmlRpc.XmlRpcRequest();
+                rpcRequest.Send(apiLink, request).then(response => {
+                    console.log( "Respose for " + apiLink );
+                    console.log(response);
+                });
             });
         });
     }

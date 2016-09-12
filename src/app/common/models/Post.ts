@@ -1,7 +1,12 @@
+import {CategoryInfo} from './CategoryInfo';
+
 export class Post{
     DateCreated: Date;
+    DateCreatedGmt: Date;
     Description : string;
     Title : string;
+    Slug:string;
+    PostFormat: string;
     Categories: string[];
     Link: string;
     PermaLink:string;
@@ -11,5 +16,6 @@ export class Post{
     AllowCommants: boolean;
     AllowPings:boolean;
     ConvertBreaks: boolean;
+    Sticky: boolean;
     Excerpt: string;
 }
