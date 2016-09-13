@@ -1,4 +1,4 @@
 import { platformBrowserDynamic }    from '@angular/platform-browser-dynamic';
-import { PostEditModule }                 from './modules/post.edit.module';
+import { AppModule }                 from './modules/app.module';
 
-platformBrowserDynamic().bootstrapModule(PostEditModule);
+platformBrowserDynamic().bootstrapModule(AppModule);

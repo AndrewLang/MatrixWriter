@@ -1,9 +1,9 @@
 import {Component, OnInit}          from '@angular/core';
 
-import {DataService}                from '../../services/DataService';
-import {MetaweblogService}          from '../../services/MetaweblogService';
-import * as Xml                     from '../../../common/Xml/index';
-import * as XmlRpc                  from '../../../common/XmlRpc/index';
+import {DataService}                from '../services/DataService';
+import {MetaweblogService}          from '../services/MetaweblogService';
+import * as Xml                     from '../../common/Xml/index';
+import * as XmlRpc                  from '../../common/XmlRpc/index';
 
 @Component({
     selector: 'app',

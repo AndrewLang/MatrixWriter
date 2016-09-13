@@ -1,0 +1,127 @@
+
+<div id="about-modal" class="about modal">
+    <div class="about-wrapper">
+        <header class="about-header">
+            <section class="about-section play-along">
+                <h2>Welcom to Matrix Writer</h2>
+                <h3>Keysight Command Expert is a faster and easier way to program instruments.</h3>
+                <div>
+                    <ul>
+                        <li> Seamless integration with Excel, VEE, SystemVue, MATLAB, Visual Studio, Python, and LabVIEW</li>
+                        <li> Easy to find, use, and view full documentation for SCPI, IVI-C and IVI-COM commands</li>
+                        <li> Simplifies the process of retrieving measurement data from instruments</li>
+                    </ul>
+                </div>
+            </section>
+
+            <img class="about-logo" src="src/assets/img/about.png" srcset="src/assets/img/about.png 1x, src/assets/img/about@2x.png 2x" alt="Electron API Demos">
+        </header>
+
+        <main class="about-sections">
+            <div class="section-wrapper">
+                <h1>
+                        <svg class="section-icon"><use xlink:href="src/assets/img/icons.svg#icon-windows"></use></svg>
+                        Quick Start
+                    </h1>
+
+                <button type="button" id="button-create-sequence" data-section="windows" class="nav-button" (click)="CreateNewSequence()"><em>Create an sequence</em></button>
+                <button type="button" id="button-open-sequence" data-section="windows" class="nav-button"><em>Open sequence</em></button>
+                <button type="button" id="button-crash-hang" data-section="crash-hang" class="nav-button">View Command Expert help</button>
+                <button type="button" id="button-crash-hang" data-section="crash-hang" class="nav-button">View Command Expert tutorials</button>
+                <button type="button" id="button-crash-hang" data-section="crash-hang" class="nav-button">View Command Expert examples</button>
+            </div>
+
+            <section class="section-wrapper">
+                <h1>
+                    <svg class="section-icon"><use xlink:href="src/assets/img/icons.svg#icon-native-ui"></use></svg>
+                    Examples
+                </h1>
+
+                <div class="demo">
+                    <div class="demo-wrapper">
+                        <button id="new-window-demo-toggle" class="js-container-target demo-toggle-button">N6700B Output Setup
+                             <div class="demo-meta u-avoid-clicks">Supports: SCPI, IVI <span class="demo-meta-divider">|</span> 1/16/2014</div>
+                        </button>
+
+                        <div class="demo-box">
+                            <div class="demo-controls">
+                                <button class="demo-button" id="new-window">Open</button>
+                            </div>
+                            <div>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">Initializes channel 1 and enables the output of an Agilent N6700B power supply.&nbsp;</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">&nbsp;</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">Instructions for Running:</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">1. Enter your instrument address in the Connect step.</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">2. Run the sequence.</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">&nbsp;</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">Operation:</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">1. Reset the power supply.</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">2. Set voltage to 3 volts and current to 1.5 amperes.&nbsp;</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">3. Set voltage and current protection.&nbsp;</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">4. Turn the output of channel 1 on.</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">5. Wait for output to settle.</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">6. Measure the voltage.</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">7. Reset the power supply, turning off the output.</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">&nbsp;</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">Requirements:</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">This example was written for the N6700B power supply.&nbsp; This example was tested with the following instrument(s): N6700B(ver C.00.02).</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">&nbsp;</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">You have a royalty-free right to use, modify, reproduce and distribute this example program (and/or any modified version) in any way you find useful, provided you agree that Agilent Technologies has no warranty, obligations,
+                                    or liability for any example programs.</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">&nbsp;</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">Supported Instruments: N6700B</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo">
+                    <div class="demo-wrapper">
+                        <button id="new-window-demo-toggle" class="js-container-target demo-toggle-button">N6705A Triggered Step & Measure
+                                    <div class="demo-meta u-avoid-clicks">Supports:  SCPI, IVI <span class="demo-meta-divider">|</span> 1/16/2014</div>
+                            </button>
+
+                        <div class="demo-box">
+                            <div class="demo-controls">
+                                <button class="demo-button" id="new-window">Open</button>
+                            </div>
+                            <div>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">Operates the N6705A DC Power Analyzer to step to 10 Volts on channel 1 when triggered, and record 10 voltage samples after being triggered.</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">&nbsp;</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">Instructions for Running:</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">1. Enter your instrument address in the Connect step.</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">2. Run the sequence.</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">&nbsp;</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">Operation:</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">1. Set the instrument up to step it's channel 1 output voltage when triggered.</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">2. Set the channel 1 output voltage to be 10 volts when triggered.</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">3. Set the output voltage on channel 1 to 5 volts.&nbsp;</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">4. Turn the output of channel 1 on.</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">5. Set the instrument output voltage to be triggered by a remote interface trigger command.</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">6. Set the instrument to measure 10 points of data for the output voltage on channel 1 when triggered.</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">7. Set the period between measurement points to be 10 microseconds.</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">8. Set the instrument measurement system to be triggered by a remote interface trigger command.</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">9. Initiate the measurement triggering system.</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">10 Initiate the the output triggering system.</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">11. Trigger the instrument.</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">12. Fetch the measured data (output voltage on channel 1) as an array of floating point numbers.</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">&nbsp;</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">Restrictions and Requirements:</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">This example was written for the N6705A Power Analyzer.&nbsp; This example was tested with the following instrument(s): N6705A (ver C.01.05).</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">&nbsp;</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">You have a royalty-free right to use, modify, reproduce and distribute this example program (and/or any modified version) in any way you find useful, provided you agree that Agilent Technologies has no warranty, obligations,
+                                    or liability for any example programs.</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">&nbsp;</p>
+                                <p style="margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;">Supported Instruments: N6705A, N6705B</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <footer class="about-section footer">
+
+            </footer>
+        </main>
+    </div>
+</div>

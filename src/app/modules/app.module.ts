@@ -3,16 +3,19 @@ import {BrowserModule}                      from '@angular/platform-browser';
 import {Routes, RouterModule }              from '@angular/router';
 import {Http, Headers,HttpModule}           from '@angular/http';
 
-import {PostEditorComponent}                from './components/post/post.editor.component';
+import { AppComponent}                      from './components/app.component';
+import { WelcomeComponent }                 from './components/welcome.component';
+import {PostEditorComponent}                from './components/post.editor.component';
 import {ErrorHandlingService}               from './services/ErrorHandlingService';
 import {DataService}                        from './services/DataService';
 import {HtmlEditorDirective}                from '../directives/HtmlEditorDirective';
 import {MetaweblogService}                  from './services/MetaweblogService';
+import { routing, appRoutingProviders }     from './app.routing';
 
 @NgModule({
-    imports: [BrowserModule,HttpModule],
-    declarations: [PostEditorComponent,HtmlEditorDirective],
-    providers:[ DataService, ErrorHandlingService, MetaweblogService ],
-    bootstrap: [PostEditorComponent]
+    imports: [BrowserModule,HttpModule,routing],
+    declarations: [AppComponent,WelcomeComponent,PostEditorComponent,HtmlEditorDirective],
+    providers:[ DataService, ErrorHandlingService, MetaweblogService,appRoutingProviders],
+    bootstrap: [AppComponent]
 })
-export class PostEditModule { }
+export class AppModule { }
