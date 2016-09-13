@@ -17,5 +17,6 @@ export class Post{
     AllowPings:boolean;
     ConvertBreaks: boolean;
     Sticky: boolean;
+    Publish: boolean;
     Excerpt: string;
 }

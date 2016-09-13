@@ -17,8 +17,11 @@ export class MetaweblogMethods {
         method.Name = "metaWeblog.getRecentPosts";
         method.AddParameter(blogId)
             .AddParameter(user)
-            .AddParameter(password)
-            .AddParameter(numberoOfPosts.toString());
+            .AddParameter(password);
+
+        if (numberoOfPosts)
+            method.AddParameter(numberoOfPosts.toString());
+
         return method;
     }
 
@@ -41,7 +44,7 @@ export class MetaweblogMethods {
             ;
         return method;
     }
-    EditPost(postId: string, user: string, password: string, post:Models.Post, publish: boolean): XmlRpcMethod {
+    EditPost(postId: string, user: string, password: string, post: Models.Post, publish: boolean): XmlRpcMethod {
         let method = new XmlRpcMethod();
         method.Name = "metaWeblog.editPost";
         method.AddParameter(postId)

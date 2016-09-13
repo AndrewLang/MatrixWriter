@@ -12,10 +12,14 @@ export class XmlRpcRequest {
 
         return new Promise(function (resolve, reject) {
             let xmlHttp = new XMLHttpRequest();
+            let request = method.ToRequest();
+            console.log(request);
             xmlHttp.open("POST", url, true);
-            xmlHttp.send(method.ToRequest());
+            xmlHttp.send(request);
+
             xmlHttp.onreadystatechange = function () {
                 if (xmlHttp.readyState == XMLHttpRequest.DONE) {
+                    console.log("Response:")
                     console.log(xmlHttp.response);
                     resolve(xmlHttp.responseXML);
                 }
@@ -32,6 +36,15 @@ export class XmlRpcRequest {
             });
         });
     }
+    GetRecentPosts(url: string, method: XmlRpcMethod): Promise<Array<Models.Post>> {
+        let self = this;
+        return new Promise(function (resolve, reject) {
+            self.Send(url, method).then(response => {
+                console.log(response);
+                //resolve(self.ParseToPost(response));
+            });
+        });
+    }
 
     ParseToPost(doc: XMLDocument): Models.Post {
         let post = new Models.Post();
@@ -44,16 +57,21 @@ export class XmlRpcRequest {
             if (name == "postid") {
                 post.PostId = names[i].querySelector('value string').innerHTML;
             }
-            else if (name == "dateCreated") { 
-                //post.DateCreated = new
+            else if (name == "dateCreated") {
+                post.DateCreated = new Date(names[i].querySelector('value string').innerHTML);
             }
-            else if (name == "title") { }
-            else if (name == "description") { }
-            else if (name == "categoiries") { }
-            else if (name == "publish") { }
+            else if (name == "title") {
+                post.Title = names[i].querySelector('value, string').innerHTML;
+            }
+            else if (name == "description") {
+                post.Description = names[i].querySelector('value, string').innerHTML;
+            }
+            else if (name == "categoiries") {
 
-            console.log(names[i].querySelector('name').innerHTML);
-            console.log(names[i].querySelector('value').innerHTML);
+            }
+            else if (name == "publish") {
+                post.Publish = Boolean(names[i].querySelector('value boolean').innerHTML);
+            }
         }
         console.log(names);
         return post;
