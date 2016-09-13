@@ -2,8 +2,7 @@ import {Component, OnInit}          from '@angular/core';
 
 import {DataService}                from '../services/DataService';
 import {MetaweblogService}          from '../services/MetaweblogService';
-import * as Xml                     from '../../common/Xml/index';
-import * as XmlRpc                  from '../../common/XmlRpc/index';
+import * as Common                  from '../../common/index';
 
 @Component({
     selector: 'app',
@@ -36,7 +35,7 @@ export class PostEditorComponent implements OnInit {
                 console.log("API Link: " + apiLink);
 
 
-                let methods = new XmlRpc.MetaweblogMethods();
+                let methods = new Common.MetaweblogMethods();
                 //let request = methods.GetPost("7237185c0100luw2", "msn34cefe298081@sina.cn", "$supernova$");
                 //let request = methods.GetPost("1", "nnlyx@hotmail.com", "supernova");
                 let request = methods.GetRecentPosts("1", "nnlyx@hotmail.com", "supernova", 100);
@@ -45,7 +44,7 @@ export class PostEditorComponent implements OnInit {
                 console.log(request);
 
 
-                var rpcRequest = new XmlRpc.XmlRpcRequest();
+                var rpcRequest = new Common.XmlRpcRequest();
                 rpcRequest.GetRecentPosts(apiLink, request)
                     .then(response => {
                         console.log("Respose for " + apiLink);

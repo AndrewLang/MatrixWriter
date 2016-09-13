@@ -14,15 +14,15 @@ export class WelcomeComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
 
-        document.querySelector('#about-modal').classList.add('is-shown');
+        document.querySelector('#welcome-modal').classList.add('is-shown');
 
-        let demoBtns = document.querySelectorAll('.js-container-target')
-        // Listen for demo button clicks
-        Array.prototype.forEach.call(demoBtns, function (btn: any) {
-            btn.addEventListener('click', function (event: any) {
-                event.target.parentElement.classList.toggle('is-open')
-            });
-        });
+        // let demoBtns = document.querySelectorAll('.js-container-target')
+        // // Listen for demo button clicks
+        // Array.prototype.forEach.call(demoBtns, function (btn: any) {
+        //     btn.addEventListener('click', function (event: any) {
+        //         event.target.parentElement.classList.toggle('is-open')
+        //     });
+        // });
     }
     ngOnDestroy() {
 
