@@ -20,13 +20,25 @@
             <div class="welcome-body">
                 <div class="card">
                     <div class="card-header">
-                        Featured
+                        <svg class="section-icon"><use xlink:href="src/assets/img/icons.svg#icon-windows"></use></svg> Quick Start
                     </div>
                     <div class="card-block">
-                        <h4 class="card-title">Special title treatment</h4>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <button type="button" id="button-open-post" title="Connect to a blog account" class="nav-button"><i class="fa fa-user-plus"></i> <em>Connect to a blog account</em></button>
+                        <hr/>
+                        <button type="button" id="button-create-post" title="Write a new post" class="nav-button" (click)="CreateNewSequence()"> <i class="fa fa-file-o"></i> <em>Write a new post</em></button>
+                        <button type="button" id="button-open-post" title="Open an existing post" class="nav-button"><i class="fa fa-folder-open-o"></i> <em>Open post</em></button>
                     </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <svg class="section-icon"><use xlink:href="src/assets/img/icons.svg#icon-native-ui"></use></svg> Recent Posts
+                    </div>                    
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Cras justo odio</li>
+                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                        <li class="list-group-item">Vestibulum at eros</li>
+                    </ul>
                 </div>
             </div>
         </div>
