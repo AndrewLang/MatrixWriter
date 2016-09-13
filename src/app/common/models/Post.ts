@@ -1,8 +1,10 @@
 import {CategoryInfo} from './CategoryInfo';
 
 export class Post{
-    DateCreated: Date;
-    DateCreatedGmt: Date;
+    DateCreated: string;
+    DateCreatedGmt: string;
+    DateModified: string;
+    DateModifiedGmt: string;
     Description : string;
     Title : string;
     Slug:string;
@@ -19,4 +21,8 @@ export class Post{
     Sticky: boolean;
     Publish: boolean;
     Excerpt: string;
+    Keywords:string;
+    AuthorName: string;
+    Status : string;
+    Thumbnail: string;
 }

@@ -1,10 +1,12 @@
 import {XmlRpcMethod}   from './XmlRpcMethod';
 import {XmlRpcError}    from './XmlRpcError';
+import {PostParser}     from './PostParser';
 import * as Models      from '../models/index';
 import {XmlRpcResponseMember}   from'./XmlRpcResponseMember';
 
 export class XmlRpcRequest {
     self: XmlRpcRequest = this;
+    mPostParser: PostParser = new PostParser();
 
     Send(url: string, method: XmlRpcMethod): Promise<any> {
         if (!method)
@@ -13,14 +15,14 @@ export class XmlRpcRequest {
         return new Promise(function (resolve, reject) {
             let xmlHttp = new XMLHttpRequest();
             let request = method.ToRequest();
-            console.log(request);
+           
             xmlHttp.open("POST", url, true);
             xmlHttp.send(request);
 
             xmlHttp.onreadystatechange = function () {
                 if (xmlHttp.readyState == XMLHttpRequest.DONE) {
-                    console.log("Response:")
-                    console.log(xmlHttp.response);
+                    //console.log("Response:")
+                    //console.log(xmlHttp.response);
                     resolve(xmlHttp.responseXML);
                 }
             };
@@ -31,17 +33,20 @@ export class XmlRpcRequest {
         let self = this;
         return new Promise(function (resolve, reject) {
             self.Send(url, method).then(response => {
-                console.log(response);
-                resolve(self.ParseToPost(response));
+                //console.log(response);
+                //resolve(self.ParseToPost(response));
+                resolve(self.mPostParser.ParsePost(response));
             });
         });
     }
+
     GetRecentPosts(url: string, method: XmlRpcMethod): Promise<Array<Models.Post>> {
         let self = this;
         return new Promise(function (resolve, reject) {
             self.Send(url, method).then(response => {
-                console.log(response);
+                //console.log(response);
                 //resolve(self.ParseToPost(response));
+                resolve(self.mPostParser.ParsePosts(response));
             });
         });
     }
@@ -58,7 +63,7 @@ export class XmlRpcRequest {
                 post.PostId = names[i].querySelector('value string').innerHTML;
             }
             else if (name == "dateCreated") {
-                post.DateCreated = new Date(names[i].querySelector('value string').innerHTML);
+                post.DateCreated = names[i].querySelector('value string').innerHTML;
             }
             else if (name == "title") {
                 post.Title = names[i].querySelector('value, string').innerHTML;
