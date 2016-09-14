@@ -1,6 +1,7 @@
 import {Component, OnInit, OnDestroy}        from '@angular/core';
 import { Router }                            from '@angular/router';
-
+import * as Common                           from '../../common/index';
+import * as Services                         from '../services/index';
 
 @Component({
     selector: 'app',
@@ -8,28 +9,24 @@ import { Router }                            from '@angular/router';
 })
 export class WelcomeComponent implements OnInit, OnDestroy {
 
-    constructor(private mRouter:Router) {
+    constructor(private mRouter:Router, private mDialogService: Services.DialogService) {
 
     }
 
     ngOnInit() {
-
-        document.querySelector('#welcome-modal').classList.add('is-shown');
-
-        // let demoBtns = document.querySelectorAll('.js-container-target')
-        // // Listen for demo button clicks
-        // Array.prototype.forEach.call(demoBtns, function (btn: any) {
-        //     btn.addEventListener('click', function (event: any) {
-        //         event.target.parentElement.classList.toggle('is-open')
-        //     });
-        // });
+       
     }
     ngOnDestroy() {
 
     }
 
-    CreateNewSequence(){
-        console.log("Go to editor");
+    CreatePost(){        
         this.mRouter.navigate(['editor']);
+    }
+    OpenPost(){
+
+    }
+    CreateAccount(){
+        this.mDialogService.ShowDialog('src/views/new-account.html');
     }
 }

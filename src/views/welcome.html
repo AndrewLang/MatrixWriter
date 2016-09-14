@@ -12,7 +12,7 @@
                         <li>Share blog to Facebook, Twitter and Google+ etc.</li>
                     </ul>
                 </div>
-                <img class="welcome-logo" src="src/assets/img/about.png" srcset="src/assets/img/about.png 1x, src/assets/img/about@2x.png 2x" alt="Welcome">
+                <img class="welcome-logo" src="src/assets/img/about.jpg" alt="Welcome to Matrix Writer">
             </div>
         </div>
 
@@ -23,10 +23,10 @@
                         <svg class="section-icon"><use xlink:href="src/assets/img/icons.svg#icon-windows"></use></svg> Quick Start
                     </div>
                     <div class="card-block">
-                        <button type="button" id="button-open-post" title="Connect to a blog account" class="nav-button"><i class="fa fa-user-plus"></i> <em>Connect to a blog account</em></button>
+                        <button type="button" id="button-open-post" title="Connect to a blog account" class="nav-button" (click)="CreateAccount()"><i class="fa fa-user-plus"></i> <em>Connect to a blog account</em></button>
                         <hr/>
-                        <button type="button" id="button-create-post" title="Write a new post" class="nav-button" (click)="CreateNewSequence()"> <i class="fa fa-file-o"></i> <em>Write a new post</em></button>
-                        <button type="button" id="button-open-post" title="Open an existing post" class="nav-button"><i class="fa fa-folder-open-o"></i> <em>Open post</em></button>
+                        <button type="button" id="button-create-post" title="Write a new post" class="nav-button" (click)="CreatePost()"> <i class="fa fa-file-o"></i> <em>Write a new post</em></button>
+                        <button type="button" id="button-open-post" title="Open an existing post" class="nav-button" (click)="OpenPost()"><i class="fa fa-folder-open-o"></i> <em>Open post</em></button>
                     </div>
                 </div>
 
@@ -35,6 +35,9 @@
                         <svg class="section-icon"><use xlink:href="src/assets/img/icons.svg#icon-native-ui"></use></svg> Recent Posts
                     </div>                    
                     <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Cras justo odio</li>
+                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                        <li class="list-group-item">Vestibulum at eros</li>
                         <li class="list-group-item">Cras justo odio</li>
                         <li class="list-group-item">Dapibus ac facilisis in</li>
                         <li class="list-group-item">Vestibulum at eros</li>

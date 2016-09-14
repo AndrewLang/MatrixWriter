@@ -13,7 +13,7 @@ export class PostEditorComponent implements OnInit {
     postContent: string = "";
 
     constructor(private dataService: DataService, private metaWeblogService: MetaweblogService) {
-        console.log('constructor of app Component');
+        console.log('constructor of post editor Component');
     }
 
 

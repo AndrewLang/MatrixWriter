@@ -10,10 +10,13 @@ export class HtmlEditorDirective {
 
 
     constructor(element: ElementRef, renderer: Renderer) {
+        console.log("constructor of html directive ");
+        console.log(tinymce);
+        
         tinymce.init({
             selector: 'div.htmlEditor',
-            inline: true,
-            
+            inline: false,
+
             fixed_toolbar_container: "div#textEditorToolbar",
             theme: 'modern',
             statusbar: false,
@@ -45,7 +48,7 @@ export class HtmlEditorDirective {
                 'emoticons template paste textcolor colorpicker textpattern imagetools codesample bbcode',
                 'importcss spellchecker template '
             ],
-            toolbar1: ' undo redo | cut copy paste pastetext |  bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect ',
+            toolbar1: 'undo redo | cut copy paste pastetext |  bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect ',
             toolbar2: 'code print preview save searchreplace | link image media |  emoticons codesample hr importcss insertdatetime table template | spellchecker',
             content_css: [
                 //'//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
@@ -69,8 +72,8 @@ export class HtmlEditorDirective {
                 { start: '- ', cmd: 'InsertUnorderedList' }
             ],
             init_instance_callback: function (editor) {
-                tinymce.activeEditor.focus();
                 console.log("init callback");
+                tinymce.activeEditor.focus();
 
                 $('#postBody').css('width', '100%').css('width', '-=100px');
                 $(window).resize(function () {
@@ -81,7 +84,7 @@ export class HtmlEditorDirective {
             },
             setup: function (editor) {
                 editor.on('init', function (e) {
-
+                    console.log("html editor initialized.")
                 });
                 editor.on('blur', function (e) {
                     throw new Error('Tinymck hack workaround');
