@@ -4,3 +4,4 @@ export *        from './MetaweblogDetector';
 export *        from './MetaweblogService';
 export *        from './IBlogDetector';
 export *        from './DialogService';
+export *        from './HtmlEditorService';

@@ -11,12 +11,13 @@ import { DataService}                       from './services/DataService';
 import { HtmlEditorDirective}               from '../directives/HtmlEditorDirective';
 import { MetaweblogService}                 from './services/MetaweblogService';
 import { DialogService}                     from './services/DialogService';
+import { HtmlEditorService}                 from './services/HtmlEditorService';
 import { routing, appRoutingProviders }     from './app.routing';
 
 @NgModule({
     imports: [BrowserModule,HttpModule,routing],
     declarations: [AppComponent,WelcomeComponent,PostEditorComponent,HtmlEditorDirective],
     providers:[ DataService, ErrorHandlingService, MetaweblogService,appRoutingProviders,DialogService],
-    bootstrap: [PostEditorComponent]
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

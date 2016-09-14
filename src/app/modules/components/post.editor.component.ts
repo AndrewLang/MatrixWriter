@@ -1,30 +1,31 @@
 import {Component, OnInit}          from '@angular/core';
 
-import {DataService}                from '../services/DataService';
-import {MetaweblogService}          from '../services/MetaweblogService';
 import * as Common                  from '../../common/index';
+import * as Services                from '../services/index';
 
 @Component({
     selector: 'app',
     templateUrl: 'src/views/post-editor.html',
-    providers: [DataService, MetaweblogService]
+    providers: [Services.DataService, Services.MetaweblogService,Services.HtmlEditorService]
 })
 export class PostEditorComponent implements OnInit {
     postContent: string = "";
 
-    constructor(private dataService: DataService, private metaWeblogService: MetaweblogService) {
+    constructor(private dataService: Services.DataService, private metaWeblogService: Services.MetaweblogService,
+        private editorService: Services.HtmlEditorService) {
         console.log('constructor of post editor Component');
     }
 
 
     ngOnInit(): any {
+        this.editorService.InitializeEditor("div.htmlEditor");
         let homeUrl: string = 'https://andylangyu.wordpress.com/';//'http://blog.sina.com.cn/andrewlang';
         this.dataService.Get(homeUrl, (response: any) => {
             var parser = new DOMParser()
             var doc = parser.parseFromString(response._body, "text/html");
 
             let rsdLink = doc.querySelector("link[title=RSD]").getAttribute("href");
-            console.log("RSD Link: " +  rsdLink);
+            console.log("RSD Link: " + rsdLink);
 
             this.postContent = doc.head.innerHTML;
 
