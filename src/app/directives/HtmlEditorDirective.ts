@@ -15,7 +15,7 @@ export class HtmlEditorDirective {
         
         tinymce.init({
             selector: 'div.htmlEditor',
-            inline: false,
+            inline: true,
 
             fixed_toolbar_container: "div#textEditorToolbar",
             theme: 'modern',
@@ -75,12 +75,12 @@ export class HtmlEditorDirective {
                 console.log("init callback");
                 tinymce.activeEditor.focus();
 
-                $('#postBody').css('width', '100%').css('width', '-=100px');
-                $(window).resize(function () {
-                    $('.postBody').each(function () {
-                        $(this).css('height', $(this).parent().height() - 100);
-                    })
-                });
+                // $('#postBody').css('width', '100%').css('width', '-=100px');
+                // $(window).resize(function () {
+                //     $('.postBody').each(function () {
+                //         $(this).css('height', $(this).parent().height() - 100);
+                //     })
+                // });
             },
             setup: function (editor) {
                 editor.on('init', function (e) {

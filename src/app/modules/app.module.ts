@@ -17,6 +17,6 @@ import { routing, appRoutingProviders }     from './app.routing';
     imports: [BrowserModule,HttpModule,routing],
     declarations: [AppComponent,WelcomeComponent,PostEditorComponent,HtmlEditorDirective],
     providers:[ DataService, ErrorHandlingService, MetaweblogService,appRoutingProviders,DialogService],
-    bootstrap: [AppComponent]
+    bootstrap: [PostEditorComponent]
 })
 export class AppModule { }
