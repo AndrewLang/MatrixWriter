@@ -27,6 +27,7 @@ export class WelcomeComponent implements OnInit, OnDestroy {
 
     }
     CreateAccount(){
-        this.mDialogService.ShowDialog('src/views/new-account.html');
+        //this.mDialogService.ShowDialog('src/views/new-account.html');
+        this.mRouter.navigate(['createAccount']);
     }
 }

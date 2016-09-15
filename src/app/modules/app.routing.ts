@@ -3,15 +3,14 @@
 import { ModuleWithProviders }              from '@angular/core';
 import { Routes, RouterModule }             from '@angular/router';
 
-import { AppComponent }                     from './components/app.component';
-import { WelcomeComponent }                 from './components/welcome.component';
-import { PostEditorComponent }              from './components/post.editor.component';
+import *  as Components                     from './components/index';
 
 const rootRoutes: Routes = [
     { path: '', redirectTo: '/welcome', pathMatch: 'full' },
-    { path: 'welcome', component: WelcomeComponent },
-    { path: 'editor', component: PostEditorComponent },
-    { path: 'home', component : AppComponent}
+    { path: 'welcome', component: Components.WelcomeComponent },
+    { path: 'editor', component: Components.PostEditorComponent },
+    { path: 'home', component: Components.AppComponent },
+    { path: 'createAccount', component: Components.CreateAccountComponent }
 ];
 
 const appRoutes: Routes = [
