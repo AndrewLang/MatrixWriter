@@ -11,9 +11,19 @@ export class CreateAccountComponent{
     Next(): void {
 
     }
+    CanGoNext():boolean{
+        return true;
+    }
     Previous():void{
 
     }
+    CanGoPrevious(): boolean{
+        return true;
+    }
+    Finish():void{
+
+    }
+    
 }
 
 export class ActionStep{
