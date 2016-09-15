@@ -1,5 +1,7 @@
 
-import {Http, Headers} from '@angular/http';
+
+import { Injectable}    from '@angular/core';
+import {Http, Headers}  from '@angular/http';
 import 'rxjs/Rx';
 
 import {Blog}           from './Blog';
@@ -7,19 +9,40 @@ import {BlogAccount}    from './BlogAccount'
 import {IBlogDetector}  from './IBlogDetector';
 import {DataService}    from './DataService';
 
+@Injectable()
 export class MetaweblogDetector implements IBlogDetector {
 
-    constructor(private dataService: DataService) {
+    constructor(private dataService: DataService) {}
 
-    }
+    Detect(account: BlogAccount): Promise<Array<Blog>> {
+        if( !this.dataService)
+            throw new Error("Data server is not found.");
 
-    Detect(account: BlogAccount): Array<Blog> {
-        let blogs: Array<Blog> = [];
+        return new Promise(function (resolve, reject) {
+            let blogs: Array<Blog> = [];
 
-        this.dataService.Get(account.HomeUrl, (response: any) => { 
-            
+            this.dataService.Get(account.HomeUrl, (response: any) => {
+                var parser = new DOMParser()
+                var doc = parser.parseFromString(response._body, "text/html");
+
+                let rsdLink = doc.querySelector("link[title=RSD]").getAttribute("href");
+                console.log("RSD Link: " + rsdLink);
+
+                this.dataService.Get(rsdLink, (rsdResponse: any) => {
+                    let xml = parser.parseFromString(rsdResponse._body, "text/xml");
+                    let apiLink = xml.querySelector("service apis api").getAttribute("apiLink");
+
+                    var blog = new Blog();
+                    blog.HomeUrl = account.HomeUrl;
+                    blog.ApiUrl = apiLink;
+                    blog.XmlRpc = rsdLink;
+
+                    blogs.push(blog);
+                });
+            });
+
+            resolve(blogs);
         });
 
-        return blogs;
     }
 }

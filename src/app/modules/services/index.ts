@@ -5,3 +5,7 @@ export *        from './MetaweblogService';
 export *        from './IBlogDetector';
 export *        from './DialogService';
 export *        from './HtmlEditorService';
+
+
+export *        from './Blog';
+export *        from './BlogAccount';

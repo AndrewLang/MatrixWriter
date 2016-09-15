@@ -19,6 +19,7 @@ export class PostEditorComponent implements OnInit {
 
     ngOnInit(): any {
         this.editorService.InitializeEditor("div.htmlEditor");
+        
         let homeUrl: string = 'https://andylangyu.wordpress.com/';//'http://blog.sina.com.cn/andrewlang';
         this.dataService.Get(homeUrl, (response: any) => {
             var parser = new DOMParser()
