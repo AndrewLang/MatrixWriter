@@ -30,8 +30,8 @@ export class DataService {
                 callback(response);
             })
             .subscribe(
-            response => { },
-            error => { this.errorHandlingService.HandleError(error); }
+                response => { },
+                error => { this.errorHandlingService.HandleError(error); }
             );
     }
 
@@ -40,8 +40,8 @@ export class DataService {
                 callback(response);
             })
             .subscribe(
-            response => { },
-            error => { this.errorHandlingService.HandleError(error); }
+                response => { },
+                error => { this.errorHandlingService.HandleError(error); }
             );
     }
 }

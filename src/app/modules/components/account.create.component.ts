@@ -67,7 +67,10 @@ export class CreateAccountComponent {
         this.mRouter.navigate(['welcome']);
     }
     StartDetection(): void {
-        this.mDetector.Detect(this.Account);
+        this.mDetector.Detect(this.Account)
+        .then(response=>{
+            console.log(response);
+        });
     }
 }
 
