@@ -6,6 +6,6 @@ export *        from './IBlogDetector';
 export *        from './DialogService';
 export *        from './HtmlEditorService';
 
-
+export *        from './SettingService';
 export *        from './Blog';
 export *        from './BlogAccount';
