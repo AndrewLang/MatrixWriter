@@ -7,15 +7,13 @@ import * as Services                         from '../services/index';
     templateUrl: 'src/views/account.create.html',
     providers: [Services.MetaweblogDetector]
 })
-export class CreateAccountComponent {
+export class CreateAccountComponent implements OnInit {
     Title: string;
+    Subtitle: string;
     CurrentStep: number = 1;
     TotalSteps: number = 4;
     DetectProgress: number = 0;
     DetectTotal: number = 10;
-    //HomeUrl: string;
-    //UserName: string;
-    //Password: string;
     ProcessState: string;
     BlogNickName: string = "nick name";
     Remember: boolean = true;
@@ -25,7 +23,14 @@ export class CreateAccountComponent {
     Account: Services.BlogAccount = new Services.BlogAccount();
 
     constructor(private mRouter: Router, private mDetector: Services.MetaweblogDetector) {
+
+    }
+    ngOnInit(): any {
         this.Title = "Add a blog account";
+        this.Subtitle = "Matrix writer support most popular blog services.";
+        this.Account.HomeUrl = "https://andylangyu.wordpress.com/";
+        this.Account.UserName = "nnlyx@hotmail.com";
+        this.Account.Password = "supernova";
     }
     Next(): void {
         if (this.CurrentStep < this.TotalSteps)
@@ -54,7 +59,6 @@ export class CreateAccountComponent {
         return this.CurrentStep > 1;
     }
     Finish(): void {
-
         this.GoToWelcome();
     }
     CanFinish(): boolean {
@@ -67,10 +71,15 @@ export class CreateAccountComponent {
         this.mRouter.navigate(['welcome']);
     }
     StartDetection(): void {
+        this.ProcessState = "Processing " + this.Account.HomeUrl;
+        this.DetectProgress = 2;
         this.mDetector.Detect(this.Account)
-        .then(response=>{
-            console.log(response);
-        });
+            .then(response => {
+                console.log(response);
+                this.DetectProgress = 10;
+                this.BlogNickName = response.BlogName
+                this.Next();
+            });
     }
 }
 

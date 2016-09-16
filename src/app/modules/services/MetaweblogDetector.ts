@@ -15,37 +15,40 @@ export class MetaweblogDetector implements IBlogDetector {
 
     constructor(private dataService: DataService) { }
 
-    Detect(account: BlogAccount): Promise<Array<Blog>> {
+    Detect(account: BlogAccount): Promise<Blog> {
         if (!this.dataService)
             throw new Error("Data server is not found.");
 
         let self = this;
         return new Promise(function (resolve, reject) {
-            let blogs: Array<Blog> = [];
 
             self.dataService.Get(account.HomeUrl, (response: any) => {
                 var parser = new DOMParser()
                 var doc = parser.parseFromString(response._body, "text/html");
 
+                let title = doc.querySelector("title").innerHTML;
+                if (title)
+                    title = title.split(" ")[0];
                 let rsdLink = doc.querySelector("link[title=RSD]").getAttribute("href");
-                console.log("RSD Link: " + rsdLink);
+
 
                 self.dataService.Get(rsdLink, (rsdResponse: any) => {
                     let xml = parser.parseFromString(rsdResponse._body, "text/xml");
-                    let apiLink = xml.querySelector("service apis api").getAttribute("apiLink");
+                    let apiLink = xml.querySelector("service apis api[preferred='true']").getAttribute("apiLink");
 
-                    console.log("Api link " + apiLink);
+                    if (!apiLink)
+                        apiLink = xml.querySelector("service apis api").getAttribute("apiLink");
 
                     var blog = new Blog();
                     blog.HomeUrl = account.HomeUrl;
                     blog.ApiUrl = apiLink;
                     blog.XmlRpc = rsdLink;
+                    blog.BlogName = title;
 
-                    blogs.push(blog);
+                    resolve(blog);
                 });
             });
 
-            resolve(blogs);
         });
 
     }

@@ -5,5 +5,5 @@ export class Blog{
     BlogName:string;
     XmlRpc:string;
     Service: string;
-    IsAdmin:boolean;
+    IsAdmin:boolean;    
 }

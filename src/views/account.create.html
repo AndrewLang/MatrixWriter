@@ -3,7 +3,8 @@
     <div id="wizardPanel" class="center-xy">
         <div class="card ">
             <div class="card-header">
-                <h4>{{Title}}</h4>
+                <h4 class="card-title">{{Title}}</h4>
+                <h6 class="card-subtitle text-muted">{{Subtitle}}</h6>
             </div>
             <div class="card-block">
                 <div class="row">
@@ -61,7 +62,7 @@
 
                         <div class="tab-pane fade" [ngClass]="{'in active':CurrentStep==3}" id="step3">
                             <label>{{ProcessState}}</label>
-                            <progress class="progress" value="{{DetectProgress}}" max="{{DetectTotal}}" aria-describedby="-caption-2"></progress>
+                            <progress class="progress progress-striped progress-animated" value="{{DetectProgress}}" max="{{DetectTotal}}" aria-describedby="-caption-2"></progress>
                         </div>
 
                         <div class="tab-pane fade" [ngClass]="{'in active':CurrentStep==4}" id="step4">
