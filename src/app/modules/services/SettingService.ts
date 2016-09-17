@@ -1,33 +1,32 @@
-
+import { Injectable} from '@angular/core';
 import {BlogSettings} from './BlogSettings';
+import {ElectronService}    from './ElectronService';
 
-//import * as fs from "fs"
-const electron = require('electron');
+@Injectable()
+export class SettingService {
+    private mSetting: BlogSettings = new BlogSettings();
 
-// const electron = require('electron');
-// const app = electron.app;
-declare var fs :any;
+    constructor(private mElectron:ElectronService ) {
 
-export class SettingService
-{
-    private mSetting : BlogSettings= new BlogSettings();
+    }
 
-    get Setting(){
+    get Setting() {
         return this.mSetting;
     }
 
-    LoadSettings():void{
-        //let fs = require("fs");
-        //let folder = app.getPath('userData');
-
-        console.log(electron);
-         fs.readFileSync("/package.json",(error,data)=>{
-             console.log(data);
-        });
-        
+    LoadSettings(): void {       
+        let folder = this.mElectron.App.getPath('userData');
+      
+        //  fs.readFileSync("/package.json",(error,data)=>{
+        //      console.log(data);
+        // });
+        console.log(this.mElectron.Electron);
+        console.log( folder );
+        console.log( this.mElectron.Electron.remote.Menu);   
+        this.mElectron.SetApplicationMenu(null);     
     }
-    SaveSettings():void{
-        let jston = JSON.stringify( this.mSetting );
-        
+    SaveSettings(): void {
+        let jston = JSON.stringify(this.mSetting);
+
     }
 }

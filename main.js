@@ -11,7 +11,6 @@ let debug = false;
 
 
 function initialize() {
-
     loadModules();
 
     function createWindow() {
@@ -25,7 +24,7 @@ function initialize() {
         if (debug) {
             mainWindow.webContents.openDevTools();
             //mainWindow.maximize();
-        }
+        }        
     }
 
     app.on('ready', createWindow);

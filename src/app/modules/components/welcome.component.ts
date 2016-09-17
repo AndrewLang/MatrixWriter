@@ -6,29 +6,28 @@ import * as Services                         from '../services/index';
 @Component({
     selector: 'app',
     templateUrl: 'src/views/welcome.html',
+    providers: [Services.SettingService]
 })
 export class WelcomeComponent implements OnInit, OnDestroy {
 
-    constructor(private mRouter:Router, private mDialogService: Services.DialogService) {
+    constructor(private mRouter: Router, private mSettingService: Services.SettingService) {
 
     }
 
     ngOnInit() {
-       let service = new Services.SettingService();
-       service.LoadSettings();
+        this.mSettingService.LoadSettings();
     }
     ngOnDestroy() {
 
     }
 
-    CreatePost(){        
+    CreatePost() {
         this.mRouter.navigate(['editor']);
     }
-    OpenPost(){
+    OpenPost() {
 
     }
-    CreateAccount(){
-        //this.mDialogService.ShowDialog('src/views/new-account.html');
+    CreateAccount() {
         this.mRouter.navigate(['createAccount']);
     }
 }
