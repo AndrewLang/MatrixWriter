@@ -19,7 +19,8 @@ export class SettingService
     LoadSettings():void{
         //let fs = require("fs");
         //let folder = app.getPath('userData');
-        console.log(fs);
+
+        console.log(electron);
          fs.readFileSync("/package.json",(error,data)=>{
              console.log(data);
         });
