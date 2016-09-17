@@ -56,6 +56,9 @@ gulp.task('start', function (callback) {
     });
 });
 
+gulp.task('run',function(){
+    childProcess.spawn(electron, ['--debug=5858','./src'], { stdio: 'inherit' });
+});
 // backup of npm
 // tsc && concurrently  && electron .
 

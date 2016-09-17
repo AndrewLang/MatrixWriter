@@ -1,11 +1,12 @@
 
 import {BlogSettings} from './BlogSettings';
 
-import * as fs from "fs"
-//import {ipcRenderer} from 'electron';
-
+//import * as fs from "fs"
 const electron = require('electron');
-const app = electron.app;
+
+// const electron = require('electron');
+// const app = electron.app;
+declare var fs :any;
 
 export class SettingService
 {
@@ -16,7 +17,13 @@ export class SettingService
     }
 
     LoadSettings():void{
-        let folder = app.getPath('userData');
+        //let fs = require("fs");
+        //let folder = app.getPath('userData');
+        console.log(fs);
+         fs.readFileSync("/package.json",(error,data)=>{
+             console.log(data);
+        });
+        
     }
     SaveSettings():void{
         let jston = JSON.stringify( this.mSetting );
