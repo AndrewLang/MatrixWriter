@@ -5,7 +5,7 @@ import * as Services                         from '../services/index';
 
 @Component({
     templateUrl: 'src/views/account.create.html',
-    providers: [Services.MetaweblogDetector]
+    providers: [Services.MetaweblogDetector, Services.SettingService]
 })
 export class CreateAccountComponent implements OnInit {
     Title: string;
@@ -15,14 +15,13 @@ export class CreateAccountComponent implements OnInit {
     DetectProgress: number = 0;
     DetectTotal: number = 10;
     ProcessState: string;
-    BlogNickName: string = "nick name";
     Remember: boolean = true;
     Finished: boolean;
     SupportBlogs: Array<BlogService> = [new BlogService(1, "WordPress", true), new BlogService(2, "Google Blogger", false), new BlogService(3, "Other service", false)]
     SelectedBlogId: number = 1;
     Account: Services.BlogAccount = new Services.BlogAccount();
 
-    constructor(private mRouter: Router, private mDetector: Services.MetaweblogDetector) {
+    constructor(private mRouter: Router, private mDetector: Services.MetaweblogDetector, private settingService: Services.SettingService) {
 
     }
     ngOnInit(): any {
@@ -31,6 +30,7 @@ export class CreateAccountComponent implements OnInit {
         this.Account.HomeUrl = "https://andylangyu.wordpress.com/";
         this.Account.UserName = "nnlyx@hotmail.com";
         this.Account.Password = "supernova";
+        this.Account.NickName = "Nick name";
     }
     Next(): void {
         if (this.CurrentStep < this.TotalSteps)
@@ -59,6 +59,13 @@ export class CreateAccountComponent implements OnInit {
         return this.CurrentStep > 1;
     }
     Finish(): void {
+        // save to settingService
+        let account = this.settingService.Setting.BlogAccounts.find(x => x.HomeUrl == this.Account.HomeUrl);
+        if (!account) {
+                this.settingService.Setting.BlogAccounts.filter(x=> x.HomeUrl != this.Account.HomeUrl);
+        }
+        this.settingService.Setting.BlogAccounts.push( this.Account);
+        this.settingService.SaveSettings();
         this.GoToWelcome();
     }
     CanFinish(): boolean {
@@ -77,7 +84,7 @@ export class CreateAccountComponent implements OnInit {
             .then(response => {
                 console.log(response);
                 this.DetectProgress = 10;
-                this.BlogNickName = response.BlogName
+                this.Account.NickName = response.BlogName
                 this.Next();
             });
     }

@@ -20,9 +20,23 @@
             <div class="welcome-body">
                 <div class="card">
                     <div class="card-header">
-                        <svg class="section-icon"><use xlink:href="src/assets/img/icons.svg#icon-windows"></use></svg> Quick Start
+                        <svg class="section-icon">
+                            <use xlink:href="src/assets/img/icons.svg#icon-windows"></use>
+                        </svg> Quick Start
                     </div>
                     <div class="card-block">
+                        <div class="text-xs-right" *ngIf="SelectAccount">
+                            <div class="btn-group">
+                               
+                                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                     {{SelectAccount.NickName}}
+                                </button>
+
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#" *ngFor="let blog of Accounts">{{blog.NickName}}</a>
+                                </div>
+                            </div>
+                        </div>
                         <button type="button" id="button-open-post" title="Connect to a blog account" class="nav-button" (click)="CreateAccount()"><i class="fa fa-user-plus"></i> <em>Connect to a blog account</em></button>
                         <hr/>
                         <button type="button" id="button-create-post" title="Write a new post" class="nav-button" (click)="CreatePost()"> <i class="fa fa-file-o"></i> <em>Write a new post</em></button>
@@ -32,8 +46,10 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <svg class="section-icon"><use xlink:href="src/assets/img/icons.svg#icon-native-ui"></use></svg> Recent Posts
-                    </div>                    
+                        <svg class="section-icon">
+                            <use xlink:href="src/assets/img/icons.svg#icon-native-ui"></use>
+                        </svg> Recent Posts
+                    </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Cras justo odio</li>
                         <li class="list-group-item">Dapibus ac facilisis in</li>

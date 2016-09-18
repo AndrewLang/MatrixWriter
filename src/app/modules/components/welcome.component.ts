@@ -10,14 +10,28 @@ import * as Services                         from '../services/index';
 })
 export class WelcomeComponent implements OnInit, OnDestroy {
 
+    private mSelectAccount: Services.BlogAccount;
+
     constructor(private mRouter: Router, private mSettingService: Services.SettingService) {
 
     }
 
+    get Accounts(): Services.BlogAccount[] {
+        return this.mSettingService.Setting.BlogAccounts;
+    }
+    get SelectAccount(): Services.BlogAccount {
+        return this.mSelectAccount;
+    }
+    set SelectAccount(value: Services.BlogAccount) {
+        this.mSelectAccount = value;
+    }
+
     ngOnInit() {
-        this.mSettingService.SaveSettings();
-        this.mSettingService.LoadSettings();
-        console.log( this.mSettingService.Setting);
+        this.mSettingService.LoadSettings()
+            .then(response => {
+                this.SelectAccount = this.mSettingService.Setting.BlogAccounts[0];
+                console.log(this.SelectAccount);
+            });
     }
     ngOnDestroy() {
 

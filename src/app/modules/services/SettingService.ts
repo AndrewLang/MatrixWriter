@@ -17,15 +17,21 @@ export class SettingService {
         return this.mSetting;
     }
 
-    LoadSettings(): void {
-        let folder = this.GetFolder();
-        this.mElectron.ReadFileAsync(folder + "/" + this.mConfiFileName)
-            .then(data => {
-                console.log(data);
-                let content = this.mElectron.Decrypt(data);
-                console.log(content);
-                this.mSetting = JSON.parse(content);
-            });
+    LoadSettings(): Promise<any> {
+        let self = this;
+        return new Promise(function (resolve, reject) {
+            let folder = self.GetFolder();
+            self.mElectron.ReadFileAsync(folder + "/" + self.mConfiFileName)
+                .then(data => {
+
+                    let content = self.mElectron.Decrypt(data);
+
+                    self.mSetting = JSON.parse(content);
+                    console.log(self.mSetting);
+                    resolve(true);
+                });
+
+        })
     }
 
     SaveSettings(): void {
