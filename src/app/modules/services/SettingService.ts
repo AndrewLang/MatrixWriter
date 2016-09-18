@@ -1,12 +1,15 @@
-import { Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BlogSettings} from './BlogSettings';
 import {ElectronService}    from './ElectronService';
 
+
+
 @Injectable()
 export class SettingService {
+    private mConfiFileName: string = "matrix-writer-config.json";
     private mSetting: BlogSettings = new BlogSettings();
 
-    constructor(private mElectron:ElectronService ) {
+    constructor(private mElectron: ElectronService) {
 
     }
 
@@ -14,19 +17,24 @@ export class SettingService {
         return this.mSetting;
     }
 
-    LoadSettings(): void {       
-        let folder = this.mElectron.App.getPath('userData');
-      
-        //  fs.readFileSync("/package.json",(error,data)=>{
-        //      console.log(data);
-        // });
-        console.log(this.mElectron.Electron);
-        console.log( folder );
-        console.log( this.mElectron.Electron.remote.Menu);   
-        this.mElectron.SetApplicationMenu(null);     
+    LoadSettings(): void {
+        let folder = this.GetFolder();
+        this.mElectron.ReadFileAsync(folder + "/" + this.mConfiFileName)
+            .then(data => {
+               this.mSetting = JSON.parse(data);
+            });
     }
     SaveSettings(): void {
-        let jston = JSON.stringify(this.mSetting);
+        let folder = this.GetFolder();
 
+        let content = JSON.stringify(this.mSetting);
+
+        this.mElectron.WriteFileAsync(folder + "/" + this.mConfiFileName, content)
+            .then(response => {
+                console.log("file saved");
+            });
+    }
+    private GetFolder() :string {
+        return this.mElectron.App.getPath('userData');
     }
 }

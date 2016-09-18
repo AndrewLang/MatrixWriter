@@ -42,13 +42,16 @@
 <script src="systemjs.config.js"></script>
 <script src="node_modules/tinymce/tinymce.min.js"></script>
 <script>
-    
     const electron = require('electron');
+    //const storage = require('electron-storage');
+    const fs = require('fs');
+
     System.set('electron', System.newModule(electron));
-    console.log( electron );
+    //System.set('storage', System.newModule(storage));
+    System.set('fs', System.newModule(fs));
 
     System.import('app')
-            .catch(function(err){ 
+          .catch(function(err){ 
               console.error(err); 
             });
     

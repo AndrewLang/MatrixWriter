@@ -5,6 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "gulp start",
+    "compile":"gulp compile",
     "test": "gulp sass && tsc && concurrently \"npm run tsc:w\" \"npm run lite\" && gulp sass:watch",
     "lite": "lite-server",
     "postinstall": "typings install",

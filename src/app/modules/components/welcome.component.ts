@@ -15,7 +15,9 @@ export class WelcomeComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.mSettingService.SaveSettings();
         this.mSettingService.LoadSettings();
+        console.log( this.mSettingService.Setting);
     }
     ngOnDestroy() {
 
