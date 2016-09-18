@@ -43,12 +43,12 @@
 <script src="node_modules/tinymce/tinymce.min.js"></script>
 <script>
     const electron = require('electron');
-    //const storage = require('electron-storage');
     const fs = require('fs');
+    const Cryptr = require('cryptr');
 
     System.set('electron', System.newModule(electron));
-    //System.set('storage', System.newModule(storage));
     System.set('fs', System.newModule(fs));
+    System.set('Crypt', System.newMOdule(Cryptr));
 
     System.import('app')
           .catch(function(err){ 

@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "gulp start",
-    "compile":"gulp compile",
+    "compile": "gulp compile",
     "test": "gulp sass && tsc && concurrently \"npm run tsc:w\" \"npm run lite\" && gulp sass:watch",
     "lite": "lite-server",
     "postinstall": "typings install",
@@ -31,7 +31,8 @@
     "@angular/upgrade": "2.0.0",
     "angular2-in-memory-web-api": "0.0.20",
     "bootstrap": "4.0.0-alpha.4",
-    "core-js": "^2.4.1",
+    "core-js": "^2.4.1",    
+    "electron-json-storage": "2.0.0",
     "font-awesome": "4.6.3",
     "glob": "7.0.6",
     "jquery": "3.1.0",
@@ -40,8 +41,7 @@
     "systemjs": "0.19.38",
     "tether": "1.3.4",
     "tinymce": "4.4.2",
-    "zone.js": "^0.6.23",
-    "electron-json-storage": "2.0.0"
+    "zone.js": "^0.6.23"
   },
   "devDependencies": {
     "concurrently": "^2.2.0",

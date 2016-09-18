@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {BlogSettings} from './BlogSettings';
+import {Injectable}         from '@angular/core';
+import {BlogSettings}       from './BlogSettings';
 import {ElectronService}    from './ElectronService';
 
 
@@ -34,7 +34,7 @@ export class SettingService {
                 console.log("file saved");
             });
     }
-    private GetFolder() :string {
+    private GetFolder():string {
         return this.mElectron.App.getPath('userData');
     }
 }

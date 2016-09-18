@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
 
 declare var electron: any;
-// declare var storage: any;
 declare var fs: any;
+declare var Crypt:any;
 
 @Injectable()
 export class ElectronService {
+
     get Electron(): any {
         return electron;
     }
@@ -27,19 +28,6 @@ export class ElectronService {
         electron.remote.shell.showItemInFolder( path );
     }
 
-    // ReadFile(path: string): any {
-    //     return storage.get(path);
-    // }
-    // WriteFile(path: string, data): any {
-    //     return storage.set(path, data);
-    // }
-    // IsPathExist(path: string): boolean {
-    //     return storage.isPathExists(path);
-    // }
-    // Remove(path: string): any {
-    //     return storage.remove(path);
-    // }
-
     ReadFileAsync(file: string): Promise<any> {
         return new Promise(function (resolve, reject) {
             fs.readFile(file, (error, data) => {
@@ -57,10 +45,15 @@ export class ElectronService {
                 if (error)
                     reject(error);
 
-                resolve(null);
-
-                //self.ShowItemInFolder( file );
+                resolve(true);
             });
         });
+    }
+
+    Encrypt( value:string ):string {
+        return '';
+    }
+    Decrypt(value: string ): string {
+        return '';
     }
 }
