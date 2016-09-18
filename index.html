@@ -44,11 +44,11 @@
 <script>
     const electron = require('electron');
     const fs = require('fs');
-    const Cryptr = require('cryptr');
+    const Cryptr = require('crypto');
 
     System.set('electron', System.newModule(electron));
     System.set('fs', System.newModule(fs));
-    System.set('Crypt', System.newMOdule(Cryptr));
+    System.set('Cryptr', System.newModule(Cryptr));
 
     System.import('app')
           .catch(function(err){ 

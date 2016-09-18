@@ -2,10 +2,12 @@ import {Injectable} from '@angular/core';
 
 declare var electron: any;
 declare var fs: any;
-declare var Crypt:any;
+declare var Cryptr: any;
 
 @Injectable()
 export class ElectronService {
+    algorithm = 'aes-256-ctr';
+    password = 'a3b8d9w34';
 
     get Electron(): any {
         return electron;
@@ -24,13 +26,13 @@ export class ElectronService {
     OpenExternal(url: string): void {
         electron.remote.shell.openExternal(url);
     }
-    ShowItemInFolder( path: string ): void {
-        electron.remote.shell.showItemInFolder( path );
+    ShowItemInFolder(path: string): void {
+        electron.remote.shell.showItemInFolder(path);
     }
 
     ReadFileAsync(file: string): Promise<any> {
         return new Promise(function (resolve, reject) {
-            fs.readFile(file, (error, data) => {
+            fs.readFile(file,'utf8', (error, data) => {
                 if (error)
                     reject(error);
                 resolve(data);
@@ -50,10 +52,16 @@ export class ElectronService {
         });
     }
 
-    Encrypt( value:string ):string {
-        return '';
+    Encrypt(value: string): string {
+        let cipher = Cryptr.createCipher(this.algorithm, this.password);
+        let crypted = cipher.update(value, 'utf8', 'hex');
+        crypted += cipher.final('hex');
+        return crypted;
     }
-    Decrypt(value: string ): string {
-        return '';
+    Decrypt(value: string): string {
+        var decipher = Cryptr.createDecipher(this.algorithm, this.password)
+        var dec = decipher.update(value, 'hex', 'utf8')
+        dec += decipher.final('utf8');
+        return dec;
     }
 }
