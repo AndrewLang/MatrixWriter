@@ -1,10 +1,9 @@
   $header-height: 105px - 34px;
   $footer-height: 30px;
   $title-height: 50px;
-  $editorHostHeight: $header-height + $footer-height;
-  $body-height:$editorHostHeight + $title-height;
-  $body-top : $header-height + $title-height;
-
+  $editorHostHeight: $header-height+$footer-height;
+  $body-height:$editorHostHeight+$title-height;
+  $body-top: $header-height+$title-height;
   body {
       overflow: hidden;
   }
@@ -40,12 +39,12 @@
       padding: 0px 0px !important;
       margin-top: $header-height !important;
       box-sizing: border-box;
-        -moz-box-sizing: border-box;
+      -moz-box-sizing: border-box;
   }
   
   .postTitle {
-      width: 100%;   
-      height: $title-height;  
+      width: 100%;
+      height: $title-height;
       margin-top: $header-height !important;
       font-size: 1.8rem;
   }
@@ -56,7 +55,6 @@
       font-size: 24px;
       border: solid darkgray;
       border-width: 0 0 1px 0;
-      
   }
   
   .postBody {
@@ -64,10 +62,13 @@
       max-height: -moz-calc(100% - #{$body-height});
       max-height: -webkit-calc(100% - #{$body-height});
       max-height: calc(100% - #{$body-height});
+      height: calc(100% - #{$body-height});
+      height: -webkit-calc(100% - #{$body-height});
+      height: -moz-calc(100% - #{$body-height});
       box-sizing: border-box;
-    -moz-box-sizing: border-box;
+      -moz-box-sizing: border-box;
   }
   
-  .mce-tinymce-inline{
-  width: 100% !important;
-}
+  .mce-tinymce-inline {
+      width: 100% !important;
+  }
