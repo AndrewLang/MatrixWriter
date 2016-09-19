@@ -29,6 +29,9 @@ export class SettingService {
                     self.mSetting = JSON.parse(content);
                     console.log(self.mSetting);
                     resolve(true);
+                })
+                .catch(reason=>{
+                    console.log("Load setting failed. " + reason)
                 });
 
         })
@@ -43,6 +46,9 @@ export class SettingService {
         this.mElectron.WriteFileAsync(folder + "/" + this.mConfiFileName, content)
             .then(response => {
                 console.log("file saved");
+            })
+            .catch( reason=>{
+                console.log("save setting failes. " + reason);
             });
     }
 

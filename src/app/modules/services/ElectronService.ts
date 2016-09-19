@@ -31,8 +31,12 @@ export class ElectronService {
     }
 
     ReadFileAsync(file: string): Promise<any> {
+        let self = this;
         return new Promise(function (resolve, reject) {
-            fs.readFile(file,'utf8', (error, data) => {
+            if( !self.Exist( file) )
+                reject( new Error("File doesn't exist."));
+                
+            fs.readFile(file, 'utf8', (error, data) => {
                 if (error)
                     reject(error);
                 resolve(data);
@@ -63,5 +67,15 @@ export class ElectronService {
         var dec = decipher.update(value, 'hex', 'utf8')
         dec += decipher.final('utf8');
         return dec;
+    }
+
+    Exist(path: string): boolean {
+        try {
+            fs.accessSync(path,fs.F_OK);
+            return true;
+        }
+        catch (e) {
+            return false;
+        }
     }
 }
