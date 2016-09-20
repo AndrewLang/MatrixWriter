@@ -89,9 +89,15 @@ export class HtmlEditorService{
                     throw new Error('Tinymck hack workaround');
                 });
                 editor.on('change',function(e){
-                    self.Content = editor.getContent();
+                    self.Content = editor.getContent({format : 'raw'});
                 });
             }
         });
+    }
+
+    UpdateContent():void{
+        
+        this.Content = tinymce.activeEditor.getContent({format : 'raw'});
+        
     }
 }

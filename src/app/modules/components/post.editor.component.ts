@@ -29,8 +29,10 @@ export class PostEditorComponent implements OnInit {
     }
 
     Publish(): void{
+       
         console.log( "publishing post to ");
-        console.log( this .Post);
+         this.editorService.UpdateContent();
+        console.log( this.Post);
         this.dialogService.ShowDialog("address");
 
     }
