@@ -1,9 +1,12 @@
   $header-height: 105px - 34px;
   $footer-height: 30px;
   $title-height: 50px;
+  $quick-width: 90px;
+
   $editorHostHeight: $header-height+$footer-height;
   $body-height:$editorHostHeight+$title-height;
   $body-top: $header-height+$title-height;
+
   body {
       overflow: hidden;
   }
@@ -69,6 +72,35 @@
       -moz-box-sizing: border-box;
   }
   
+  .quick-tools{
+      width: $quick-width;
+      float: left;
+       height: 90px;
+       overflow:hidden;
+       padding:0 0 0 4px;
+  }
+  .main-tools{
+      width: calc(100% - #{$quick-width});
+      max-width: calc(100% - #{$quick-width});
+      float: left;
+  }
   .mce-tinymce-inline {
       width: 100% !important;
   }
+  .toolbar-btn{
+      padding:  4px 8px;
+      color: #333;
+      cursor:pointer;
+      border: 1px solid #b1b1b1;
+      background: #f0f0f0;
+     padding: 5px 18px;
+  }
+.toolbar-btn:hover {
+    background: #dbdbdb;
+}
+.quick-tools .toolbar-btn{
+    height: 70px;
+}
+.toolbar-btn figure{
+    margin: 0;
+}
