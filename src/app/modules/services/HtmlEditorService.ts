@@ -1,12 +1,25 @@
 
-import { Injectable} from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
 declare var tinymce: any;
 
 @Injectable()
 export class HtmlEditorService{
+    private mContent:string;
+    ContentChanged :EventEmitter<string> = new EventEmitter<string>();
+
+    get Content():string{
+        return this.mContent;
+    }
+    set Content(value : string ){
+        if( value != this.mContent){
+            this.mContent = value;
+            this.ContentChanged.emit( value );
+        }
+    }
 
     InitializeEditor( selector:string ):void {
+        let self = this;
          tinymce.init({
             selector: selector,
             inline: true,
@@ -42,7 +55,7 @@ export class HtmlEditorService{
                 'importcss spellchecker template '
             ],
             toolbar1: 'undo redo | cut copy paste pastetext |  bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect ',
-            toolbar2: 'code print preview save searchreplace | link image media |  emoticons codesample hr importcss insertdatetime table template | spellchecker',
+            toolbar2: 'code print preview searchreplace | link image media |  emoticons codesample hr importcss insertdatetime table template | spellchecker',
             content_css: [
                 //'//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
                 'src/assets/css/editor.basic.css'
@@ -74,6 +87,9 @@ export class HtmlEditorService{
                 });
                 editor.on('blur', function (e) {
                     throw new Error('Tinymck hack workaround');
+                });
+                editor.on('change',function(e){
+                    self.Content = editor.getContent();
                 });
             }
         });

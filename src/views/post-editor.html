@@ -1,7 +1,7 @@
 <header>
     <div class="row">
         <div class="quick-tools">
-            <button class="toolbar-btn">
+            <button class="toolbar-btn" (click)="Publish()">
                 <figure>
                     <i class="fa fa-cloud-upload fa-2x"></i>
                     <figcaption> Publish </figcaption>
@@ -18,7 +18,7 @@
 </header>
 
 <div class="postTitle">
-    <input type="text" placeholder="Enter post title" tabindex="1" />
+    <input type="text" placeholder="Enter post title" tabindex="1" [(ngModel)]="Post.Title"/>
 </div>
 
 
