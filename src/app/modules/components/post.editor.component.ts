@@ -1,4 +1,4 @@
-import {Component, OnInit}          from '@angular/core';
+import {Component, OnInit, AfterViewInit }          from '@angular/core';
 
 import * as Common                  from '../../common/index';
 import * as Services                from '../services/index';
@@ -9,7 +9,7 @@ import {Modal}                      from './modal.component';
     templateUrl: 'src/views/post-editor.html',    
     providers: [Services.DataService, Services.MetaweblogService, Services.HtmlEditorService, Modal]
 })
-export class PostEditorComponent implements OnInit {
+export class PostEditorComponent implements OnInit, AfterViewInit  {
     Post: Common.Post = new Common.Post();
     private mContentChanged: any;
     mModal = null;
@@ -40,6 +40,9 @@ export class PostEditorComponent implements OnInit {
         this.mContentChanged = this.editorService
             .ContentChanged
             .subscribe(value => this.Post.Description = value);
+    }
+    ngAfterViewInit():void {
+
     }
 
     Publish(): void {
