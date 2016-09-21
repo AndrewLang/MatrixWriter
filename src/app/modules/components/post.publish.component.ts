@@ -15,4 +15,7 @@ export class PostPublishComponent extends ModalBase {
         console.log("publish component");
     }
     
+    CanSubmit(): boolean{
+        return false;
+    }
 }

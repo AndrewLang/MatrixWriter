@@ -28,10 +28,16 @@ export abstract class ModalBase implements Common.IModalView {
         // Close the dialog directly
         this.CloseInternal();
     }
+    UseCancel(): boolean{
+        return true;
+    }
     Submit():void{
         this.CloseInternal();
     }
     CanSubmit():boolean{
+        return true;
+    }
+    UseSubmit():boolean{
         return true;
     }
     private CloseInternal() {
