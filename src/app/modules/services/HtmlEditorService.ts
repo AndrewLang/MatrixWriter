@@ -86,7 +86,7 @@ export class HtmlEditorService{
                     console.log("html editor initialized.")
                 });
                 editor.on('blur', function (e) {
-                    throw new Error('Tinymck hack workaround');
+                    throw new Error('Tinymce hack workaround');
                 });
                 editor.on('change',function(e){
                     self.Content = editor.getContent({format : 'raw'});

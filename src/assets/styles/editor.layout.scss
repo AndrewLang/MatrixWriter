@@ -75,7 +75,7 @@
       float: left;
       height: 90px;
       overflow: hidden;
-      padding: 0 0 0 4px;
+      padding: 0 0 0 8px;
   }
   
   .main-tools {
@@ -107,4 +107,8 @@
   
   .toolbar-btn figure {
       margin: 0;
+  }
+  
+  .modal .btn {
+      min-width: 80px;
   }
