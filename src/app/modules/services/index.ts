@@ -8,6 +8,8 @@ export *        from './HtmlEditorService';
 
 export *        from './ElectronService';
 export *        from './SettingService';
+export *        from './ComponentCreator'
+export *        from './modal.component';
 
 export *        from './Blog';
 export *        from './BlogAccount';

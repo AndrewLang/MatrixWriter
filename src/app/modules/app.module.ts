@@ -10,8 +10,12 @@ import { routing, appRoutingProviders }     from './app.routing';
 
 @NgModule({
     imports: [BrowserModule,HttpModule,FormsModule,JsonpModule,routing],
-    declarations: [Components.AppComponent,Components.WelcomeComponent,Components.PostEditorComponent, Components.CreateAccountComponent],
-    providers:[ Services.DataService, Services.ErrorHandlingService, Services.MetaweblogService,appRoutingProviders,Services.DialogService, Services.ElectronService, Services.SettingService],
+    declarations: [Components.AppComponent,Components.WelcomeComponent,Components.PostEditorComponent, 
+                   Components.CreateAccountComponent, Services.Modal],
+    entryComponents:[Services.Modal],
+    providers:[ Services.DataService, Services.ErrorHandlingService, Services.MetaweblogService,appRoutingProviders,
+                Services.DialogService, Services.ElectronService, Services.SettingService,
+                Services.ComponentCreator],
     bootstrap: [Components.AppComponent]
 })
 export class AppModule { }

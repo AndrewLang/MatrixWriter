@@ -1,22 +1,23 @@
 import { Injectable, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
+import {ComponentCreator}   from './ComponentCreator';
+import {Modal}              from './modal.component';
 
 declare var $: any;
 
 @Injectable()
-export class DialogService{
+export class DialogService {
 
-    /**
-     *
-     */
-    constructor(private viewContainer:ViewContainerRef, private componentFactoryResolver ) {        
-        
+   
+    constructor(private mComponentCreator: ComponentCreator) {
+
     }
 
-    ShowDialog( url:string ):void{
-        console.log( url );
-        let factory = this.componentFactoryResolver.resolveComponentFactory();
-        let componentRef = this.viewContainer.createComponent(factory);
+    ShowDialog(type: String): void {
+        console.log(type);
 
-        
+        let factory = this.mComponentCreator.ComponentFactoryResolver.resolveComponentFactory(Modal);
+        let component = this.mComponentCreator.ViewContainer.createComponent(factory);
+
+        component.instance.open();
     }
 }

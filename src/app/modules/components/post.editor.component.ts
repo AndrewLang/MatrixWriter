@@ -1,15 +1,14 @@
-import {Component, OnInit, AfterViewInit }          from '@angular/core';
+import {Component, OnInit, AfterViewInit, ViewContainerRef, ComponentFactoryResolver }          from '@angular/core';
 
 import * as Common                  from '../../common/index';
 import * as Services                from '../services/index';
-import {Modal}                      from './modal.component';
 
 @Component({
     selector: 'app',
-    templateUrl: 'src/views/post-editor.html',    
-    providers: [Services.DataService, Services.MetaweblogService, Services.HtmlEditorService, Modal]
+    templateUrl: 'src/views/post-editor.html',
+    providers: [Services.DataService, Services.MetaweblogService, Services.HtmlEditorService]
 })
-export class PostEditorComponent implements OnInit, AfterViewInit  {
+export class PostEditorComponent implements OnInit, AfterViewInit {
     Post: Common.Post = new Common.Post();
     private mContentChanged: any;
     mModal = null;
@@ -17,23 +16,11 @@ export class PostEditorComponent implements OnInit, AfterViewInit  {
     constructor(private dataService: Services.DataService,
         private metaWeblogService: Services.MetaweblogService,
         private editorService: Services.HtmlEditorService,
-        private dialogService: Services.DialogService) {
+        private dialogService: Services.DialogService
+        ) {
 
         console.log('constructor of post editor Component');
     }
-
-    bindModal(modal):void{
-        this.mModal = modal;
-    }
-     open(client) {
-        this.mModal.open();
-        console.log({client});
-    }
-
-    close() {
-        this.mModal.close();
-    }
-
 
     ngOnInit(): any {
         this.editorService.InitializeEditor("div.htmlEditor");
@@ -41,8 +28,8 @@ export class PostEditorComponent implements OnInit, AfterViewInit  {
             .ContentChanged
             .subscribe(value => this.Post.Description = value);
     }
-    ngAfterViewInit():void {
-
+    ngAfterViewInit(): void {
+       
     }
 
     Publish(): void {
@@ -50,7 +37,5 @@ export class PostEditorComponent implements OnInit, AfterViewInit  {
         this.editorService.UpdateContent();
         console.log(this.Post);
         this.dialogService.ShowDialog("address");
-
-        this.mModal.open();
     }
 }
