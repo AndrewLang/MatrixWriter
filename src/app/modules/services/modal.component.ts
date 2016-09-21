@@ -9,29 +9,23 @@ declare var $: any;
 })
 export class Modal implements OnInit, AfterViewInit {
 
-    // @Input() title:string;
-    // @Input() showClose:boolean = true;
+    @Input() title: string = "Title";
+    @Input() showClose: boolean = true;
     @Output() onClose: EventEmitter<any> = new EventEmitter();
 
-    modalElement = null;
-    id: string = 'modal_of_dialog_host';
+    
+    private id: string = 'modal_of_dialog_host';
 
-    constructor(private rotNode: ElementRef) { 
-        this.modalElement = $(this.rotNode.nativeElement).find('div#modal_of_dialog_host');// $('#'+this.id);
-        console.log("Modal constructor");
-        console.log(this.modalElement.id);
-        console.log(this.modalElement);
+    constructor(private rotNode: ElementRef) {
+      
     }
 
     open() {
-        console.log("open dialog");
-        //this.modalElement.modal('show');
-        $('#modal_of_dialog_host').modal('show');
+        this.getHost().modal('show');
     }
 
     close() {
-        console.log("close dialog");
-        this.modalElement.modal('hide');
+        this.getHost().modal('hide');
     }
 
     closeInternal() {
@@ -39,12 +33,14 @@ export class Modal implements OnInit, AfterViewInit {
         this.close();
     }
     ngOnInit(): any {
-         
+
     }
     ngAfterViewInit(): void {
-       
+
     }
 
-
+    private getHost(): any {
+        return $('#'+this.id);
+    }
 }
 
