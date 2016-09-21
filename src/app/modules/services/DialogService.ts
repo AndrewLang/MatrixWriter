@@ -19,5 +19,8 @@ export class DialogService {
         let component = this.mComponentCreator.ViewContainer.createComponent(factory);
 
         component.instance.open();
+        component.instance.onClose.subscribe( ()=>{
+            component.destroy();
+        });
     }
 }
