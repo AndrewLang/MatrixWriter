@@ -3,4 +3,5 @@ export class BlogAccount{
     Password:string;
     HomeUrl:string;
     NickName:string;
+    IsDefault: boolean = false;
 }

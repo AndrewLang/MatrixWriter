@@ -5,7 +5,7 @@ import * as Services                from '../services/index';
 import {PostPublishComponent}       from './post.publish.component';
 
 
-@Component({    
+@Component({
     templateUrl: 'src/views/post-editor.html',
     providers: [Services.DataService, Services.MetaweblogService, Services.HtmlEditorService]
 })
@@ -17,9 +17,9 @@ export class PostEditorComponent implements OnInit, AfterViewInit {
     constructor(private dataService: Services.DataService,
         private metaWeblogService: Services.MetaweblogService,
         private editorService: Services.HtmlEditorService,
-        private dialogService: Services.DialogService
-        ) {
-        console.log('constructor of post editor Component');
+        private dialogService: Services.DialogService,
+        private postManageService: Services.PostManageService) {
+
     }
 
     ngOnInit(): any {
@@ -27,10 +27,12 @@ export class PostEditorComponent implements OnInit, AfterViewInit {
         this.mContentChanged = this.editorService
             .ContentChanged
             .subscribe(value => this.Post.Description = value);
+
+        this.postManageService.CurrentPost = this.Post;
     }
 
     ngAfterViewInit(): void {
-       
+
     }
 
     Publish(): void {

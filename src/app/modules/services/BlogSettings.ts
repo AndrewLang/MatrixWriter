@@ -1,9 +1,10 @@
 
 import {BlogAccount}    from './BlogAccount';
+import {PostFile}       from './PostFile';
 
+export class BlogSettings {
 
-export class BlogSettings
-{
-    BlogAccounts:BlogAccount[] =[];
-    
+    BlogAccounts: BlogAccount[] = [];
+    RecentPosts: PostFile[] = [];
+
 }

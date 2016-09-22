@@ -1,4 +1,3 @@
-
 //require('bootstrap');
 const electron = require('electron');
 const app = electron.app;
@@ -6,8 +5,8 @@ const BrowserWindow = electron.BrowserWindow;
 const glob = require('glob')
 const path = require('path')
 
-let mainWindow;
-let debug = false;
+var mainWindow;
+var debug = false;
 
 
 function initialize() {
@@ -17,25 +16,25 @@ function initialize() {
         mainWindow = new BrowserWindow({ width: 1200, height: 800 });
         mainWindow.loadURL(`file://${__dirname}/index.html`)
 
-        mainWindow.on('closed', function () {
+        mainWindow.on('closed', function() {
             mainWindow = null;
         });
 
         if (debug) {
             mainWindow.webContents.openDevTools();
             //mainWindow.maximize();
-        }        
+        }
     }
 
     app.on('ready', createWindow);
 
-    app.on('window-all-closed', function () {
+    app.on('window-all-closed', function() {
         if (process.platform != 'darwin') {
             app.quit();
         }
     });
 
-    app.on('activate', function () {
+    app.on('activate', function() {
         if (mainWindow == null) {
             createWindow();
         }
@@ -48,7 +47,7 @@ function loadModules() {
     var dir = path.join(__dirname, 'src/electron/*.js');
     console.log(dir);
     var files = glob.sync(dir);
-    files.forEach(function (file) {
+    files.forEach(function(file) {
         console.log(file);
         require(file);
     });
@@ -57,10 +56,10 @@ function loadModules() {
 // Handle Squirrel on Windows startup events
 switch (process.argv[1]) {
     case '--squirrel-install':
-        autoUpdater.createShortcut(function () { app.quit() })
+        autoUpdater.createShortcut(function() { app.quit() })
         break
     case '--squirrel-uninstall':
-        autoUpdater.removeShortcut(function () { app.quit() })
+        autoUpdater.removeShortcut(function() { app.quit() })
         break
     case '--squirrel-obsolete':
     case '--squirrel-updated':

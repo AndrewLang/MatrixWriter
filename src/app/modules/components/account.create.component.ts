@@ -4,8 +4,7 @@ import { Router }                            from '@angular/router';
 import * as Services                         from '../services/index';
 
 @Component({
-    templateUrl: 'src/views/account.create.html',
-    providers: [Services.MetaweblogDetector, Services.SettingService]
+    templateUrl: 'src/views/account.create.html'
 })
 export class CreateAccountComponent implements OnInit {
     Title: string;
@@ -21,15 +20,15 @@ export class CreateAccountComponent implements OnInit {
     SelectedBlogId: number = 1;
     Account: Services.BlogAccount = new Services.BlogAccount();
 
-    constructor(private mRouter: Router, private mDetector: Services.MetaweblogDetector, private settingService: Services.SettingService) {}
+    constructor(private mRouter: Router, private mDetector: Services.MetaweblogDetector, private settingService: Services.SettingService) { }
 
     ngOnInit(): any {
         this.Title = "Add a blog account";
-        // this.Subtitle = "Matrix writer support most popular blog services.";
-        // this.Account.HomeUrl = "https://andylangyu.wordpress.com/";
-        // this.Account.UserName = "nnlyx@hotmail.com";
-        // this.Account.Password = "supernova";
-        // this.Account.NickName = "Nick name";
+        this.Subtitle = "Matrix writer support most popular blog services.";
+        this.Account.HomeUrl = "https://andylangyu.wordpress.com/";
+        this.Account.UserName = "nnlyx@hotmail.com";
+        this.Account.Password = "supernova";
+        this.Account.NickName = "Nick name";
     }
     Next(): void {
         if (this.CurrentStep < this.TotalSteps)
@@ -59,11 +58,12 @@ export class CreateAccountComponent implements OnInit {
     }
     Finish(): void {
         // save to settingService
+        this.Account.IsDefault = true;
         let account = this.settingService.Setting.BlogAccounts.find(x => x.HomeUrl == this.Account.HomeUrl);
         if (!account) {
-                this.settingService.Setting.BlogAccounts.filter(x=> x.HomeUrl != this.Account.HomeUrl);
+            this.settingService.Setting.BlogAccounts = this.settingService.Setting.BlogAccounts.filter(x => x.HomeUrl != this.Account.HomeUrl);
         }
-        this.settingService.Setting.BlogAccounts.push( this.Account);
+        this.settingService.Setting.BlogAccounts.push(this.Account);
         this.settingService.SaveSettings();
         this.GoToWelcome();
     }

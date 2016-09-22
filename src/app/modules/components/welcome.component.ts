@@ -5,19 +5,20 @@ import * as Services                         from '../services/index';
 
 @Component({
     selector: 'app',
-    templateUrl: 'src/views/welcome.html',
-    providers: [Services.SettingService]
+    templateUrl: 'src/views/welcome.html'
 })
 export class WelcomeComponent implements OnInit, OnDestroy {
 
     private mSelectAccount: Services.BlogAccount;
+    mAccounts: Services.BlogAccount[];
+    RecentPosts: Services.PostFile[] = [];
 
     constructor(private mRouter: Router, private mSettingService: Services.SettingService) {
 
     }
 
     get Accounts(): Services.BlogAccount[] {
-        return this.mSettingService.Setting.BlogAccounts;
+        return this.mAccounts;// this.mSettingService.Setting.BlogAccounts;
     }
     get SelectAccount(): Services.BlogAccount {
         return this.mSelectAccount;
@@ -29,9 +30,16 @@ export class WelcomeComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.mSettingService.LoadSettings()
             .then(response => {
-                this.SelectAccount = this.mSettingService.Setting.BlogAccounts[0];
+                console.log(response);
+                console.log(this.mSettingService.Setting);
+                this.mAccounts = this.mSettingService.Setting.BlogAccounts;
+                this.SelectAccount = this.mSettingService.DefaultAccount;
+                this.RecentPosts = this.mSettingService.Setting.RecentPosts;
+
+                console.log(this.mAccounts);
                 console.log(this.SelectAccount);
             });
+
     }
     ngOnDestroy() {
 
