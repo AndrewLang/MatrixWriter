@@ -15,7 +15,7 @@ import { routing, appRoutingProviders }     from './app.routing';
     entryComponents:[Components.PostPublishComponent],
     providers: [Services.DataService, Services.ErrorHandlingService, Services.MetaweblogService,
         Services.DialogService, Services.ElectronService, Services.SettingService,
-        Services.ComponentCreator, Services.PostManageService, appRoutingProviders,],
+        Services.ComponentCreator, Services.PostManageService, Services.MetaweblogDetector, appRoutingProviders,],
     bootstrap: [Components.AppComponent]
 })
 export class AppModule { }

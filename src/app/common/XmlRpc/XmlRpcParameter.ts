@@ -1,7 +1,18 @@
+import * as Xml             from '../../common/Xml/index';
 
 export class XmlRpcParameter {
-    Value: string;
+    private mValue: string;
     constructor(value: string) {
-        this.Value = value;
+        this.mValue = value;
     }
+
+    GetValue(): any {
+        return this.mValue;
+    }
+    ToXml(): Xml.XElement {
+        return new Xml.XElement("param")
+            .AppendChild(new Xml.XElement("value")
+                .AppendChild(new Xml.XElement("string", this.mValue)));
+    }
+
 }

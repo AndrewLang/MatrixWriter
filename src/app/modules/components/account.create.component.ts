@@ -84,6 +84,7 @@ export class CreateAccountComponent implements OnInit {
                 console.log(response);
                 this.DetectProgress = 10;
                 this.Account.NickName = response.BlogName
+                this.Account.ApiUrl = response.ApiUrl;
                 this.Next();
             });
     }

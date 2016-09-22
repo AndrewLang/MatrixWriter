@@ -1,26 +1,27 @@
 import {XmlRpcMethod}   from './XmlRpcMethod';
 import * as Models      from '../models/index';
+import {PostParser}     from './PostParser';
 
 export class MetaweblogMethods {
 
     GetPost(postId: string, user: string, password: string): XmlRpcMethod {
         let method = new XmlRpcMethod();
         method.Name = "metaWeblog.getPost";
-        method.AddParameter(postId)
-            .AddParameter(user)
-            .AddParameter(password);
+        method.AddStringParameter(postId)
+            .AddStringParameter(user)
+            .AddStringParameter(password);
         return method;
     }
 
     GetRecentPosts(blogId: string, user: string, password: string, numberoOfPosts?: number): XmlRpcMethod {
         let method = new XmlRpcMethod();
         method.Name = "metaWeblog.getRecentPosts";
-        method.AddParameter(blogId)
-            .AddParameter(user)
-            .AddParameter(password);
+        method.AddStringParameter(blogId)
+            .AddStringParameter(user)
+            .AddStringParameter(password);
 
         if (numberoOfPosts)
-            method.AddParameter(numberoOfPosts.toString());
+            method.AddStringParameter(numberoOfPosts.toString());
 
         return method;
     }
@@ -28,60 +29,63 @@ export class MetaweblogMethods {
     GetUserInfo(id: string, user: string, password: string): XmlRpcMethod {
         let method = new XmlRpcMethod();
         method.Name = "metaWeblog.getPost";
-        method.AddParameter(id)
-            .AddParameter(user)
-            .AddParameter(password)
+        method.AddStringParameter(id)
+            .AddStringParameter(user)
+            .AddStringParameter(password)
             ;
         return method;
     }
 
-    NewPost(blogId: string, user: string, password: string, post: Models.Post): XmlRpcMethod {
+    NewPost(blogId: string, user: string, password: string, post: Models.Post, publish :boolean= true): XmlRpcMethod {
         let method = new XmlRpcMethod();
+        let parser = new PostParser();
         method.Name = "metaWeblog.newPost";
-        method.AddParameter(blogId)
-            .AddParameter(user)
-            .AddParameter(password)
+        method.AddStringParameter(blogId)
+            .AddStringParameter(user)
+            .AddStringParameter(password)
+            .AddParameter(parser.ToXml(post))
+            .AddBoolParameter(publish)
             ;
         return method;
     }
     EditPost(postId: string, user: string, password: string, post: Models.Post, publish: boolean): XmlRpcMethod {
         let method = new XmlRpcMethod();
         method.Name = "metaWeblog.editPost";
-        method.AddParameter(postId)
-            .AddParameter(user)
-            .AddParameter(password);
+        method.AddStringParameter(postId)
+            .AddStringParameter(user)
+            .AddStringParameter(password);
         return method;
     }
     DeletePost(appKey: string, postId: string, user: string, password: string, publish: boolean): XmlRpcMethod {
         let method = new XmlRpcMethod();
         method.Name = "metaWeblog.deletePost";
-        method.AddParameter(postId)
-            .AddParameter(user)
-            .AddParameter(password);
+        method.AddStringParameter(postId)
+            .AddStringParameter(user)
+            .AddStringParameter(password);
         return method;
     }
     GetCategories(blogId: string, user: string, password: string) {
         let method = new XmlRpcMethod();
         method.Name = "metaWeblog.getCategories";
-        method.AddParameter(blogId)
-            .AddParameter(user)
-            .AddParameter(password);
+        method.AddStringParameter(blogId)
+            .AddStringParameter(user)
+            .AddStringParameter(password);
         return method;
     }
     NewMediaObject(blogId: string, user: string, password: string) {
         let method = new XmlRpcMethod();
         method.Name = "metaWeblog.newMediaObject";
-        method.AddParameter(blogId)
-            .AddParameter(user)
-            .AddParameter(password);
+        method.AddStringParameter(blogId)
+            .AddStringParameter(user)
+            .AddStringParameter(password);
         return method;
     }
     GetUserBlogs(appKey: string, user: string, password: string): XmlRpcMethod {
         let method = new XmlRpcMethod();
         method.Name = "metaWeblog.newMediaObject";
-        method.AddParameter(appKey)
-            .AddParameter(user)
-            .AddParameter(password);
+        method.AddStringParameter(appKey)
+            .AddStringParameter(user)
+            .AddStringParameter(password);
         return method;
     }
 }

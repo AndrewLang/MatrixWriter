@@ -1,4 +1,7 @@
-import * as Models      from '../models/index';
+import * as Models              from '../models/index';
+import {XmlRpcParameter}        from './XmlRpcParameter';
+import {XmlRpcMember}           from './XmlRpcMember';
+import {XmlRpcStructParameter}  from './XmlRpcStructParameter';
 
 export class PostParser {
 
@@ -92,10 +95,10 @@ export class PostParser {
                 post.DateModifiedGmt = this.ParseValue(valueElement);
             }
             else if (name == "sticky") {
-                post.Sticky = Boolean( this.ParseValue(valueElement) );
+                post.Sticky = Boolean(this.ParseValue(valueElement));
             }
-            else if( name == "wp_post_thumbnail"){
-                post.Thumbnail = this.ParseValue( valueElement);
+            else if (name == "wp_post_thumbnail") {
+                post.Thumbnail = this.ParseValue(valueElement);
             }
         }
         return post;
@@ -136,5 +139,16 @@ export class PostParser {
 
         //     return "";
         // }
+    }
+
+    ToXml(post: Models.Post): XmlRpcStructParameter {
+        let struct = new XmlRpcStructParameter();
+        if (post.DateCreated)
+            struct.AddMember(new XmlRpcMember("DateCreated", post.DateCreated));
+
+        struct.AddMember(new XmlRpcMember("description", post.Description));
+        struct.AddMember(new XmlRpcMember("title", post.Title));
+
+        return struct;
     }
 }

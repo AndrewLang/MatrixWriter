@@ -15,14 +15,17 @@ export class XmlRpcRequest {
         return new Promise(function (resolve, reject) {
             let xmlHttp = new XMLHttpRequest();
             let request = method.ToRequest();
-           
+
+            console.log(url);
+            console.log(request);
+
             xmlHttp.open("POST", url, true);
             xmlHttp.send(request);
 
             xmlHttp.onreadystatechange = function () {
                 if (xmlHttp.readyState == XMLHttpRequest.DONE) {
-                    //console.log("Response:")
-                    //console.log(xmlHttp.response);
+                    console.log("Response:")
+                    console.log(xmlHttp.response);
                     resolve(xmlHttp.responseXML);
                 }
             };
@@ -38,6 +41,19 @@ export class XmlRpcRequest {
                 resolve(self.mPostParser.ParsePost(response));
             });
         });
+    }
+    NewPost(url: string, method: XmlRpcMethod): Promise<any> {
+        let self = this;
+        return this.Send( url, method );
+        // return new Promise(function (resolve, reject) {
+        //     self.Send(url, method)
+        //         .then(response => {
+        //             resolve(response);
+        //         })
+        //         .catch(reason => {
+        //             reject(reason);
+        //         });
+        // });
     }
 
     GetRecentPosts(url: string, method: XmlRpcMethod): Promise<Array<Models.Post>> {
