@@ -44,16 +44,7 @@ export class XmlRpcRequest {
     }
     NewPost(url: string, method: XmlRpcMethod): Promise<any> {
         let self = this;
-        return this.Send( url, method );
-        // return new Promise(function (resolve, reject) {
-        //     self.Send(url, method)
-        //         .then(response => {
-        //             resolve(response);
-        //         })
-        //         .catch(reason => {
-        //             reject(reason);
-        //         });
-        // });
+        return this.Send( url, method );        
     }
 
     GetRecentPosts(url: string, method: XmlRpcMethod): Promise<Array<Models.Post>> {
@@ -65,36 +56,5 @@ export class XmlRpcRequest {
                 resolve(self.mPostParser.ParsePosts(response));
             });
         });
-    }
-
-    ParseToPost(doc: XMLDocument): Models.Post {
-        let post = new Models.Post();
-        let nodes = doc.querySelector("methodResponse params param value struct");
-        console.log(doc);
-        console.log(nodes);
-        let names = nodes.querySelectorAll("member");
-        for (var i = 0; i < names.length; i++) {
-            let name = names[i].querySelector('name').innerHTML;
-            if (name == "postid") {
-                post.PostId = names[i].querySelector('value string').innerHTML;
-            }
-            else if (name == "dateCreated") {
-                post.DateCreated = names[i].querySelector('value string').innerHTML;
-            }
-            else if (name == "title") {
-                post.Title = names[i].querySelector('value, string').innerHTML;
-            }
-            else if (name == "description") {
-                post.Description = names[i].querySelector('value, string').innerHTML;
-            }
-            else if (name == "categoiries") {
-
-            }
-            else if (name == "publish") {
-                post.Publish = Boolean(names[i].querySelector('value boolean').innerHTML);
-            }
-        }
-        console.log(names);
-        return post;
-    }
+    }   
 }
