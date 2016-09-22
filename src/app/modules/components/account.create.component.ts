@@ -21,16 +21,15 @@ export class CreateAccountComponent implements OnInit {
     SelectedBlogId: number = 1;
     Account: Services.BlogAccount = new Services.BlogAccount();
 
-    constructor(private mRouter: Router, private mDetector: Services.MetaweblogDetector, private settingService: Services.SettingService) {
+    constructor(private mRouter: Router, private mDetector: Services.MetaweblogDetector, private settingService: Services.SettingService) {}
 
-    }
     ngOnInit(): any {
         this.Title = "Add a blog account";
-        this.Subtitle = "Matrix writer support most popular blog services.";
-        this.Account.HomeUrl = "https://andylangyu.wordpress.com/";
-        this.Account.UserName = "nnlyx@hotmail.com";
-        this.Account.Password = "supernova";
-        this.Account.NickName = "Nick name";
+        // this.Subtitle = "Matrix writer support most popular blog services.";
+        // this.Account.HomeUrl = "https://andylangyu.wordpress.com/";
+        // this.Account.UserName = "nnlyx@hotmail.com";
+        // this.Account.Password = "supernova";
+        // this.Account.NickName = "Nick name";
     }
     Next(): void {
         if (this.CurrentStep < this.TotalSteps)
