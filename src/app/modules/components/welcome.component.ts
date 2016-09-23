@@ -11,7 +11,7 @@ export class WelcomeComponent implements OnInit, OnDestroy {
 
     private mSelectAccount: Services.BlogAccount;
     mAccounts: Services.BlogAccount[];
-    RecentPosts: Services.PostFile[] = [];
+    RecentPosts: Services.PostFileDescriptor[] = [];
 
     constructor(private mRouter: Router, private mSettingService: Services.SettingService) {
 

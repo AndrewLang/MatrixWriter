@@ -11,7 +11,8 @@ export *        from './SettingService';
 export *        from './PostManageService';
 export *        from './ComponentCreator'
 export *        from './modal.component';
+export *        from './PostFileService'
 
 export *        from './Blog';
 export *        from './BlogAccount';
-export *        from './PostFile';
+export *        from './PostFileDescriptor';

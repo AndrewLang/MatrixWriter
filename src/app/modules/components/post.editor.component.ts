@@ -18,9 +18,7 @@ export class PostEditorComponent implements OnInit, AfterViewInit {
         private metaWeblogService: Services.MetaweblogService,
         private editorService: Services.HtmlEditorService,
         private dialogService: Services.DialogService,
-        private postManageService: Services.PostManageService) {
-
-    }
+        private postManageService: Services.PostManageService) {    }
 
     ngOnInit(): any {
         this.editorService.InitializeEditor("div.htmlEditor");

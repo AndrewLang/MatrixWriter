@@ -1,10 +1,10 @@
 
-import {BlogAccount}    from './BlogAccount';
-import {PostFile}       from './PostFile';
+import {BlogAccount}                from './BlogAccount';
+import {PostFileDescriptor}         from './PostFileDescriptor';
 
 export class BlogSettings {
 
     BlogAccounts: BlogAccount[] = [];
-    RecentPosts: PostFile[] = [];
+    RecentPosts: PostFileDescriptor[] = [];
 
 }

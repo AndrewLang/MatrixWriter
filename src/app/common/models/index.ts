@@ -4,3 +4,4 @@ export * from './MediaObject';
 export * from './Post';
 export * from './Source';
 export * from './UrlData';
+export * from './PostFile'
