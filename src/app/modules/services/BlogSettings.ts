@@ -6,5 +6,5 @@ export class BlogSettings {
 
     BlogAccounts: BlogAccount[] = [];
     RecentPosts: PostFileDescriptor[] = [];
-
+    
 }

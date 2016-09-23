@@ -51,7 +51,9 @@
                         </svg> Recent Posts
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item" *ngFor="let post of RecentPosts" title="{{post.FullName}}">{{post.Name}} - {{post.CreatedDate | date}}</li>
+                        <li class="list-group-item" *ngFor="let post of RecentPosts" title="{{post.FullName}}">
+                            <button type="button" id="button-open-post" title="{{post.FullName}}" class="nav-button" (click)="OpenPost(post)">{{post.Name}} <span class="pull-right"> {{post.CreatedDate | date}}</span></button>
+                        </li>
                     </ul>
                 </div>
             </div>

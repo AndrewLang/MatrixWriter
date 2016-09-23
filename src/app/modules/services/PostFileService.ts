@@ -1,23 +1,39 @@
 import {Injectable}                 from '@angular/core';
 import * as Common                  from '../../common/index';
 import {ElectronService}            from './ElectronService';
-
+import {SettingService}             from './SettingService';
+import {PostFileDescriptor}         from './PostFileDescriptor';
 
 @Injectable()
 export class PostFileService {
+    static DefaultExtension = ".mpost";
 
-    constructor(private electronService: ElectronService) { }
+    constructor(private electronService: ElectronService,
+        private settingService: SettingService) { }
 
-    Save(post: Common.PostFile, file: string): Promise<boolean> {
+    Save(post: Common.PostFile): Promise<boolean> {
         if (!post)
             throw new Error("Given post is null.")
-        if (!file)
-            throw new Error("Given file is null");
 
-        let content = JSON.stringify(post);
+        let folder = post.IsPublished ? this.GetPostDataFolder() : this.GetDraftFolder();
+        let file = folder + post.PostTitle;
+        file = this.GenerateFilename( file, PostFileService.DefaultExtension);
+
+        let content = JSON.stringify(post,null, '\t');
+        let self = this;
         return new Promise(function (resolve, reject) {
-            this.electronService.WriteFileAsync(file, content)
-                .then(response => { 
+            self.electronService.WriteFileAsync(file, content)
+                .then(response => {
+                    // Save to recent file list
+                    let postFile = new PostFileDescriptor();
+                    postFile.CreatedDate = post.CreatedDate.toString();// new Date(Date.now().toString());
+                    postFile.Name = post.PostTitle;
+                    postFile.FullName = file;
+
+                    console.log( self.settingService);
+                    self.settingService.AddRecentPost(postFile);
+                    self.settingService.SaveSettings();
+
                     resolve(true);
                 })
                 .catch(reason => {
@@ -27,8 +43,9 @@ export class PostFileService {
     }
 
     Load(file: string): Promise<Common.PostFile> {
+        let self = this;
         return new Promise(function (resolve, reject) {
-            this.electronService.ReadFileAsync(file)
+            self.electronService.ReadFileAsync(file)
                 .then(response => {
                     let postFile = JSON.parse(response);
                     resolve(postFile);
@@ -38,5 +55,34 @@ export class PostFileService {
                 });
         });
     }
-    
+
+    private GetPostFolder(): string{
+        let documentPath = this.electronService.GetMyDocumentFolder() + "/My Posts/";
+        this.electronService.EnsureFolderExist(documentPath);
+        return documentPath;
+    }
+    private GetPostDataFolder(): string {
+
+        let documentPath = this.GetPostFolder() + "/Recents/";
+        this.electronService.EnsureFolderExist(documentPath);
+        return documentPath;
+    }
+    private GetDraftFolder(): string {
+        let documentPath = this.GetPostFolder() + "/Drafts/";
+        this.electronService.EnsureFolderExist(documentPath);
+        return documentPath;
+    }
+    private GenerateFilename(file: string, extension: string): string {
+        let fullname = file + extension;
+        if (!this.electronService.Exist(fullname))
+            return fullname;
+
+        let index = 1;
+
+        while (this.electronService.Exist(fullname)) {
+            fullname = file + ' (' + index + ')' + extension;
+            index++;
+        }
+        return fullname;
+    }
 }

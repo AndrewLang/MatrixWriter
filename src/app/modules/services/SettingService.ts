@@ -2,7 +2,7 @@ import {Injectable}         from '@angular/core';
 import {BlogSettings}       from './BlogSettings';
 import {ElectronService}    from './ElectronService';
 import {BlogAccount}        from './BlogAccount';
-
+import {PostFileDescriptor}         from './PostFileDescriptor';
 
 @Injectable()
 export class SettingService {
@@ -11,9 +11,7 @@ export class SettingService {
     private mDefaultAccount: BlogAccount;
     
 
-    constructor(private mElectron: ElectronService) {
-        console.log("constructor of setting service")
-    }
+    constructor(private mElectron: ElectronService) {}
 
     get DefaultAccount(): BlogAccount {
         return this.mDefaultAccount;
@@ -62,9 +60,19 @@ export class SettingService {
                 console.log("save setting failes. " + reason);
             });
     }
+    AddRecentPost(post: PostFileDescriptor): void {
+        if( !post)
+            throw new Error("Give post is null");
+            
+        let exist = this.mSetting.RecentPosts.find(x => x.Name == post.Name);
+        if( exist ){
+            this.mSetting.RecentPosts = this.mSetting.RecentPosts.filter( x=> x.Name == post.Name);
+        }
 
+        this.mSetting.RecentPosts.unshift( post );
+    }
     private GetFolder(): string {
-        return this.mElectron.App.getPath('userData');
+        return this.mElectron.GetAppDataFolder();
     }
     private GetDefaultAccount(): BlogAccount {
         let defaultAccount: BlogAccount;

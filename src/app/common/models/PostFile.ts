@@ -6,7 +6,7 @@ export class PostFile{
     static DefaultExtension = ".mpost";
     
     PostTitle: string;
-    CreatedDate: Date;
+    CreatedDate: string;
 
     IsPublished:boolean = false;
     BlogInfo : BlogInfo;

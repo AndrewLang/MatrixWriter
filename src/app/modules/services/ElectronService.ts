@@ -19,6 +19,19 @@ export class ElectronService {
         return electron.remote.Menu;
     }
 
+    GetUserDataFolder(): string {
+        return this.App.getPath('userData');
+    }
+    GetAppDataFolder(): string {
+        return this.App.getPath('appData');
+    }
+    GetMyDocumentFolder(): string {
+        return this.App.getPath('documents');
+    }
+    GetPictureFolder(): string {
+        return this.App.getPath('pictures');
+    }
+
     SetApplicationMenu(menu: any): void {
         electron.remote.Menu.setApplicationMenu(menu);
     }
@@ -33,9 +46,9 @@ export class ElectronService {
     ReadFileAsync(file: string): Promise<any> {
         let self = this;
         return new Promise(function (resolve, reject) {
-            if( !self.Exist( file) )
-                reject( new Error("File doesn't exist."));
-                
+            if (!self.Exist(file))
+                reject(new Error("File doesn't exist."));
+
             fs.readFile(file, 'utf8', (error, data) => {
                 if (error)
                     reject(error);
@@ -45,6 +58,9 @@ export class ElectronService {
     }
 
     WriteFileAsync(file: string, data: any): Promise<any> {
+        console.log( "Write data to file.");
+        console.log( file );
+        console.log( data);
         let self = this;
         return new Promise(function (resolve, reject) {
             fs.writeFile(file, data, (error) => {
@@ -71,11 +87,22 @@ export class ElectronService {
 
     Exist(path: string): boolean {
         try {
-            fs.accessSync(path,fs.F_OK);
+            fs.accessSync(path, fs.F_OK);
             return true;
         }
         catch (e) {
             return false;
+        }
+    }
+
+    EnsureFolderExist(path: string): void {
+        if (!this.Exist(path)) {
+            try {
+                fs.mkdirSync(path);
+            }
+            catch (error) {
+                console.log(error);
+            }
         }
     }
 }

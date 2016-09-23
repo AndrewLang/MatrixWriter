@@ -18,8 +18,8 @@ export class PostPublishComponent extends ModalBase implements OnInit {
     constructor(private settingService: Services.SettingService,
         private postManageService: Services.PostManageService,
         private metaweblogService: Services.MetaweblogService,
-        private electronService: Services.ElectronService
-        ) {
+        private electronService: Services.ElectronService,
+        private postFileService: Services.PostFileService) {
         super();
     }
 
@@ -35,9 +35,13 @@ export class PostPublishComponent extends ModalBase implements OnInit {
         let xmlRpcRequest = new Common.XmlRpcRequest();
         let methods = new Common.MetaweblogMethods();
 
-        file.Post.DateCreated = Date.now().toString();
-        file.Post.DateModified = Date.now().toString();
-        
+        let now = Date.now().toString();
+        file.Post.DateCreated = now;
+        file.Post.DateModified = now;
+        file.PostTitle = file.Post.Title;
+        if(!file.CreatedDate)
+            file.CreatedDate = now;
+
         this.Title = "Publish";
         this.Status = "Publishing '" + file.Post.Title + "' to blog '" + account.NickName + "'.";
 
@@ -45,15 +49,21 @@ export class PostPublishComponent extends ModalBase implements OnInit {
             .then(response => {
                 console.log("Post published.")
                 console.log(response);
+                file.IsPublished = true;
+                this.postFileService.Save(file)
+                    .then(response => { })
+                    .catch(reason => console.log(reason));
+
                 this.Status = "Publish success.";
                 this.Finished = true;
                 this.Success = true;
                 this.mCanSubmit = true;
 
-                this.electronService.OpenExternal( account.HomeUrl);
+                this.electronService.OpenExternal(account.HomeUrl);
             })
             .catch(reason => {
                 console.log("Publis post error: " + reason);
+                this.postFileService.Save(file);
                 this.Status = "Publish failed for " + reason;
                 this.Finished = true;
                 this.Failed = true;
