@@ -52,10 +52,10 @@ export class HtmlEditorService{
                 'searchreplace wordcount visualblocks visualchars code fullscreen',
                 'insertdatetime media nonbreaking save table contextmenu directionality',
                 'emoticons template paste textcolor colorpicker textpattern imagetools codesample bbcode',
-                'importcss spellchecker template '
+                'importcss spellchecker template'
             ],
-            toolbar1: 'undo redo | cut copy paste pastetext |  bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect ',
-            toolbar2: 'code print preview searchreplace | link image media |  emoticons codesample hr importcss insertdatetime table template | spellchecker',
+            toolbar1: 'undo redo | cut copy paste pastetext | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent',
+            toolbar2: 'code print searchreplace | link image media |  emoticons codesample hr importcss insertdatetime table',
             content_css: [
                 //'//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
                 'src/assets/css/editor.basic.css'
