@@ -5,6 +5,7 @@ import {ElectronService}            from './ElectronService';
 
 @Injectable()
 export class PostFileService {
+
     constructor(private electronService: ElectronService) { }
 
     Save(post: Common.PostFile, file: string): Promise<boolean> {
@@ -36,6 +37,6 @@ export class PostFileService {
                     reject(reason);
                 });
         });
-
     }
+    
 }

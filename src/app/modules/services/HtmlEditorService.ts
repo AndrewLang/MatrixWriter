@@ -56,6 +56,7 @@ export class HtmlEditorService{
             ],
             toolbar1: 'undo redo | cut copy paste pastetext | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent',
             toolbar2: 'code print searchreplace | link image media |  emoticons codesample hr importcss insertdatetime table',
+            image_advtab:true,
             content_css: [
                 //'//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
                 'src/assets/css/editor.basic.css'

@@ -4,4 +4,6 @@ export class CategoryInfo{
     RssUrl:string;
     Title: string;
     CategoryId: string;
+    ParentId: string;
+    
 }

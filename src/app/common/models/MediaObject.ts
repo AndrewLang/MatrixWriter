@@ -4,4 +4,9 @@ export class MediaObject
     MimeType:string;
     Bits: string;
     Overwrite:boolean;
+
+    Id:string;
+    RemoteFileName: string;
+    RemoteUrl: string;
+    Type: string;
 }
