@@ -106,39 +106,11 @@ export class PostParser {
 
     private ParseValue(element: Element): string {
         return element.textContent;
-        // let valueElement: Element;
-        // switch (element.firstChild.nodeName) {
-        //     case "string":
-        //         valueElement = element.querySelector('string');
-        //         break;
-        //     case "dateTime":
-        //         valueElement = element.querySelector('dateTime');
-        //         break;
-        //     case "dateTime.iso8601":
-        //         valueElement = element.querySelector('dateTime.iso8601');
-        //         break;
-        //     case "array":
-        //         valueElement = null;
-        //         break;
-        //     case "int":
-        //         valueElement = element.querySelector('int');
-        //         break;
-        //     case "boolean":
-        //         valueElement = element.querySelector('boolean');
-        //         break;
-        //     default:
-        //         valueElement = null;
-        // }
-        // console.log(element.textContent);
+    }
 
-        // if (valueElement) {
-        //     //console.log(valueElement);
-        //     return valueElement.innerHTML;
-        // }
-        // else {
-
-        //     return "";
-        // }
+    ParsePublishResponse(element: Element): number {
+        let value = element.querySelector("methodResponse params param value string").innerHTML;
+        return parseInt(value);
     }
 
     ToXml(post: Models.Post): XmlRpcStructParameter {

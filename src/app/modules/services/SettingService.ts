@@ -30,6 +30,8 @@ export class SettingService {
         return new Promise(function (resolve, reject) {
             let folder = self.GetFolder();
             console.log("load from folder: " + folder);
+            //self.mElectron.ShowItemInFolder( folder);
+
             self.mElectron.ReadFileAsync(folder + "/" + self.mConfiFileName)
                 .then(data => {
                     let content = self.mElectron.Decrypt(data);

@@ -17,7 +17,9 @@ export class PostPublishComponent extends ModalBase implements OnInit {
 
     constructor(private settingService: Services.SettingService,
         private postManageService: Services.PostManageService,
-        private metaweblogService: Services.MetaweblogService) {
+        private metaweblogService: Services.MetaweblogService,
+        private electronService: Services.ElectronService
+        ) {
         super();
     }
 
@@ -47,6 +49,8 @@ export class PostPublishComponent extends ModalBase implements OnInit {
                 this.Finished = true;
                 this.Success = true;
                 this.mCanSubmit = true;
+
+                this.electronService.OpenExternal( account.HomeUrl);
             })
             .catch(reason => {
                 console.log("Publis post error: " + reason);
