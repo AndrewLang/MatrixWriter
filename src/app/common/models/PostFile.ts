@@ -1,16 +1,13 @@
-import {Post}   from './Post';
+import {Post}       from './Post';
+import {BlogInfo}   from './BlogInfo';
 
 export class PostFile{
     static DefaultExtension = ".mpost";
     
-    Name: string;
-    FullName: string;
+    PostTitle: string;
     CreatedDate: Date;
 
     IsPublished:boolean = false;
-    PublishBlogName:string;
-    BlogHomeUrl:string;
-    Post:Post;
-
-    
+    BlogInfo : BlogInfo;
+    Post:Post = new Post();
 }

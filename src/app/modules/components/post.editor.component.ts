@@ -9,10 +9,10 @@ import {PostPublishComponent}       from './post.publish.component';
     templateUrl: 'src/views/post-editor.html',
     providers: [Services.DataService, Services.MetaweblogService, Services.HtmlEditorService]
 })
-export class PostEditorComponent implements OnInit, AfterViewInit {
-    Post: Common.Post = new Common.Post();
+export class PostEditorComponent implements OnInit {
+    
+    PostFile : Common.PostFile = new Common.PostFile();
     private mContentChanged: any;
-    mModal = null;
 
     constructor(private dataService: Services.DataService,
         private metaWeblogService: Services.MetaweblogService,
@@ -22,20 +22,16 @@ export class PostEditorComponent implements OnInit, AfterViewInit {
 
     ngOnInit(): any {
         this.editorService.InitializeEditor("div.htmlEditor");
+
         this.mContentChanged = this.editorService
             .ContentChanged
-            .subscribe(value => this.Post.Description = value);
+            .subscribe(value => this.PostFile.Post.Description = value);
 
-        this.postManageService.CurrentPost = this.Post;
-    }
-
-    ngAfterViewInit(): void {
-
+        this.postManageService.CurrentPost = this.PostFile;
     }
 
     Publish(): void {
         this.editorService.UpdateContent();
-        console.log(this.Post);
         this.dialogService.ShowDialog(PostPublishComponent);
     }
 }

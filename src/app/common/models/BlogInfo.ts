@@ -1,6 +1,6 @@
 export class BlogInfo{
     BlogId:string;
-    Url: string;
+    HomeUrl: string;
     BlogName: string;
     IsAdmin: boolean;
     XmlRpc: string;

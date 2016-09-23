@@ -30,18 +30,18 @@ export class PostPublishComponent extends ModalBase implements OnInit {
         return false;
     }
     ngOnInit(): any {
-        let post = this.postManageService.CurrentPost;
+        let file = this.postManageService.CurrentPost;
         let account = this.settingService.DefaultAccount;
         let xmlRpcRequest = new Common.XmlRpcRequest();
         let methods = new Common.MetaweblogMethods();
 
-        post.DateCreated = Date.now().toString();
-        post.DateModified = Date.now().toString();
+        file.Post.DateCreated = Date.now().toString();
+        file.Post.DateModified = Date.now().toString();
         
         this.Title = "Publish";
-        this.Status = "Publishing '" + post.Title + "' to blog '" + account.NickName + "'.";
+        this.Status = "Publishing '" + file.Post.Title + "' to blog '" + account.NickName + "'.";
 
-        xmlRpcRequest.NewPost(account.ApiUrl, methods.NewPost("blogid", account.UserName, account.Password, post))
+        xmlRpcRequest.NewPost(account.ApiUrl, methods.NewPost("blogid", account.UserName, account.Password, file.Post))
             .then(response => {
                 console.log("Post published.")
                 console.log(response);
