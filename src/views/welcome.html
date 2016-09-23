@@ -33,14 +33,14 @@
                                 </button>
 
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#" *ngFor="let blog of Accounts">{{blog.NickName}}</a>
+                                    <a class="dropdown-item" href="#" *ngFor="let blog of Accounts"> <i class="fa fa-rss"></i> {{blog.NickName}}</a>
                                 </div>
                             </div>
                         </div>
                         <button type="button" id="button-open-post" title="Connect to a blog account" class="nav-button" (click)="CreateAccount()"><i class="fa fa-user-plus"></i> <em>Connect to a blog account</em></button>
                         <hr/>
                         <button type="button" id="button-create-post" title="Write a new post" class="nav-button" (click)="CreatePost()"> <i class="fa fa-file-o"></i> <em>Write a new post</em></button>
-                        <button type="button" id="button-open-post" title="Open an existing post" class="nav-button" (click)="OpenPost()"><i class="fa fa-folder-open-o"></i> <em>Open post</em></button>
+                        <button type="button" id="button-open-post" title="Open an existing post" class="nav-button" (click)="OpenPostFromFolder()"><i class="fa fa-folder-open-o"></i> <em>Open post</em></button>
                     </div>
                 </div>
 
@@ -52,7 +52,7 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item" *ngFor="let post of RecentPosts" title="{{post.FullName}}">
-                            <button type="button" id="button-open-post" title="{{post.FullName}}" class="nav-button" (click)="OpenPost(post)">{{post.Name}} <span class="pull-right"> {{post.CreatedDate | date}}</span></button>
+                            <button type="button" id="button-open-post" title="Open {{post.Name}}" class="nav-button" (click)="OpenPost(post)"><i class="fa fa-file-text-o"></i> {{post.Name}} <span class="pull-right"> {{post.CreatedDate | date}}</span></button>
                         </li>
                     </ul>
                 </div>

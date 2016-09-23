@@ -31,7 +31,13 @@ export class ElectronService {
     GetPictureFolder(): string {
         return this.App.getPath('pictures');
     }
-
+    OpenFileDialog(filters: any = null): string {
+        let fileName = electron.remote.showOpenDialog({
+            properties: ['openFile', 'openDirectory'],
+            filters: filters
+        });
+        return fileName;
+    }
     SetApplicationMenu(menu: any): void {
         electron.remote.Menu.setApplicationMenu(menu);
     }
@@ -58,9 +64,9 @@ export class ElectronService {
     }
 
     WriteFileAsync(file: string, data: any): Promise<any> {
-        console.log( "Write data to file.");
-        console.log( file );
-        console.log( data);
+        console.log("Write data to file.");
+        console.log(file);
+        console.log(data);
         let self = this;
         return new Promise(function (resolve, reject) {
             fs.writeFile(file, data, (error) => {

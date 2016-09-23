@@ -13,12 +13,14 @@ export class WelcomeComponent implements OnInit, OnDestroy {
     mAccounts: Services.BlogAccount[];
     RecentPosts: Services.PostFileDescriptor[] = [];
 
-    constructor(private mRouter: Router, private mSettingService: Services.SettingService) {
+    constructor(private mRouter: Router, 
+        private mSettingService: Services.SettingService,
+        private electronService: Services.ElectronService) {
 
     }
 
     get Accounts(): Services.BlogAccount[] {
-        return this.mAccounts;// this.mSettingService.Setting.BlogAccounts;
+        return this.mAccounts; 
     }
     get SelectAccount(): Services.BlogAccount {
         return this.mSelectAccount;
@@ -48,7 +50,12 @@ export class WelcomeComponent implements OnInit, OnDestroy {
     CreatePost() {
         this.mRouter.navigate(['editor']);
     }
-    OpenPost() {
+    OpenPostFromFolder(): void {
+        let file = this.electronService.OpenFileDialog();
+    }
+    OpenPost(postFile: Services.PostFileDescriptor): void {
+        if (!postFile)
+            return;
 
     }
     CreateAccount() {
