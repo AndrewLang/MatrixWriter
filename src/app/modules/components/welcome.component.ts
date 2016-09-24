@@ -13,16 +13,16 @@ export class WelcomeComponent implements OnInit {
     mAccounts: Services.BlogAccount[];
     RecentPosts: Services.PostFileDescriptor[] = [];
 
-    constructor(private mRouter: Router, 
+    constructor(private mRouter: Router,
         private mSettingService: Services.SettingService,
         private electronService: Services.ElectronService,
         private electronEvent: Services.ElectronEventService,
-        private postFileService:Services.PostFileService) {
+        private postFileService: Services.PostFileService) {
 
     }
 
     get Accounts(): Services.BlogAccount[] {
-        return this.mAccounts; 
+        return this.mAccounts;
     }
     get SelectAccount(): Services.BlogAccount {
         return this.mSelectAccount;
@@ -39,23 +39,25 @@ export class WelcomeComponent implements OnInit {
                 this.mAccounts = this.mSettingService.Setting.BlogAccounts;
                 this.SelectAccount = this.mSettingService.DefaultAccount;
                 this.RecentPosts = this.mSettingService.Setting.RecentPosts;
-
-                console.log(this.mAccounts);
-                console.log(this.SelectAccount);
             });
-            this.electronEvent.Log("Welcome use Matrix Writer");
+        this.electronEvent.Log("Welcome use Matrix Writer");
     }
-    
+
     CreatePost() {
-        this.mRouter.navigate(['editor']);
+        this.mRouter.navigate(['editor', '']);
     }
     OpenPostFromFolder(): void {
-         this.postFileService.OpenPostFromFile();
+        this.postFileService.OpenPostFromFile()
+            .then(file => {
+                console.log( "file to open " + file ); 
+                this.mRouter.navigate(['editor', file]); })
+            .catch(reason => { console.log(reason); });
+
     }
     OpenPost(postFile: Services.PostFileDescriptor): void {
         if (!postFile)
             return;
-
+        this.mRouter.navigate(['editor', postFile.FullName]);
     }
     CreateAccount() {
         this.mRouter.navigate(['createAccount']);

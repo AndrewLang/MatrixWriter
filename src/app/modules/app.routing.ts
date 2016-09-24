@@ -8,7 +8,7 @@ import *  as Components                     from './components/index';
 const rootRoutes: Routes = [
     { path: '', redirectTo: '/welcome', pathMatch: 'full' },
     { path: 'welcome', component: Components.WelcomeComponent },
-    { path: 'editor', component: Components.PostEditorComponent },
+    { path: 'editor/:file', component: Components.PostEditorComponent },
     { path: 'home', component: Components.AppComponent },
     { path: 'createAccount', component: Components.CreateAccountComponent }
 ];

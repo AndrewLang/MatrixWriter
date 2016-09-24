@@ -117,12 +117,8 @@ export class ElectronService {
 
     CombinePath(base: string, paths: string): string {
         let value: string;
-        try {
-            console.log("combine path ");
-            console.log(base);
-            console.log(paths);
+        try {            
             value = NjPath.join(base, paths);
-            console.log(value);
         }
         catch (error) {
             console.log(error);

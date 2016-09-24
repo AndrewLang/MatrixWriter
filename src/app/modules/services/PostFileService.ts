@@ -10,6 +10,7 @@ import {ElectronEventService}       from './ElectronEventService';
 @Injectable()
 export class PostFileService {
     static DefaultExtension = ".mpost";
+    static ShortExtension = "mpost";
 
     constructor(private electronService: ElectronService,
         private settingService: SettingService,
@@ -20,7 +21,7 @@ export class PostFileService {
             throw new Error("Given post is null.")
 
         let folder = post.IsPublished ? this.GetPostDataFolder() : this.GetDraftFolder();
-        let file = folder + post.PostTitle;
+        let file = this.electronService.CombinePath(folder, post.PostTitle);
         file = this.GenerateFilename(file, PostFileService.DefaultExtension);
 
         let content = JSON.stringify(post, null, '\t');
@@ -60,28 +61,28 @@ export class PostFileService {
         });
     }
 
-    OpenPostFromFile(): string {
-        console.log("open post from file.")
-        let defaultFolder = this.GetPostDataFolder();
-        console.log("default folder:");
-        console.log(defaultFolder);
-
-        let filter = [{ name: "Post", extensions: [PostFileService.DefaultExtension] }];
-        let file = this.electronEvent.OpenFileDialog("Open a Post", defaultFolder, filter);
-        return file;
+    OpenPostFromFile(): Promise<string> {
+        let self = this;
+        return new Promise(function (resolve, reject) {
+            let defaultFolder = self.GetPostDataFolder();
+            let filter = [{ name: "Post file", extensions: [PostFileService.ShortExtension] }];
+            let fileName = self.electronEvent.OpenFileDialog("Open a Post", defaultFolder, filter);
+            console.log( fileName);
+            resolve(fileName);
+        });
     }
     private GetPostFolder(): string {
-        let documentPath = this.electronService.CombinePath( this.electronService.GetMyDocumentFolder(), "My Posts");
+        let documentPath = this.electronService.CombinePath(this.electronService.GetMyDocumentFolder(), "My Posts");
         this.electronService.EnsureFolderExist(documentPath);
         return documentPath;
     }
     private GetPostDataFolder(): string {
-        let documentPath = this.electronService.CombinePath( this.GetPostFolder() , "Recents");
+        let documentPath = this.electronService.CombinePath(this.GetPostFolder(), "Recents");
         this.electronService.EnsureFolderExist(documentPath);
         return documentPath;
     }
     private GetDraftFolder(): string {
-        let documentPath = this.electronService.CombinePath(this.GetPostFolder() , "Drafts");
+        let documentPath = this.electronService.CombinePath(this.GetPostFolder(), "Drafts");
         this.electronService.EnsureFolderExist(documentPath);
         return documentPath;
     }

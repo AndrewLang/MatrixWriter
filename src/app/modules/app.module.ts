@@ -12,11 +12,12 @@ import { routing, appRoutingProviders }     from './app.routing';
     imports: [BrowserModule, HttpModule, FormsModule, JsonpModule, routing],
     declarations: [Components.AppComponent, Components.WelcomeComponent, Components.PostEditorComponent,
         Components.CreateAccountComponent, Components.PostPublishComponent],
-    entryComponents:[Components.PostPublishComponent],
+    entryComponents: [Components.PostPublishComponent],
     providers: [Services.DataService, Services.ErrorHandlingService, Services.MetaweblogService,
         Services.DialogService, Services.ElectronService, Services.SettingService,
-        Services.ComponentCreator, Services.PostManageService, Services.MetaweblogDetector, 
-        Services.PostFileService, Services.ElectronEventService, appRoutingProviders,],
+        Services.ComponentCreator, Services.PostManageService, Services.MetaweblogDetector,
+        Services.PostFileService, Services.ElectronEventService, Services.HtmlEditorService,
+        appRoutingProviders,],
     bootstrap: [Components.AppComponent]
 })
 export class AppModule { }

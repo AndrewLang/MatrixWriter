@@ -23,7 +23,7 @@ export class ElectronEventService {
     OpenFileDialog(title?: string, defaultPath?: string, filters?:any[]): string {
         let paths = this.IpcClient.sendSync('mw:OpenFileDialog', title, defaultPath, filters);
         console.log(paths);
-        if (paths && paths.length > 1)
+        if (paths && paths.length > 0)
             return paths[0];
         else
             return null;
