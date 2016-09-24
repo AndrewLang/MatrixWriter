@@ -8,14 +8,24 @@ declare var window: any;
 
 @Injectable()
 export class ElectronEventService {
-    constructor(private electronService:ElectronService){
+    constructor(private electronService: ElectronService) {
 
     }
     public on(name: string): Observable<any> {
         return Observable.fromEvent(window, name);
     }
-
+    get IpcClient(): any {
+        return this.electronService.IpcClient;
+    }
     Log(message: string) {
-        this.electronService.IpcClient.send('mw:log', message);
+        this.IpcClient.send('mw:log', message);
+    }
+    OpenFileDialog(title?: string, defaultPath?: string, filters?:any[]): string {
+        let paths = this.IpcClient.sendSync('mw:OpenFileDialog', title, defaultPath, filters);
+        console.log(paths);
+        if (paths && paths.length > 1)
+            return paths[0];
+        else
+            return null;
     }
 }

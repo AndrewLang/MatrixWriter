@@ -44,10 +44,13 @@
 <script>
     const electron = require('electron');
     const fs = require('fs');
+    const NjPath = require('path');
     const Cryptr = require('crypto');
+    
 
     System.set('electron', System.newModule(electron));
     System.set('fs', System.newModule(fs));
+    System.set('NjPath', System.newModule(NjPath));
     System.set('Cryptr', System.newModule(Cryptr));
 
     System.import('app')

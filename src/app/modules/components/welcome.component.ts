@@ -7,7 +7,7 @@ import * as Services                         from '../services/index';
     selector: 'app',
     templateUrl: 'src/views/welcome.html'
 })
-export class WelcomeComponent implements OnInit, OnDestroy {
+export class WelcomeComponent implements OnInit {
 
     private mSelectAccount: Services.BlogAccount;
     mAccounts: Services.BlogAccount[];
@@ -16,7 +16,8 @@ export class WelcomeComponent implements OnInit, OnDestroy {
     constructor(private mRouter: Router, 
         private mSettingService: Services.SettingService,
         private electronService: Services.ElectronService,
-        private electronEvent: Services.ElectronEventService) {
+        private electronEvent: Services.ElectronEventService,
+        private postFileService:Services.PostFileService) {
 
     }
 
@@ -44,15 +45,12 @@ export class WelcomeComponent implements OnInit, OnDestroy {
             });
             this.electronEvent.Log("Welcome use Matrix Writer");
     }
-    ngOnDestroy() {
-
-    }
-
+    
     CreatePost() {
         this.mRouter.navigate(['editor']);
     }
     OpenPostFromFolder(): void {
-        let file = this.electronService.OpenFileDialog();
+         this.postFileService.OpenPostFromFile();
     }
     OpenPost(postFile: Services.PostFileDescriptor): void {
         if (!postFile)

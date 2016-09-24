@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 declare var electron: any;
 declare var fs: any;
 declare var Cryptr: any;
+declare var NjPath: any;
 
 @Injectable()
 export class ElectronService {
@@ -18,7 +19,7 @@ export class ElectronService {
     get MainMenu(): any {
         return electron.remote.Menu;
     }
-    get IpcClient():any{
+    get IpcClient(): any {
         return electron.ipcRenderer;
     }
     GetUserDataFolder(): string {
@@ -112,5 +113,23 @@ export class ElectronService {
                 console.log(error);
             }
         }
+    }
+
+    CombinePath(base: string, paths: string): string {
+        let value: string;
+        try {
+            console.log("combine path ");
+            console.log(base);
+            console.log(paths);
+            value = NjPath.join(base, paths);
+            console.log(value);
+        }
+        catch (error) {
+            console.log(error);
+        }
+        return value;
+    }
+    NormalizePath(path: string): string {
+        return NjPath.normalize(path);
     }
 }

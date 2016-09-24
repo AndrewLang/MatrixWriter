@@ -3,13 +3,17 @@ import * as Common                  from '../../common/index';
 import {ElectronService}            from './ElectronService';
 import {SettingService}             from './SettingService';
 import {PostFileDescriptor}         from './PostFileDescriptor';
+import {ElectronEventService}       from './ElectronEventService';
+
+
 
 @Injectable()
 export class PostFileService {
     static DefaultExtension = ".mpost";
 
     constructor(private electronService: ElectronService,
-        private settingService: SettingService) { }
+        private settingService: SettingService,
+        private electronEvent: ElectronEventService) { }
 
     Save(post: Common.PostFile): Promise<boolean> {
         if (!post)
@@ -17,9 +21,9 @@ export class PostFileService {
 
         let folder = post.IsPublished ? this.GetPostDataFolder() : this.GetDraftFolder();
         let file = folder + post.PostTitle;
-        file = this.GenerateFilename( file, PostFileService.DefaultExtension);
+        file = this.GenerateFilename(file, PostFileService.DefaultExtension);
 
-        let content = JSON.stringify(post,null, '\t');
+        let content = JSON.stringify(post, null, '\t');
         let self = this;
         return new Promise(function (resolve, reject) {
             self.electronService.WriteFileAsync(file, content)
@@ -30,7 +34,7 @@ export class PostFileService {
                     postFile.Name = post.PostTitle;
                     postFile.FullName = file;
 
-                    console.log( self.settingService);
+                    console.log(self.settingService);
                     self.settingService.AddRecentPost(postFile);
                     self.settingService.SaveSettings();
 
@@ -56,19 +60,28 @@ export class PostFileService {
         });
     }
 
-    private GetPostFolder(): string{
-        let documentPath = this.electronService.GetMyDocumentFolder() + "/My Posts/";
+    OpenPostFromFile(): string {
+        console.log("open post from file.")
+        let defaultFolder = this.GetPostDataFolder();
+        console.log("default folder:");
+        console.log(defaultFolder);
+
+        let filter = [{ name: "Post", extensions: [PostFileService.DefaultExtension] }];
+        let file = this.electronEvent.OpenFileDialog("Open a Post", defaultFolder, filter);
+        return file;
+    }
+    private GetPostFolder(): string {
+        let documentPath = this.electronService.CombinePath( this.electronService.GetMyDocumentFolder(), "My Posts");
         this.electronService.EnsureFolderExist(documentPath);
         return documentPath;
     }
     private GetPostDataFolder(): string {
-
-        let documentPath = this.GetPostFolder() + "/Recents/";
+        let documentPath = this.electronService.CombinePath( this.GetPostFolder() , "Recents");
         this.electronService.EnsureFolderExist(documentPath);
         return documentPath;
     }
     private GetDraftFolder(): string {
-        let documentPath = this.GetPostFolder() + "/Drafts/";
+        let documentPath = this.electronService.CombinePath(this.GetPostFolder() , "Drafts");
         this.electronService.EnsureFolderExist(documentPath);
         return documentPath;
     }
