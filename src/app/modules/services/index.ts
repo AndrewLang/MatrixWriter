@@ -12,6 +12,7 @@ export *        from './PostManageService';
 export *        from './ComponentCreator'
 export *        from './modal.component';
 export *        from './PostFileService'
+export *        from './ElectronEventService';
 
 export *        from './Blog';
 export *        from './BlogAccount';

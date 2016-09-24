@@ -15,7 +15,8 @@ export class WelcomeComponent implements OnInit, OnDestroy {
 
     constructor(private mRouter: Router, 
         private mSettingService: Services.SettingService,
-        private electronService: Services.ElectronService) {
+        private electronService: Services.ElectronService,
+        private electronEvent: Services.ElectronEventService) {
 
     }
 
@@ -41,7 +42,7 @@ export class WelcomeComponent implements OnInit, OnDestroy {
                 console.log(this.mAccounts);
                 console.log(this.SelectAccount);
             });
-
+            this.electronEvent.Log("Welcome use Matrix Writer");
     }
     ngOnDestroy() {
 

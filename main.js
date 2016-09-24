@@ -44,7 +44,7 @@ function initialize() {
 function loadModules() {
     // main menu 
     //require(path.join(___dirname, './src/electron/application-menu.js'));
-    var dir = path.join(__dirname, 'src/electron/*.js');
+    var dir = path.join(__dirname, 'src/electron-main/*.js');
     console.log(dir);
     var files = glob.sync(dir);
     files.forEach(function(file) {

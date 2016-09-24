@@ -18,7 +18,9 @@ export class ElectronService {
     get MainMenu(): any {
         return electron.remote.Menu;
     }
-
+    get IpcClient():any{
+        return electron.ipcRenderer;
+    }
     GetUserDataFolder(): string {
         return this.App.getPath('userData');
     }
