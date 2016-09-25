@@ -54,7 +54,7 @@ export class HtmlEditorService{
                 'emoticons template paste textcolor colorpicker textpattern imagetools codesample bbcode',
                 'importcss spellchecker template'
             ],
-            toolbar1: 'undo redo | cut copy paste pastetext | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent',
+            toolbar1: 'undo redo | cut copy paste pastetext | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist indent outdent',
             toolbar2: 'code print searchreplace | link image media |  emoticons codesample hr importcss insertdatetime table',
             image_advtab:true,
             content_css: [
