@@ -20,7 +20,8 @@ export class PostEditorComponent implements OnInit {
         private editorService: Services.HtmlEditorService,
         private dialogService: Services.DialogService,
         private postFileService: Services.PostFileService,
-        private postManageService: Services.PostManageService) { }
+        private postManageService: Services.PostManageService,
+        private electronEvent:Services.ElectronEventService) { }
 
     ngOnInit(): any {
         this.editorService.InitializeEditor("div.htmlEditor");
@@ -42,6 +43,7 @@ export class PostEditorComponent implements OnInit {
             .subscribe(value => this.PostFile.Post.Description = value);
 
         this.postManageService.CurrentPost = this.PostFile;
+        this.electronEvent.ShowMainMenu();
     }
 
     Publish(): void {

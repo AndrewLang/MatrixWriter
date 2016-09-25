@@ -20,12 +20,18 @@ export class ElectronEventService {
     Log(message: string) {
         this.IpcClient.send('mw:log', message);
     }
-    OpenFileDialog(title?: string, defaultPath?: string, filters?:any[]): string {
+    OpenFileDialog(title?: string, defaultPath?: string, filters?: any[]): string {
         let paths = this.IpcClient.send('mw:OpenFileDialog', title, defaultPath, filters);
         console.log(paths);
         if (paths && paths.length > 0)
             return paths[0];
         else
             return null;
+    }
+    ShowMainMenu(): void {
+        this.IpcClient.send('mw:ShowMainMenu');
+    }
+    HideMainMenu(): void {
+        this.IpcClient.send('mw:HideMainMenu');
     }
 }

@@ -41,6 +41,7 @@ export class WelcomeComponent implements OnInit {
                 this.RecentPosts = this.mSettingService.Setting.RecentPosts;
             });
         this.electronEvent.Log("Welcome use Matrix Writer");
+        this.electronEvent.HideMainMenu();
     }
 
     CreatePost() {

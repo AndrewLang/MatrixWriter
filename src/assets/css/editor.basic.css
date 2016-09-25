@@ -27,3 +27,6 @@ button,input,input:not([type]),input[type=number],input[type=password],input[typ
 .mce-content-body table caption,.mce-content-body table td,.mce-content-body table th{padding:15px 7px;font:inherit}
 .mce-content-body table th{font-weight:400;color:#6E6E6E;background-position:100% 100%;background-size:2px 10px;background-repeat:no-repeat}
 .mce-content-body table th:last-child{background:0 0}
+ .mce-edit-focus{
+      outline: none;
+  }
