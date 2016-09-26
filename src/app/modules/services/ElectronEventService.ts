@@ -9,7 +9,9 @@ declare var window: any;
 @Injectable()
 export class ElectronEventService {
     constructor(private electronService: ElectronService) {
-
+        electronService.IpcClient.on('mwMain:Log',function(event, arg){
+            console.log("message from server  ${arg}");
+        });
     }
     public on(name: string): Observable<any> {
         return Observable.fromEvent(window, name);

@@ -13,7 +13,7 @@ function initialize() {
     loadModules();
 
     function createWindow() {
-        mainWindow = new BrowserWindow({ width: 1200, height: 800 });
+        mainWindow = new BrowserWindow({ width: 1200, height: 800 ,name:'mainWindow'});
         mainWindow.loadURL(`file://${__dirname}/index.html`)
 
         mainWindow.on('closed', function() {
