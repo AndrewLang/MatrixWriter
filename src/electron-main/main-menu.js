@@ -27,6 +27,7 @@ let template = [{
 
                    var mainWindow = getWindow('mainWindow');
                 }
+                
             }
         },
         { label: "Open local post", accelerator: 'CmdOrCtrl+O' },
