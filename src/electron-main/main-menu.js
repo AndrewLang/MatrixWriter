@@ -42,6 +42,7 @@ let template = [{
             { type: 'separator' },
             {
                 label: "Publish",
+                accelerator: 'CmdOrCtrl+Shift+P',
                 click: function(item, focusedWindow) {
                     if (focusedWindow) {
                         invokeCommand(focusedWindow, "PublishPost");
@@ -51,6 +52,7 @@ let template = [{
             { type: 'separator' },
             {
                 label: "Print",
+                accelerator: 'CmdOrCtrl+P',
                 click: function(item, focusedWindow) {
                     if (focusedWindow) {
                         invokeCommand(focusedWindow, "PrintPost");
@@ -60,6 +62,7 @@ let template = [{
             { type: 'separator' },
             {
                 label: "Options",
+                accelerator: 'CmdOrCtrl+Shift+O',
                 click: function(item, focusedWindow) {
                     if (focusedWindow) {
                         invokeCommand(focusedWindow, "ShowOptions");
