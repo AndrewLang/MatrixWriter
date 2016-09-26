@@ -16,7 +16,7 @@ let template = [{
                 accelerator: 'CmdOrCtrl+N',
                 click: function(item, focusedWindow) {
                     if (focusedWindow) {
-                        focusedWindow.webContents.send('mwMain:Log', "message from main process.");
+                        //focusedWindow.webContents.send('mwMain:Log', "message from main process.");
                         invokeCommand(focusedWindow, "NewPost");
                     }
                 }

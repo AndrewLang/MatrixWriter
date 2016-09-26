@@ -6,6 +6,7 @@ import { FormsModule }                      from '@angular/forms';
 
 import *  as Components                     from './components/index';
 import *  as Services                       from './services/index';
+import *  as Common                         from '../common/command/index';
 import { routing, appRoutingProviders }     from './app.routing';
 
 @NgModule({
@@ -13,10 +14,13 @@ import { routing, appRoutingProviders }     from './app.routing';
     declarations: [Components.AppComponent, Components.WelcomeComponent, Components.PostEditorComponent,
         Components.CreateAccountComponent, Components.PostPublishComponent],
     entryComponents: [Components.PostPublishComponent],
-    providers: [Services.DataService, Services.ErrorHandlingService, Services.MetaweblogService,
+    providers: [
+        Common.CommandRepository,
+        Services.DataService, Services.ErrorHandlingService, Services.MetaweblogService,
         Services.DialogService, Services.ElectronService, Services.SettingService,
         Services.ComponentCreator, Services.PostManageService, Services.MetaweblogDetector,
         Services.PostFileService, Services.ElectronEventService, Services.HtmlEditorService,
+        Services.EditorCommandInitializer, Services.PostCommandInitizlizer, Services.CommandsService,
         appRoutingProviders,],
     bootstrap: [Components.AppComponent]
 })

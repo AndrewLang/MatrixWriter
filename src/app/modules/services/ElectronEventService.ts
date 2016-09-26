@@ -2,19 +2,38 @@ import {Injectable} from '@angular/core';
 
 import {Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
-import {ElectronService}    from './ElectronService';
+import {ElectronService}            from './ElectronService';
+import {ErrorHandlingService}       from './ErrorHandlingService';
+import * as Common                  from '../../common/index';
 
 declare var window: any;
 
 @Injectable()
 export class ElectronEventService {
-    constructor(private electronService: ElectronService) {
-        electronService.IpcClient.on('mwMain:Log',function(event, arg){
-            console.log('message from server '+ arg);
+    constructor(private electronService: ElectronService,
+        private commandRepository: Common.CommandRepository,
+        private errorHandlingService: ErrorHandlingService) {
+
+        // for testing
+        electronService.IpcClient.on('mwMain:Log', function (event, arg) {
+            console.log('message from server ' + arg);
         });
 
-        electronService.IpcClient.on('mw:command',function(event,commandName, commandArgument){
-            console.log('Invoking command: '+ commandName + ' ' + commandArgument);
+        // invoke command
+        electronService.IpcClient.on('mw:command', function (event, commandName, commandArgument) {
+            console.log('Invoking command:  ' + commandName + ' with ' + commandArgument + '.');
+
+            let command = commandRepository.GetCommand(commandName);
+            if (command && command.CanExecute(commandArgument)) {
+                try {
+                    console.log( "Get command to invoke.");
+                    command.Execute(commandArgument);
+                }
+                catch (error) {
+                    //throw error;
+                    errorHandlingService.HandleError(error);
+                }
+            }
         });
     }
     public on(name: string): Observable<any> {

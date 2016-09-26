@@ -10,14 +10,16 @@ export class AppComponent implements OnInit, OnDestroy {
 
     constructor(private viewContainer: ViewContainerRef,
         private componentFactoryResolver: ComponentFactoryResolver,
-        private componentCreator: Services.ComponentCreator) {
+        private componentCreator: Services.ComponentCreator,
+        private commandService: Services.CommandsService) {
 
         componentCreator.ViewContainer = viewContainer;
         componentCreator.ComponentFactoryResolver = componentFactoryResolver;
+
     }
 
     ngOnInit() {
-
+        this.commandService.Initialize();
     }
     ngOnDestroy() {
 

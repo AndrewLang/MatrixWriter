@@ -1,18 +1,22 @@
 
 import {ICommand}   from './ICommand';
 
+
 export interface ICommandRepository {
     Commands: { [name: string]: ICommand; };
 
     GetCommand(name: string): ICommand;
+
     Register(name: string, command: ICommand):void;
 }
 
 
-export class DefaultCommandRepository implements ICommandRepository {
+
+export class CommandRepository implements ICommandRepository {
     Commands: { [name: string]: ICommand; } = {};
 
     GetCommand(name: string): ICommand {
+        
         let command:ICommand = this.Commands[name] ;
 
         return command;

@@ -16,9 +16,15 @@ export class DelegateCommand implements ICommand {
     CanExecute(param: any): boolean {
         return this.canExecute && this.canExecute(param);
     }
-    
+
     Execute(param: any): void {
-        if (this.action)
-            this.action(param);
+        if (this.action) {
+            try {
+                this.action(param);
+            }
+            catch (error) {
+                throw error;
+            }
+        }
     }
 }

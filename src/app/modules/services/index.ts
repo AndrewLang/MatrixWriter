@@ -13,7 +13,12 @@ export *        from './ComponentCreator'
 export *        from './modal.component';
 export *        from './PostFileService'
 export *        from './ElectronEventService';
+export *        from './EditorCommandInitializer';
+export *        from './PostCommandInitizlizer';
+export *        from './CommandsService';
+export *        from './ICommandInitializer';
 
 export *        from './Blog';
 export *        from './BlogAccount';
 export *        from './PostFileDescriptor';
+export *        from './KnownCommandNames';
