@@ -5,134 +5,485 @@ const app = electron.app
 const ipc = electron.ipcMain;
 const webContents = electron.webContents;
 
-function getWindow(windowName) {
-    var windowArray = BrowserWindow.getAllWindows();
-    for (var i = 0; i < windowArray.length; i++) {
-        if (windowArray[i].name == windowName) {
-            return windowArray[i].window;
-        }
-    }
-    return null;
+function invokeCommand(focusedWindow, commandName, commandArgument) {
+    focusedWindow.webContents.send('mw:command', commandName, commandArgument);
 }
 
 let template = [{
-    label: 'File',
-    submenu: [
-        {
-            label: "New post", accelerator: 'CmdOrCtrl+N', click: function (item, focusedWindow) {
-                if (focusedWindow) {
-                    //ipc.send("mwMaing:Log", "Log from main process ");
-                    // var windows = electron.getAllWindows();
-                    // console.log( windows);
-
-                   var mainWindow = getWindow('mainWindow');
+        label: 'File',
+        submenu: [{
+                label: "New post",
+                accelerator: 'CmdOrCtrl+N',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        focusedWindow.webContents.send('mwMain:Log', "message from main process.");
+                        invokeCommand(focusedWindow, "NewPost");
+                    }
                 }
-                
+            },
+            {
+                label: "Open local post",
+                accelerator: 'CmdOrCtrl+O',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "OpenLocalPost");
+                    }
+                }
+            },
+            {
+                label: "Save",
+                accelerator: 'CmdOrCtrl+S',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "SavePost");
+                    }
+                }
+            },
+            { type: 'separator' },
+            {
+                label: "Publish",
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "PublishPost");
+                    }
+                }
+            },
+            { type: 'separator' },
+            {
+                label: "Print",
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "PrintPost");
+                    }
+                }
+            },
+            { type: 'separator' },
+            {
+                label: "Options",
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "ShowOptions");
+                    }
+                }
+            },
+            { type: 'separator' },
+            {
+                label: "Exit",
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "Exit");
+                    }
+                }
             }
-        },
-        { label: "Open local post", accelerator: 'CmdOrCtrl+O' },
-        { label: "Save", accelerator: 'CmdOrCtrl+S' },
-        { type: 'separator' },
-        { label: "Publish" },
-        { type: 'separator' },
-        { label: "Print" },
-        { type: 'separator' },
-        { label: "Options" },
-        { type: 'separator' },
-        { label: "Exit" }
-    ]
-}, {
+        ]
+    }, {
         label: 'Edit',
-        submenu: [
-            { label: 'Undo', accelerator: 'CmdOrCtrl+Z', role: 'undo' },
-            { label: 'Redo', accelerator: 'Shift+CmdOrCtrl+Z', role: 'redo' },
+        submenu: [{
+                label: 'Undo',
+                accelerator: 'CmdOrCtrl+Z',
+                role: 'undo',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "Undo");
+                    }
+                }
+            },
+            {
+                label: 'Redo',
+                accelerator: 'Shift+CmdOrCtrl+Z',
+                role: 'redo',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "Redo");
+                    }
+                }
+            },
             { type: 'separator' },
-            { label: 'Cut', accelerator: 'CmdOrCtrl+X', role: 'cut' },
-            { label: 'Copy', accelerator: 'CmdOrCtrl+C', role: 'copy' },
-            { label: 'Paste', accelerator: 'CmdOrCtrl+V', role: 'paste' },
+            {
+                label: 'Cut',
+                accelerator: 'CmdOrCtrl+X',
+                role: 'cut',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "Cut");
+                    }
+                }
+            },
+            {
+                label: 'Copy',
+                accelerator: 'CmdOrCtrl+C',
+                role: 'copy',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "Copy");
+                    }
+                }
+            },
+            {
+                label: 'Paste',
+                accelerator: 'CmdOrCtrl+V',
+                role: 'paste',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "Paste");
+                    }
+                }
+            },
             { type: 'separator' },
-            { label: 'Select All', accelerator: 'CmdOrCtrl+A', role: 'selectall' }]
+            {
+                label: 'Select All',
+                accelerator: 'CmdOrCtrl+A',
+                role: 'selectall',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "SelectAll");
+                    }
+                }
+            }
+        ]
     }, {
         label: 'Format',
-        submenu: [
-            { label: 'Bold' },
-            { label: 'Italic' },
-            { label: 'Underline' },
-            { label: 'Strikethrough' },
+        submenu: [{
+                label: 'Bold',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "Bold");
+                    }
+                }
+            },
+            {
+                label: 'Italic',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "Italic");
+                    }
+                }
+            },
+            {
+                label: 'Underline',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "Underline");
+                    }
+                }
+            },
+            {
+                label: 'Strikethrough',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "Strikethrough");
+                    }
+                }
+            },
             { type: 'separator' },
-            { label: 'Superscript' },
-            { label: 'Subscript' },
+            {
+                label: 'Superscript',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "Superscript");
+                    }
+                }
+            },
+            {
+                label: 'Subscript',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "Subscript");
+                    }
+                }
+            },
             { type: 'separator' },
-            { label: 'Increase indent' },
-            { label: 'Decrease indent' },
+            {
+                label: 'Increase indent',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "IncreaseIndent");
+                    }
+                }
+            },
+            {
+                label: 'Decrease indent',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "DecreaseIndent");
+                    }
+                }
+            },
             { type: 'separator' },
-            { label: 'Text color' },
-            { label: 'Text background' },
+            {
+                label: 'Text color',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "TextForeColor");
+                    }
+                }
+            },
+            {
+                label: 'Text background',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "TextBackground");
+                    }
+                }
+            },
             { type: 'separator' },
             {
                 label: 'Align',
-                submenu: [
-                    { label: 'Align left' },
-                    { label: 'Align center' },
-                    { label: 'Align right' },
-                    { label: 'Justify' }
+                submenu: [{
+                        label: 'Align left',
+                        click: function(item, focusedWindow) {
+                            if (focusedWindow) {
+                                invokeCommand(focusedWindow, "AlignLeft");
+                            }
+                        }
+                    },
+                    {
+                        label: 'Align center',
+                        click: function(item, focusedWindow) {
+                            if (focusedWindow) {
+                                invokeCommand(focusedWindow, "AlignCenter");
+                            }
+                        }
+                    },
+                    {
+                        label: 'Align right',
+                        click: function(item, focusedWindow) {
+                            if (focusedWindow) {
+                                invokeCommand(focusedWindow, "AlignRight");
+                            }
+                        }
+                    },
+                    {
+                        label: 'Justify',
+                        click: function(item, focusedWindow) {
+                            if (focusedWindow) {
+                                invokeCommand(focusedWindow, "Justify");
+                            }
+                        }
+                    }
                 ]
             },
             {
                 label: 'Bullet list',
-                submenu: [
-                    { label: 'Default' },
-                    { label: 'Circle' },
-                    { label: 'Disc' },
-                    { label: 'Square' }
+                submenu: [{
+                        label: 'Default',
+                        click: function(item, focusedWindow) {
+                            if (focusedWindow) {
+                                invokeCommand(focusedWindow, "BulletDefault");
+                            }
+                        }
+                    },
+                    {
+                        label: 'Circle',
+                        click: function(item, focusedWindow) {
+                            if (focusedWindow) {
+                                invokeCommand(focusedWindow, "BulletCircle");
+                            }
+                        }
+                    },
+                    {
+                        label: 'Disc',
+                        click: function(item, focusedWindow) {
+                            if (focusedWindow) {
+                                invokeCommand(focusedWindow, "BulletDisc");
+                            }
+                        }
+                    },
+                    {
+                        label: 'Square',
+                        click: function(item, focusedWindow) {
+                            if (focusedWindow) {
+                                invokeCommand(focusedWindow, "BulletSquare");
+                            }
+                        }
+                    }
                 ]
             },
             {
                 label: 'Number list',
-                submenu: [
-                    { label: 'Default' },
-                    { label: 'Lower Alpha' },
-                    { label: 'Lpwer Greek' },
-                    { label: 'Lower Roman' },
-                    { label: 'Upper Alpha' },
-                    { label: 'Upper Roman' }
+                submenu: [{
+                        label: 'Default',
+                        click: function(item, focusedWindow) {
+                            if (focusedWindow) {
+                                invokeCommand(focusedWindow, "NumberDefault");
+                            }
+                        }
+                    },
+                    {
+                        label: 'Lower Alpha',
+                        click: function(item, focusedWindow) {
+                            if (focusedWindow) {
+                                invokeCommand(focusedWindow, "NumberLowerAlpha");
+                            }
+                        }
+                    },
+                    {
+                        label: 'Lower Greek',
+                        click: function(item, focusedWindow) {
+                            if (focusedWindow) {
+                                invokeCommand(focusedWindow, "NumberLowerGreek");
+                            }
+                        }
+                    },
+                    {
+                        label: 'Lower Roman',
+                        click: function(item, focusedWindow) {
+                            if (focusedWindow) {
+                                invokeCommand(focusedWindow, "NumberLowerRoman");
+                            }
+                        }
+                    },
+                    {
+                        label: 'Upper Alpha',
+                        click: function(item, focusedWindow) {
+                            if (focusedWindow) {
+                                invokeCommand(focusedWindow, "NumberupperAlpha");
+                            }
+                        }
+                    },
+                    {
+                        label: 'Upper Roman',
+                        click: function(item, focusedWindow) {
+                            if (focusedWindow) {
+                                invokeCommand(focusedWindow, "NumberUpperRoman");
+                            }
+                        }
+                    }
                 ]
             },
             { type: 'separator' },
-            { label: 'Clear format' },
+            {
+                label: 'Clear format',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "ClearFormat");
+                    }
+                }
+            },
         ]
     }, {
         label: 'Insert',
-        submenu: [
-            { label: 'Hyperink' },
-            { label: 'Emoticon' },
-            { label: 'Horizontal line' },
-            { label: 'Date' },
+        submenu: [{
+                label: 'Hyperlink',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "InsertHyperlink");
+                    }
+                }
+            },
+            {
+                label: 'Emoticon',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "InsertEmoticon");
+                    }
+                }
+            },
+            {
+                label: 'Horizontal line',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "InsertHorizontalLine");
+                    }
+                }
+            },
+            {
+                label: 'Date',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "InsertDate");
+                    }
+                }
+            },
             { type: 'separator' },
-            { label: 'Picture' },
-            { label: 'Screenshot' },
-            { label: 'Video' },
-            { label: 'Map' },
-            { label: 'Code sample' },
+            {
+                label: 'Picture',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "InsertPicture");
+                    }
+                }
+            },
+            {
+                label: 'Screenshot',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "InsertScreenshot");
+                    }
+                }
+            },
+            {
+                label: 'Video',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "InsertVideo");
+                    }
+                }
+            },
+            {
+                label: 'Map',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "InsertMap");
+                    }
+                }
+            },
+            {
+                label: 'Code sample',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "InsertCode");
+                    }
+                }
+            },
             { type: 'separator' },
-            { label: 'Table' },
+            {
+                label: 'Table',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "InsertTable");
+                    }
+                }
+            },
         ]
     },
     {
         label: 'View',
-        submenu: [
-            { label: 'Show welcome' },
-            { type: 'separator' },
-            { label: 'Visual aid' },
-            { label: 'Visual blocks' },
+        submenu: [{
+                label: 'Show welcome',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "ShowWelcome");
+                    }
+                }
+            },
             { type: 'separator' },
             {
-                label: 'Reload', accelerator: 'CmdOrCtrl+R', click: function (item, focusedWindow) {
+                label: 'Visual aid',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "ToggleVisualAid");
+                    }
+                }
+            },
+            {
+                label: 'Visual blocks',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "ToggleVisualBlocks");
+                    }
+                }
+            },
+            { type: 'separator' },
+            {
+                label: 'Reload',
+                accelerator: 'CmdOrCtrl+R',
+                click: function(item, focusedWindow) {
                     if (focusedWindow) {
                         // on reload, start fresh and close any old
                         // open secondary windows
                         if (focusedWindow.id === 1) {
-                            BrowserWindow.getAllWindows().forEach(function (win) {
+                            BrowserWindow.getAllWindows().forEach(function(win) {
                                 if (win.id > 1) {
                                     win.close()
                                 }
@@ -143,28 +494,28 @@ let template = [{
                 }
             }, {
                 label: 'Toggle Full Screen',
-                accelerator: (function () {
+                accelerator: (function() {
                     if (process.platform === 'darwin') {
                         return 'Ctrl+Command+F'
                     } else {
                         return 'F11'
                     }
                 })(),
-                click: function (item, focusedWindow) {
+                click: function(item, focusedWindow) {
                     if (focusedWindow) {
                         focusedWindow.setFullScreen(!focusedWindow.isFullScreen())
                     }
                 }
             }, {
                 label: 'Toggle Developer Tools',
-                accelerator: (function () {
+                accelerator: (function() {
                     if (process.platform === 'darwin') {
                         return 'Alt+Command+I'
                     } else {
                         return 'Ctrl+Shift+I'
                     }
                 })(),
-                click: function (item, focusedWindow) {
+                click: function(item, focusedWindow) {
                     if (focusedWindow) {
                         focusedWindow.toggleDevTools()
                     }
@@ -179,14 +530,15 @@ let template = [{
     }, {
         label: 'Help',
         role: 'help',
-        submenu: [
-            {
-                label: 'About',
-                click: function () {
-                    electron.shell.openExternal('http://electron.atom.io')
-                }
-            }]
-    }]
+        submenu: [{
+            label: 'About',
+            click: function() {
+                invokeCommand(focusedWindow, "ShowAbout");
+                electron.shell.openExternal('http://electron.atom.io')
+            }
+        }]
+    }
+]
 
 function addUpdateMenuItems(items, position) {
     if (process.mas) return
@@ -196,25 +548,25 @@ function addUpdateMenuItems(items, position) {
         label: `Version ${version}`,
         enabled: false
     }, {
-            label: 'Checking for Update',
-            enabled: false,
-            key: 'checkingForUpdate'
-        }, {
-            label: 'Check for Update',
-            visible: false,
-            key: 'checkForUpdate',
-            click: function () {
-                require('electron').autoUpdater.checkForUpdates()
-            }
-        }, {
-            label: 'Restart and Install Update',
-            enabled: true,
-            visible: false,
-            key: 'restartToUpdate',
-            click: function () {
-                require('electron').autoUpdater.quitAndInstall()
-            }
-        }]
+        label: 'Checking for Update',
+        enabled: false,
+        key: 'checkingForUpdate'
+    }, {
+        label: 'Check for Update',
+        visible: false,
+        key: 'checkForUpdate',
+        click: function() {
+            require('electron').autoUpdater.checkForUpdates()
+        }
+    }, {
+        label: 'Restart and Install Update',
+        enabled: true,
+        visible: false,
+        key: 'restartToUpdate',
+        click: function() {
+            require('electron').autoUpdater.quitAndInstall()
+        }
+    }]
 
     items.splice.apply(items, [position, 0].concat(updateItems))
 }
@@ -224,9 +576,9 @@ function findReopenMenuItem() {
     if (!menu) return
 
     let reopenMenuItem
-    menu.items.forEach(function (item) {
+    menu.items.forEach(function(item) {
         if (item.submenu) {
-            item.submenu.items.forEach(function (item) {
+            item.submenu.items.forEach(function(item) {
                 if (item.key === 'reopenMenuItem') {
                     reopenMenuItem = item
                 }
@@ -244,42 +596,42 @@ if (process.platform === 'darwin') {
             label: `About ${name}`,
             role: 'about'
         }, {
-                type: 'separator'
-            }, {
-                label: 'Services',
-                role: 'services',
-                submenu: []
-            }, {
-                type: 'separator'
-            }, {
-                label: `Hide ${name}`,
-                accelerator: 'Command+H',
-                role: 'hide'
-            }, {
-                label: 'Hide Others',
-                accelerator: 'Command+Alt+H',
-                role: 'hideothers'
-            }, {
-                label: 'Show All',
-                role: 'unhide'
-            }, {
-                type: 'separator'
-            }, {
-                label: 'Quit',
-                accelerator: 'Command+Q',
-                click: function () {
-                    app.quit()
-                }
-            }]
+            type: 'separator'
+        }, {
+            label: 'Services',
+            role: 'services',
+            submenu: []
+        }, {
+            type: 'separator'
+        }, {
+            label: `Hide ${name}`,
+            accelerator: 'Command+H',
+            role: 'hide'
+        }, {
+            label: 'Hide Others',
+            accelerator: 'Command+Alt+H',
+            role: 'hideothers'
+        }, {
+            label: 'Show All',
+            role: 'unhide'
+        }, {
+            type: 'separator'
+        }, {
+            label: 'Quit',
+            accelerator: 'Command+Q',
+            click: function() {
+                app.quit()
+            }
+        }]
     })
 
     // Window menu.
     template[3].submenu.push({
         type: 'separator'
     }, {
-            label: 'Bring All to Front',
-            role: 'front'
-        })
+        label: 'Bring All to Front',
+        role: 'front'
+    })
 
     addUpdateMenuItems(template[0].submenu, 1)
 }
@@ -289,27 +641,27 @@ if (process.platform === 'win32') {
     addUpdateMenuItems(helpMenu, 0)
 }
 
-app.on('ready', function () {
+app.on('ready', function() {
     const menu = Menu.buildFromTemplate(template)
     Menu.setApplicationMenu(menu)
 })
 
-app.on('browser-window-created', function () {
+app.on('browser-window-created', function() {
     let reopenMenuItem = findReopenMenuItem()
     if (reopenMenuItem)
         reopenMenuItem.enabled = false
 })
 
-app.on('window-all-closed', function () {
+app.on('window-all-closed', function() {
     let reopenMenuItem = findReopenMenuItem()
     if (reopenMenuItem)
         reopenMenuItem.enabled = true
 })
 
-ipc.on('mw:ShowMainMenu', function (event) {
+ipc.on('mw:ShowMainMenu', function(event) {
     const menu = Menu.buildFromTemplate(template)
     Menu.setApplicationMenu(menu)
 });
-ipc.on('mw:HideMainMenu', function (event) {
+ipc.on('mw:HideMainMenu', function(event) {
     Menu.setApplicationMenu(null);
 });

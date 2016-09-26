@@ -10,7 +10,11 @@ declare var window: any;
 export class ElectronEventService {
     constructor(private electronService: ElectronService) {
         electronService.IpcClient.on('mwMain:Log',function(event, arg){
-            console.log("message from server  ${arg}");
+            console.log('message from server '+ arg);
+        });
+
+        electronService.IpcClient.on('mw:command',function(event,commandName, commandArgument){
+            console.log('Invoking command: '+ commandName + ' ' + commandArgument);
         });
     }
     public on(name: string): Observable<any> {
