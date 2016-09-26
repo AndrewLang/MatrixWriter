@@ -129,6 +129,11 @@ let template = [{
                     }
                 }
             },
+            { label: 'Delete', accelerator: 'Delete' },
+            { type: 'separator' },
+            { label: 'Find', accelerator: 'CmdOrCtrl+F' },
+            { label: 'Find Next', accelerator: 'F3' },
+            { label: 'Replace', accelerator: 'CmdOrCtrl+H' },
             { type: 'separator' },
             {
                 label: 'Select All',
