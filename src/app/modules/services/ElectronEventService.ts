@@ -14,6 +14,7 @@ export class ElectronEventService {
     public on(name: string): Observable<any> {
         return Observable.fromEvent(window, name);
     }
+
     get IpcClient(): any {
         return this.electronService.IpcClient;
     }
