@@ -45,7 +45,7 @@ export class KnownCommandNames {
     static Outdent = "Outdent";
     static InsertHorizontalRule = "InsertHorizontalRule";
     static ToggleVisualAid = "mceToggleVisualAid";
-    static InsertLink = "mceInsertLink";
+    static InsertLink = "mceLink";
     static SelectAll = "selectAll";
     static Delete = "Delete";
     static NewDocument = "mceNewDocument";
