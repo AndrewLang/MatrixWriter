@@ -1,5 +1,6 @@
 
 import { Injectable, EventEmitter } from '@angular/core';
+import {KnownCommandNames}          from './KnownCommandNames';
 
 declare var tinymce: any;
 
@@ -95,12 +96,239 @@ export class HtmlEditorService {
             }
         });
     }
-
     UpdateContent(): void {
         this.Content = tinymce.activeEditor.getContent({ format: 'raw' });
     }
-    ToggleBold():void{
-        this.InvokeEditorCommand("Bold");
+    ToggleBold(): void {
+        this.InvokeEditorCommand(KnownCommandNames.Bold);
+    }
+    ToggleItalic(): void {
+        this.InvokeEditorCommand(KnownCommandNames.Italic);
+    }
+    ToggleUnderline(): void {
+        this.InvokeEditorCommand(KnownCommandNames.Underline);
+    }
+    ToggleStrikethrough(): void {
+        this.InvokeEditorCommand(KnownCommandNames.Strikethrough);
+    }
+    Superscript(): void {
+        this.InvokeEditorCommand(KnownCommandNames.Superscript);
+    }
+    Subscript(): void {
+        this.InvokeEditorCommand(KnownCommandNames.Subscript);
+    }
+    Cut(): void {
+        this.InvokeEditorCommand(KnownCommandNames.Cut);
+    }
+    Copy(): void {
+        this.InvokeEditorCommand(KnownCommandNames.Copy);
+    }
+    Paste(): void {
+        this.InvokeEditorCommand(KnownCommandNames.Paste);
+    }
+    Unlink(): void {
+        this.InvokeEditorCommand(KnownCommandNames.Unlink);
+    }
+    JustifyLeft(): void {
+        this.InvokeEditorCommand(KnownCommandNames.JustifyLeft);
+    }
+    JustifyCenter(): void {
+        this.InvokeEditorCommand(KnownCommandNames.JustifyCenter);
+    }
+    JustifyRight(): void {
+        this.InvokeEditorCommand(KnownCommandNames.JustifyRight);
+    }
+    JustifyFull(): void {
+        this.InvokeEditorCommand(KnownCommandNames.JustifyRight);
+    }
+    JustifyNone(): void {
+        this.InvokeEditorCommand(KnownCommandNames.JustifyNone);
+    }
+    InsertUnorderedList(): void {
+        this.InvokeEditorCommand(KnownCommandNames.InsertUnorderedList);
+    }
+    InsertOrderedList(): void {
+        this.InvokeEditorCommand(KnownCommandNames.InsertOrderedList);
+    }
+    ForeColor(): void {
+        this.InvokeEditorCommand(KnownCommandNames.ForeColor);
+    }
+    HiliteCollor(): void {
+        this.InvokeEditorCommand(KnownCommandNames.HiliteColor);
+    }
+    FontName(): void {
+        this.InvokeEditorCommand(KnownCommandNames.FontName);
+    }
+    FontSize(): void {
+        this.InvokeEditorCommand(KnownCommandNames.FontSize);
+    }
+    RemoveFormat(): void {
+        this.InvokeEditorCommand(KnownCommandNames.RemoveFormat);
+    }
+    BlockQuote(): void {
+        this.InvokeEditorCommand(KnownCommandNames.BlockQuote);
+    }
+    FormatBlock(): void {
+        this.InvokeEditorCommand(KnownCommandNames.FormatBlock);
+    }
+    InsertContent(): void {
+        this.InvokeEditorCommand(KnownCommandNames.InsertContent);
+    }
+    ToggleFormat(): void {
+        this.InvokeEditorCommand(KnownCommandNames.ToggleFormat);
+    }
+    SetContent(): void {
+        this.InvokeEditorCommand(KnownCommandNames.SetContent);
+    }
+    Indent(): void {
+        this.InvokeEditorCommand(KnownCommandNames.Indent);
+    }
+    Outdent(): void {
+        this.InvokeEditorCommand(KnownCommandNames.Outdent);
+    }
+    InsertHorizontalRule(): void {
+        this.InvokeEditorCommand(KnownCommandNames.InsertHorizontalRule);
+    }
+    ToggleVisualAid(): void {
+        this.InvokeEditorCommand(KnownCommandNames.ToggleVisualAid);
+    }
+    InsertLink(): void {
+        this.InvokeEditorCommand(KnownCommandNames.InsertLink);
+    }
+    SelectAll(): void {
+        this.InvokeEditorCommand(KnownCommandNames.SelectAll);
+    }
+    Delete(): void {
+        this.InvokeEditorCommand(KnownCommandNames.Delete);
+    }
+    NewDocument(): void {
+        this.InvokeEditorCommand(KnownCommandNames.NewDocument);
+    }
+    Undo(): void {
+        this.InvokeEditorCommand(KnownCommandNames.Undo);
+    }
+    Redo(): void {
+        this.InvokeEditorCommand(KnownCommandNames.Redo);
+    }
+    AutoResize(): void {
+        this.InvokeEditorCommand(KnownCommandNames.AutoResize);
+    }
+    ShowCharmap(): void {
+        this.InvokeEditorCommand(KnownCommandNames.ShowCharmap);
+    }
+    CodeEditor(): void {
+        this.InvokeEditorCommand(KnownCommandNames.CodeEditor);
+    }
+    DirectionLTR(): void {
+        this.InvokeEditorCommand(KnownCommandNames.DirectionLTR);
+    }
+    DirectionRTL(): void {
+        this.InvokeEditorCommand(KnownCommandNames.DirectionRTL);
+    }
+    FullPageProperties(): void {
+        this.InvokeEditorCommand(KnownCommandNames.FullPageProperties);
+    }
+    FullScreen(): void {
+        this.InvokeEditorCommand(KnownCommandNames.FullScreen);
+    }
+    InsertImage(): void {
+        this.InvokeEditorCommand(KnownCommandNames.Image);
+    }
+    InsertDate(): void {
+        this.InvokeEditorCommand(KnownCommandNames.InsertDate);
+    }
+    InsertTime(): void {
+        this.InvokeEditorCommand(KnownCommandNames.InsertTime);
+    }
+    InsertDefinitionList(): void {
+        this.InvokeEditorCommand(KnownCommandNames.InsertDefinitionList);
+    }
+    NonBreaking(): void {
+        this.InvokeEditorCommand(KnownCommandNames.NonBreaking);
+    }
+    InsertPageBreak(): void {
+        this.InvokeEditorCommand(KnownCommandNames.InsertPageBreak);
+    }
+    Preview(): void {
+        this.InvokeEditorCommand(KnownCommandNames.Preview);
+    }
+    Print(): void {
+        this.InvokeEditorCommand(KnownCommandNames.Print);
+    }
+    Save(): void {
+        this.InvokeEditorCommand(KnownCommandNames.Save);
+    }
+    SearchReplace(): void {
+        this.InvokeEditorCommand(KnownCommandNames.SearchReplace);
+    }
+    Spellcheck(): void {
+        this.InvokeEditorCommand(KnownCommandNames.Spellcheck);
+    }
+    InsertTemplate():void{
+        this.InvokeEditorCommand(KnownCommandNames.InsertTemplate);
+    }
+    ToggleVisualBlocks():void{
+        this.InvokeEditorCommand(KnownCommandNames.VisualBlocks);
+    }
+    ToggleVisualChars():void{
+        this.InvokeEditorCommand(KnownCommandNames.VisualChars);
+    }
+    InsertMedia():void{
+        this.InvokeEditorCommand(KnownCommandNames.Media);
+    }
+    InsertAnchor():void{
+        this.InvokeEditorCommand(KnownCommandNames.Anchor);
+    }
+    EditImage():void{
+        this.InvokeEditorCommand(KnownCommandNames.EditImage);
+    }
+    InsertTable():void{
+        this.InvokeEditorCommand(KnownCommandNames.InsertTable);
+    }
+    TableSplitCells():void{
+        this.InvokeEditorCommand(KnownCommandNames.TableSplitCells);
+    }
+    TableMergeCells():void{
+        this.InvokeEditorCommand(KnownCommandNames.TableMergeCells);
+    }
+    TableInsertRowBefore():void{
+        this.InvokeEditorCommand(KnownCommandNames.TableInsertRowBefore);
+    }
+    TableInsertRowAfter():void{
+        this.InvokeEditorCommand(KnownCommandNames.TableInsertRowAfter);
+    }
+    TableInsertColBefore():void{
+        this.InvokeEditorCommand(KnownCommandNames.TableInsertColBefore );
+    }
+    TableInsertColAfter():void{
+        this.InvokeEditorCommand(KnownCommandNames.TableInsertColAfter);
+    }
+    TableDeleteCol():void{
+        this.InvokeEditorCommand(KnownCommandNames.TableDeleteCol);
+    }
+    TableDeleteRow():void{
+        this.InvokeEditorCommand(KnownCommandNames.TableDeleteRow);
+    }
+    TableCutRow():void{
+        this.InvokeEditorCommand(KnownCommandNames.TableCutRow);
+    }
+    TableCopyRow():void{
+        this.InvokeEditorCommand(KnownCommandNames.TableCopyRow);
+    }
+    TablePasteRowBefore():void{
+        this.InvokeEditorCommand(KnownCommandNames.TablePasteRowBefore);
+    }
+    TablePasteRowAfter():void{
+        this.InvokeEditorCommand(KnownCommandNames.TablePasteRowAfter);
+    }
+    TableDelete():void{
+        this.InvokeEditorCommand(KnownCommandNames.TableDelete);
+    }
+    TableRowProps():void{
+        this.InvokeEditorCommand(KnownCommandNames.TableRowProps);
+    }
+    TableCellProps():void{
+        this.InvokeEditorCommand(KnownCommandNames.TableCellProps);
     }
     private InvokeEditorCommand(name: string): void {
         tinymce.activeEditor.execCommand(name);

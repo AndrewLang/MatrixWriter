@@ -1,5 +1,5 @@
 
-export class KnownCommandNames{
+export class KnownCommandNames {
     // Post commands
     static NewPost = "NewPost";
     static OpenLocalPost = "OpenLocalPost";
@@ -9,4 +9,80 @@ export class KnownCommandNames{
 
     // Editor commands
     static Bold = "Bold";
+    static Italic = "Italic";
+    static Underline = "Underline";
+    static Strikethrough = "Strikethrough";
+    static Superscript = "Superscript";
+    static Subscript = "Subscript";
+    static Cut = "Cut";
+    static Copy = "Copy";
+    static Paste = "Paste";
+    static Unlink = "Unlink";
+    static JustifyLeft = "JustifyLeft";
+    static JustifyCenter = "JustifyCenter";
+    static JustifyRight = "JustifyRight";
+    static JustifyFull = "JustifyFull";
+    static JustifyNone = "JustifyNone";
+    static InsertUnorderedList = "InsertUnorderedList";
+    static InsertOrderedList = "InsertOrderedList";
+    static ForeColor = "ForeColor";
+    static HiliteColor = "HiliteColor";
+    static FontName = "FontName";
+    static FontSize = "FontSize";
+    static RemoveFormat = "RemoveFormat";
+    static BlockQuote = "mceBlockQuote";
+    static FormatBlock = "FormatBlock";
+    static InsertContent = "mceInsertContent";
+    static ToggleFormat = "mceToggleFormat";
+    static SetContent = "mceSetContent";
+    static Indent = "Indent";
+    static Outdent = "Outdent";
+    static InsertHorizontalRule = "InsertHorizontalRule";
+    static ToggleVisualAid = "mceToggleVisualAid";
+    static InsertLink = "mceInsertLink";
+    static SelectAll = "selectAll";
+    static Delete = "delete";
+    static NewDocument = "mceNewDocument";
+    static Undo = "Undo";
+    static Redo = "Redo";
+    static AutoResize = "mceAutoResize";
+    static ShowCharmap = "mceShowCharmap";
+    static CodeEditor = "mceCodeEditor";
+    static DirectionLTR = "mceDirectionLTR";
+    static DirectionRTL = "mceDirectionRTL";
+    static FullPageProperties = "mceFullPageProperties";
+    static FullScreen= "Fullscreen";
+    static Image = "mceImage";
+    static InsertDate = "mceInsertDate";
+    static InsertTime = "mceInsertTime";
+    static InsertDefinitionList = "mceInsertDefinitionList";
+    static NonBreaking = "mceNonBreaking";
+    static InsertPageBreak = "mcePageBreak";
+    static Preview = "mcePreview";
+    static Print = "mcePrint";
+    static Save = "mceSave";
+    static SearchReplace = "SearchReplace";
+    static Spellcheck = "mceSpellcheck";
+    static InsertTemplate = "mceInsertTemplate";
+    static VisualBlocks = "mceVisualBlocks";
+    static VisualChars = "mceVisualChars";
+    static Media = "mceMedia";
+    static Anchor = "mceAnchor";
+    static TableSplitCells = "mceTableSplitCells";
+    static TableMergeCells= "mceTableMergeCells";
+    static TableInsertRowBefore = "mceTableInsertRowBefore";
+    static TableInsertRowAfter = "mceTableInsertRowAfter";
+    static TableInsertColBefore = "mceTableInsertColBefore";
+    static TableInsertColAfter = "mceTableInsertColAfter";
+    static TableDeleteCol = "mceTableDeleteCol";
+    static TableDeleteRow = "mceTableDeleteRow";
+    static TableCutRow = "mceTableCutRow";
+    static TableCopyRow = "mceTableCopyRow";
+    static TablePasteRowBefore = "mceTablePasteRowBefore";
+    static TablePasteRowAfter = "mceTablePasteRowAfter";
+    static TableDelete = "mceTableDelete";
+    static InsertTable = "mceInsertTable";
+    static TableRowProps = "mceTableRowProps";
+    static TableCellProps = "mceTableCellProps";
+    static EditImage = "mceEditImage";
 }
