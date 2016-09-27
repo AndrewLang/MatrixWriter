@@ -36,7 +36,7 @@ export class EditorCommandInitializer extends CommandInitializer {
         this.RegisterCommand(KnownCommandNames.FontName, (param) => { this.htmlEditorService.FontName(); });
         this.RegisterCommand(KnownCommandNames.FontSize, (param) => { this.htmlEditorService.FontSize(); });
         this.RegisterCommand(KnownCommandNames.RemoveFormat, (param) => { this.htmlEditorService.RemoveFormat(); });
-        this.RegisterCommand(KnownCommandNames.BlockQuote, (param) => { this.htmlEditorService.BlockQuote(); });
+        this.RegisterCommand(KnownCommandNames.BlockQuoteName, (param) => { this.htmlEditorService.BlockQuote(); });
         this.RegisterCommand(KnownCommandNames.FormatBlock, (param) => { this.htmlEditorService.FormatBlock(); });
         this.RegisterCommand(KnownCommandNames.InsertContent, (param) => { this.htmlEditorService.InsertContent(); });
         this.RegisterCommand(KnownCommandNames.ToggleFormat, (param) => { this.htmlEditorService.ToggleFormat(); });
@@ -45,7 +45,7 @@ export class EditorCommandInitializer extends CommandInitializer {
         this.RegisterCommand(KnownCommandNames.Outdent, (param) => { this.htmlEditorService.Outdent(); });
         this.RegisterCommand(KnownCommandNames.InsertHorizontalRule, (param) => { this.htmlEditorService.InsertHorizontalRule(); });
         this.RegisterCommand(KnownCommandNames.ToggleVisualAid, (param) => { this.htmlEditorService.ToggleVisualAid(); });
-        this.RegisterCommand(KnownCommandNames.InsertLink, (param) => { this.htmlEditorService.InsertLink(); });
+        this.RegisterCommand(KnownCommandNames.InsertLinkName, (param) => { this.htmlEditorService.InsertLink(); });
         this.RegisterCommand(KnownCommandNames.SelectAll, (param) => { this.htmlEditorService.SelectAll(); });
         this.RegisterCommand(KnownCommandNames.Delete, (param) => { this.htmlEditorService.Delete(); });
         this.RegisterCommand(KnownCommandNames.NewDocument, (param) => { this.htmlEditorService.NewDocument(); });
@@ -91,6 +91,8 @@ export class EditorCommandInitializer extends CommandInitializer {
         this.RegisterCommand(KnownCommandNames.TableRowProps, (param) => { this.htmlEditorService.TableRowProps(); });
         this.RegisterCommand(KnownCommandNames.TableCellProps, (param) => { this.htmlEditorService.TableCellProps(); });
         this.RegisterCommand(KnownCommandNames.EditImage, (param) => { this.htmlEditorService.EditImage(); });
+
+        this.RegisterCommand(KnownCommandNames.PrintPost, (param) => { this.htmlEditorService.Print(); });
 
         console.log("End register command. ");
         console.log(this.CommandRepository.Commands);

@@ -34,6 +34,9 @@ export class ElectronEventService {
                     errorHandlingService.HandleError(error);
                 }
             }
+            else{
+                console.log( "Command '" + commandName +"' is not found.");
+            }
         });
     }
     public on(name: string): Observable<any> {

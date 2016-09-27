@@ -55,9 +55,17 @@ export class HtmlEditorService {
                 'emoticons template paste textcolor colorpicker textpattern imagetools codesample bbcode',
                 'importcss spellchecker template'
             ],
-            toolbar1: 'undo redo | cut copy paste pastetext | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist indent outdent',
-            toolbar2: 'code print searchreplace | link image media |  emoticons codesample hr importcss insertdatetime table',
+            toolbar1: 'undo redo | cut copy paste pastetext | fontsizeselect fontnameselect | bold italic underline strikethrough superscript subscript blockquote | forecolor backcolor ',
+            toolbar2: 'alignleft aligncenter alignright alignjustify | bullist numlist | indent outdent | code searchreplace | link image media |  emoticons codesample hr importcss insertdatetime table',
             image_advtab: true,
+            inline_styles: false,
+            formats: {
+                underline: { inline: 'u', exact: true },
+                strikethrough: { inline: 'strike' }
+            },
+            block_formats: 'Paragraph=p;Header 1=h1;Header 2=h2;Header 3=h3',
+            font_formats: 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n',
+            fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
             content_css: [
                 //'//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
                 'src/assets/css/editor.basic.css'
@@ -193,7 +201,7 @@ export class HtmlEditorService {
         this.InvokeEditorCommand(KnownCommandNames.ToggleVisualAid);
     }
     InsertLink(): void {
-        this.InvokeEditorCommand(KnownCommandNames.InsertLink);
+        this.InvokeEditorCommand(KnownCommandNames.InsertLink, true);
     }
     SelectAll(): void {
         this.InvokeEditorCommand(KnownCommandNames.SelectAll);
@@ -253,7 +261,7 @@ export class HtmlEditorService {
         this.InvokeEditorCommand(KnownCommandNames.Preview);
     }
     Print(): void {
-        this.InvokeEditorCommand(KnownCommandNames.Print);
+        this.InvokeEditorCommand(KnownCommandNames.Print, true);
     }
     Save(): void {
         this.InvokeEditorCommand(KnownCommandNames.Save);
@@ -264,73 +272,75 @@ export class HtmlEditorService {
     Spellcheck(): void {
         this.InvokeEditorCommand(KnownCommandNames.Spellcheck);
     }
-    InsertTemplate():void{
+    InsertTemplate(): void {
         this.InvokeEditorCommand(KnownCommandNames.InsertTemplate);
     }
-    ToggleVisualBlocks():void{
+    ToggleVisualBlocks(): void {
         this.InvokeEditorCommand(KnownCommandNames.VisualBlocks);
     }
-    ToggleVisualChars():void{
+    ToggleVisualChars(): void {
         this.InvokeEditorCommand(KnownCommandNames.VisualChars);
     }
-    InsertMedia():void{
+    InsertMedia(): void {
         this.InvokeEditorCommand(KnownCommandNames.InsertVideo);
     }
-    InsertAnchor():void{
+    InsertAnchor(): void {
         this.InvokeEditorCommand(KnownCommandNames.Anchor);
     }
-    EditImage():void{
+    EditImage(): void {
         this.InvokeEditorCommand(KnownCommandNames.EditImage);
     }
-    InsertTable():void{
+    InsertTable(): void {
         this.InvokeEditorCommand(KnownCommandNames.InsertTable);
     }
-    TableSplitCells():void{
+    TableSplitCells(): void {
         this.InvokeEditorCommand(KnownCommandNames.TableSplitCells);
     }
-    TableMergeCells():void{
+    TableMergeCells(): void {
         this.InvokeEditorCommand(KnownCommandNames.TableMergeCells);
     }
-    TableInsertRowBefore():void{
+    TableInsertRowBefore(): void {
         this.InvokeEditorCommand(KnownCommandNames.TableInsertRowBefore);
     }
-    TableInsertRowAfter():void{
+    TableInsertRowAfter(): void {
         this.InvokeEditorCommand(KnownCommandNames.TableInsertRowAfter);
     }
-    TableInsertColBefore():void{
-        this.InvokeEditorCommand(KnownCommandNames.TableInsertColBefore );
+    TableInsertColBefore(): void {
+        this.InvokeEditorCommand(KnownCommandNames.TableInsertColBefore);
     }
-    TableInsertColAfter():void{
+    TableInsertColAfter(): void {
         this.InvokeEditorCommand(KnownCommandNames.TableInsertColAfter);
     }
-    TableDeleteCol():void{
+    TableDeleteCol(): void {
         this.InvokeEditorCommand(KnownCommandNames.TableDeleteCol);
     }
-    TableDeleteRow():void{
+    TableDeleteRow(): void {
         this.InvokeEditorCommand(KnownCommandNames.TableDeleteRow);
     }
-    TableCutRow():void{
+    TableCutRow(): void {
         this.InvokeEditorCommand(KnownCommandNames.TableCutRow);
     }
-    TableCopyRow():void{
+    TableCopyRow(): void {
         this.InvokeEditorCommand(KnownCommandNames.TableCopyRow);
     }
-    TablePasteRowBefore():void{
+    TablePasteRowBefore(): void {
         this.InvokeEditorCommand(KnownCommandNames.TablePasteRowBefore);
     }
-    TablePasteRowAfter():void{
+    TablePasteRowAfter(): void {
         this.InvokeEditorCommand(KnownCommandNames.TablePasteRowAfter);
     }
-    TableDelete():void{
+    TableDelete(): void {
         this.InvokeEditorCommand(KnownCommandNames.TableDelete);
     }
-    TableRowProps():void{
+    TableRowProps(): void {
         this.InvokeEditorCommand(KnownCommandNames.TableRowProps);
     }
-    TableCellProps():void{
+    TableCellProps(): void {
         this.InvokeEditorCommand(KnownCommandNames.TableCellProps);
     }
-    private InvokeEditorCommand(name: string): void {
-        tinymce.activeEditor.execCommand(name);
+
+    private InvokeEditorCommand(name: string, showUi?: boolean, value?: any, args?: any): void {
+        console.log("Invoke Tinymce command: " + name + " showUI: " + showUi + " value: " + value + " args: " + args);
+        tinymce.activeEditor.execCommand(name, showUi, value, args);
     }
 }

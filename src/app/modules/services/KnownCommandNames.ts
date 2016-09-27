@@ -9,6 +9,9 @@ export class KnownCommandNames {
     static ShowOptions = "ShowOptions";
     static Exit = "Exit";
 
+    static BlockQuoteName = "BlockQuote";
+    static InsertLinkName = "InsertLink";
+
 
     // Editor commands
     static Bold = "Bold";
@@ -44,7 +47,7 @@ export class KnownCommandNames {
     static ToggleVisualAid = "mceToggleVisualAid";
     static InsertLink = "mceInsertLink";
     static SelectAll = "selectAll";
-    static Delete = "delete";
+    static Delete = "Delete";
     static NewDocument = "mceNewDocument";
     static Undo = "Undo";
     static Redo = "Redo";

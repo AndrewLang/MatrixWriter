@@ -1,5 +1,6 @@
 import {Component, OnInit, AfterViewInit }          from '@angular/core';
-import { Router, ActivatedRoute }                    from '@angular/router';
+import {DomSanitizer, SafeHtml }                     from '@angular/platform-browser';
+import { Router, ActivatedRoute }                   from '@angular/router';
 
 import * as Common                  from '../../common/index';
 import * as Services                from '../services/index';
@@ -12,16 +13,18 @@ import {PostPublishComponent}       from './post.publish.component';
 export class PostEditorComponent implements OnInit {
 
     PostFile: Common.PostFile = new Common.PostFile();
+    HtmlContent: SafeHtml;
     private mContentChanged: any;
 
     constructor(private router: Router,
+        private sanitizer: DomSanitizer,
         private activeRoute: ActivatedRoute,
         private metaWeblogService: Services.MetaweblogService,
         private editorService: Services.HtmlEditorService,
         private dialogService: Services.DialogService,
         private postFileService: Services.PostFileService,
         private postManageService: Services.PostManageService,
-        private electronEvent:Services.ElectronEventService) { }
+        private electronEvent: Services.ElectronEventService) { }
 
     ngOnInit(): any {
         this.editorService.InitializeEditor("div.htmlEditor");
@@ -40,7 +43,10 @@ export class PostEditorComponent implements OnInit {
 
         this.mContentChanged = this.editorService
             .ContentChanged
-            .subscribe(value => this.PostFile.Post.Description = value);
+            .subscribe(value => {
+                this.PostFile.Post.Description = value;
+                this.HtmlContent = this.sanitizer.bypassSecurityTrustHtml(value);
+            });
 
         this.postManageService.CurrentPost = this.PostFile;
         this.electronEvent.ShowMainMenu();
