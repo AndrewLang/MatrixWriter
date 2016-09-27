@@ -206,6 +206,14 @@ let template = [{
                     }
                 }
             },
+            {
+                label: 'Block quote',
+                click: function (item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "BlockQuote");
+                    }
+                }
+            },
             { type: 'separator' },
             {
                 label: 'Superscript',
@@ -419,6 +427,14 @@ let template = [{
                 }
             },
             {
+                label: 'Page break',
+                click: function (item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "InsertPageBreak");
+                    }
+                }
+            },
+            {
                 label: 'Date',
                 click: function (item, focusedWindow) {
                     if (focusedWindow) {
@@ -440,6 +456,14 @@ let template = [{
                 click: function (item, focusedWindow) {
                     if (focusedWindow) {
                         invokeCommand(focusedWindow, "InsertScreenshot");
+                    }
+                }
+            },
+             {
+                label: 'OneDrive',
+                click: function (item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "InsertFromOneDrive");
                     }
                 }
             },
@@ -507,23 +531,6 @@ let template = [{
             },
             { type: 'separator' },
             {
-                label: 'Reload',
-                accelerator: 'CmdOrCtrl+R',
-                click: function (item, focusedWindow) {
-                    if (focusedWindow) {
-                        // on reload, start fresh and close any old
-                        // open secondary windows
-                        if (focusedWindow.id === 1) {
-                            BrowserWindow.getAllWindows().forEach(function (win) {
-                                if (win.id > 1) {
-                                    win.close()
-                                }
-                            })
-                        }
-                        focusedWindow.reload()
-                    }
-                }
-            }, {
                 label: 'Toggle Full Screen',
                 accelerator: (function () {
                     if (process.platform === 'darwin') {

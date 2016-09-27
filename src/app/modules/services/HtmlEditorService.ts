@@ -139,7 +139,7 @@ export class HtmlEditorService {
         this.InvokeEditorCommand(KnownCommandNames.JustifyRight);
     }
     JustifyFull(): void {
-        this.InvokeEditorCommand(KnownCommandNames.JustifyRight);
+        this.InvokeEditorCommand(KnownCommandNames.JustifyFull);
     }
     JustifyNone(): void {
         this.InvokeEditorCommand(KnownCommandNames.JustifyNone);
