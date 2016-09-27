@@ -232,7 +232,7 @@ export class HtmlEditorService {
         this.InvokeEditorCommand(KnownCommandNames.FullScreen);
     }
     InsertImage(): void {
-        this.InvokeEditorCommand(KnownCommandNames.Image);
+        this.InvokeEditorCommand(KnownCommandNames.InsertImage);
     }
     InsertDate(): void {
         this.InvokeEditorCommand(KnownCommandNames.InsertDate);
@@ -274,7 +274,7 @@ export class HtmlEditorService {
         this.InvokeEditorCommand(KnownCommandNames.VisualChars);
     }
     InsertMedia():void{
-        this.InvokeEditorCommand(KnownCommandNames.Media);
+        this.InvokeEditorCommand(KnownCommandNames.InsertVideo);
     }
     InsertAnchor():void{
         this.InvokeEditorCommand(KnownCommandNames.Anchor);

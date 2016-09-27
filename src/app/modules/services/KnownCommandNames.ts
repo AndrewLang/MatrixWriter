@@ -5,6 +5,9 @@ export class KnownCommandNames {
     static OpenLocalPost = "OpenLocalPost";
     static SavePost = "SavePost";
     static PublishPost = "PublishPost";
+    static PrintPost = "PrintPost";
+    static ShowOptions = "ShowOptions";
+    static Exit = "Exit";
 
 
     // Editor commands
@@ -52,7 +55,7 @@ export class KnownCommandNames {
     static DirectionRTL = "mceDirectionRTL";
     static FullPageProperties = "mceFullPageProperties";
     static FullScreen= "Fullscreen";
-    static Image = "mceImage";
+    static InsertImage = "mceImage";
     static InsertDate = "mceInsertDate";
     static InsertTime = "mceInsertTime";
     static InsertDefinitionList = "mceInsertDefinitionList";
@@ -66,7 +69,7 @@ export class KnownCommandNames {
     static InsertTemplate = "mceInsertTemplate";
     static VisualBlocks = "mceVisualBlocks";
     static VisualChars = "mceVisualChars";
-    static Media = "mceMedia";
+    static InsertVideo = "mceMedia";
     static Anchor = "mceAnchor";
     static TableSplitCells = "mceTableSplitCells";
     static TableMergeCells= "mceTableMergeCells";

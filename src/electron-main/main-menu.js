@@ -10,92 +10,92 @@ function invokeCommand(focusedWindow, commandName, commandArgument) {
 }
 
 let template = [{
-        label: 'File',
-        submenu: [{
-                label: "New post",
-                accelerator: 'CmdOrCtrl+N',
-                click: function(item, focusedWindow) {
-                    if (focusedWindow) {
-                        //focusedWindow.webContents.send('mwMain:Log', "message from main process.");
-                        invokeCommand(focusedWindow, "NewPost");
-                    }
-                }
-            },
-            {
-                label: "Open local post",
-                accelerator: 'CmdOrCtrl+O',
-                click: function(item, focusedWindow) {
-                    if (focusedWindow) {
-                        invokeCommand(focusedWindow, "OpenLocalPost");
-                    }
-                }
-            },
-            {
-                label: "Save",
-                accelerator: 'CmdOrCtrl+S',
-                click: function(item, focusedWindow) {
-                    if (focusedWindow) {
-                        invokeCommand(focusedWindow, "SavePost");
-                    }
-                }
-            },
-            { type: 'separator' },
-            {
-                label: "Publish",
-                accelerator: 'CmdOrCtrl+Shift+P',
-                click: function(item, focusedWindow) {
-                    if (focusedWindow) {
-                        invokeCommand(focusedWindow, "PublishPost");
-                    }
-                }
-            },
-            { type: 'separator' },
-            {
-                label: "Print",
-                accelerator: 'CmdOrCtrl+P',
-                click: function(item, focusedWindow) {
-                    if (focusedWindow) {
-                        invokeCommand(focusedWindow, "PrintPost");
-                    }
-                }
-            },
-            { type: 'separator' },
-            {
-                label: "Options",
-                accelerator: 'CmdOrCtrl+Shift+O',
-                click: function(item, focusedWindow) {
-                    if (focusedWindow) {
-                        invokeCommand(focusedWindow, "ShowOptions");
-                    }
-                }
-            },
-            { type: 'separator' },
-            {
-                label: "Exit",
-                click: function(item, focusedWindow) {
-                    if (focusedWindow) {
-                        invokeCommand(focusedWindow, "Exit");
-                    }
+    label: 'File',
+    submenu: [{
+        label: "New post",
+        accelerator: 'CmdOrCtrl+N',
+        click: function (item, focusedWindow) {
+            if (focusedWindow) {
+                //focusedWindow.webContents.send('mwMain:Log', "message from main process.");
+                invokeCommand(focusedWindow, "NewPost");
+            }
+        }
+    },
+        {
+            label: "Open local post",
+            accelerator: 'CmdOrCtrl+O',
+            click: function (item, focusedWindow) {
+                if (focusedWindow) {
+                    invokeCommand(focusedWindow, "OpenLocalPost");
                 }
             }
-        ]
-    }, {
+        },
+        {
+            label: "Save",
+            accelerator: 'CmdOrCtrl+S',
+            click: function (item, focusedWindow) {
+                if (focusedWindow) {
+                    invokeCommand(focusedWindow, "SavePost");
+                }
+            }
+        },
+        { type: 'separator' },
+        {
+            label: "Publish",
+            accelerator: 'CmdOrCtrl+Shift+P',
+            click: function (item, focusedWindow) {
+                if (focusedWindow) {
+                    invokeCommand(focusedWindow, "PublishPost");
+                }
+            }
+        },
+        { type: 'separator' },
+        {
+            label: "Print",
+            accelerator: 'CmdOrCtrl+P',
+            click: function (item, focusedWindow) {
+                if (focusedWindow) {
+                    invokeCommand(focusedWindow, "PrintPost");
+                }
+            }
+        },
+        { type: 'separator' },
+        {
+            label: "Options",
+            accelerator: 'CmdOrCtrl+Shift+O',
+            click: function (item, focusedWindow) {
+                if (focusedWindow) {
+                    invokeCommand(focusedWindow, "ShowOptions");
+                }
+            }
+        },
+        { type: 'separator' },
+        {
+            label: "Exit",
+            click: function (item, focusedWindow) {
+                if (focusedWindow) {
+                    invokeCommand(focusedWindow, "Exit");
+                }
+            }
+        }
+    ]
+}, {
         label: 'Edit',
         submenu: [{
-                label: 'Undo',
-                accelerator: 'CmdOrCtrl+Z',
-                role: 'undo',
-                click: function(item, focusedWindow) {
-                    if (focusedWindow) {
-                        invokeCommand(focusedWindow, "Undo");
-                    }
+            label: 'Undo',
+            accelerator: 'CmdOrCtrl+Z',
+            role: 'undo',
+            click: function (item, focusedWindow) {
+                if (focusedWindow) {
+                    invokeCommand(focusedWindow, "Undo");
                 }
-            },
+            }
+        },
             {
                 label: 'Redo',
                 accelerator: 'Shift+CmdOrCtrl+Z',
                 role: 'redo',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
                         invokeCommand(focusedWindow, "Redo");
                     }
@@ -106,7 +106,7 @@ let template = [{
                 label: 'Cut',
                 accelerator: 'CmdOrCtrl+X',
                 role: 'cut',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
                         invokeCommand(focusedWindow, "Cut");
                     }
@@ -116,7 +116,7 @@ let template = [{
                 label: 'Copy',
                 accelerator: 'CmdOrCtrl+C',
                 role: 'copy',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
                         invokeCommand(focusedWindow, "Copy");
                     }
@@ -126,23 +126,46 @@ let template = [{
                 label: 'Paste',
                 accelerator: 'CmdOrCtrl+V',
                 role: 'paste',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
                         invokeCommand(focusedWindow, "Paste");
                     }
                 }
             },
-            { label: 'Delete', accelerator: 'Delete' },
+            {
+                label: 'Delete',
+                accelerator: 'Delete',
+                click: function (item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "Delete");
+                    }
+                }
+            },
             { type: 'separator' },
-            { label: 'Find', accelerator: 'CmdOrCtrl+F' },
+            {
+                label: 'Find',
+                accelerator: 'CmdOrCtrl+F',
+                click: function (item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "SearchReplace");
+                    }
+                }
+            },
             { label: 'Find Next', accelerator: 'F3' },
-            { label: 'Replace', accelerator: 'CmdOrCtrl+H' },
+            {
+                label: 'Replace', accelerator: 'CmdOrCtrl+H',
+                click: function (item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "SearchReplace");
+                    }
+                }
+            },
             { type: 'separator' },
             {
                 label: 'Select All',
                 accelerator: 'CmdOrCtrl+A',
                 role: 'selectall',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
                         invokeCommand(focusedWindow, "SelectAll");
                     }
@@ -152,16 +175,16 @@ let template = [{
     }, {
         label: 'Format',
         submenu: [{
-                label: 'Bold',
-                click: function(item, focusedWindow) {
-                    if (focusedWindow) {
-                        invokeCommand(focusedWindow, "Bold");
-                    }
+            label: 'Bold',
+            click: function (item, focusedWindow) {
+                if (focusedWindow) {
+                    invokeCommand(focusedWindow, "Bold");
                 }
-            },
+            }
+        },
             {
                 label: 'Italic',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
                         invokeCommand(focusedWindow, "Italic");
                     }
@@ -169,7 +192,7 @@ let template = [{
             },
             {
                 label: 'Underline',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
                         invokeCommand(focusedWindow, "Underline");
                     }
@@ -177,7 +200,7 @@ let template = [{
             },
             {
                 label: 'Strikethrough',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
                         invokeCommand(focusedWindow, "Strikethrough");
                     }
@@ -186,7 +209,7 @@ let template = [{
             { type: 'separator' },
             {
                 label: 'Superscript',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
                         invokeCommand(focusedWindow, "Superscript");
                     }
@@ -194,7 +217,7 @@ let template = [{
             },
             {
                 label: 'Subscript',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
                         invokeCommand(focusedWindow, "Subscript");
                     }
@@ -203,34 +226,34 @@ let template = [{
             { type: 'separator' },
             {
                 label: 'Increase indent',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
-                        invokeCommand(focusedWindow, "IncreaseIndent");
+                        invokeCommand(focusedWindow, "Indent");
                     }
                 }
             },
             {
                 label: 'Decrease indent',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
-                        invokeCommand(focusedWindow, "DecreaseIndent");
+                        invokeCommand(focusedWindow, "Outdent");
                     }
                 }
             },
             { type: 'separator' },
             {
                 label: 'Text color',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
-                        invokeCommand(focusedWindow, "TextForeColor");
+                        invokeCommand(focusedWindow, "ForeColor");
                     }
                 }
             },
             {
                 label: 'Text background',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
-                        invokeCommand(focusedWindow, "TextBackground");
+                        invokeCommand(focusedWindow, "HiliteColor");
                     }
                 }
             },
@@ -238,34 +261,34 @@ let template = [{
             {
                 label: 'Align',
                 submenu: [{
-                        label: 'Align left',
-                        click: function(item, focusedWindow) {
-                            if (focusedWindow) {
-                                invokeCommand(focusedWindow, "AlignLeft");
-                            }
+                    label: 'Align left',
+                    click: function (item, focusedWindow) {
+                        if (focusedWindow) {
+                            invokeCommand(focusedWindow, "JustifyLeft");
                         }
-                    },
+                    }
+                },
                     {
                         label: 'Align center',
-                        click: function(item, focusedWindow) {
+                        click: function (item, focusedWindow) {
                             if (focusedWindow) {
-                                invokeCommand(focusedWindow, "AlignCenter");
+                                invokeCommand(focusedWindow, "JustifyCenter");
                             }
                         }
                     },
                     {
                         label: 'Align right',
-                        click: function(item, focusedWindow) {
+                        click: function (item, focusedWindow) {
                             if (focusedWindow) {
-                                invokeCommand(focusedWindow, "AlignRight");
+                                invokeCommand(focusedWindow, "JustifyRight");
                             }
                         }
                     },
                     {
                         label: 'Justify',
-                        click: function(item, focusedWindow) {
+                        click: function (item, focusedWindow) {
                             if (focusedWindow) {
-                                invokeCommand(focusedWindow, "Justify");
+                                invokeCommand(focusedWindow, "JustifyFull");
                             }
                         }
                     }
@@ -274,16 +297,16 @@ let template = [{
             {
                 label: 'Bullet list',
                 submenu: [{
-                        label: 'Default',
-                        click: function(item, focusedWindow) {
-                            if (focusedWindow) {
-                                invokeCommand(focusedWindow, "BulletDefault");
-                            }
+                    label: 'Default',
+                    click: function (item, focusedWindow) {
+                        if (focusedWindow) {
+                            invokeCommand(focusedWindow, "BulletDefault");
                         }
-                    },
+                    }
+                },
                     {
                         label: 'Circle',
-                        click: function(item, focusedWindow) {
+                        click: function (item, focusedWindow) {
                             if (focusedWindow) {
                                 invokeCommand(focusedWindow, "BulletCircle");
                             }
@@ -291,7 +314,7 @@ let template = [{
                     },
                     {
                         label: 'Disc',
-                        click: function(item, focusedWindow) {
+                        click: function (item, focusedWindow) {
                             if (focusedWindow) {
                                 invokeCommand(focusedWindow, "BulletDisc");
                             }
@@ -299,7 +322,7 @@ let template = [{
                     },
                     {
                         label: 'Square',
-                        click: function(item, focusedWindow) {
+                        click: function (item, focusedWindow) {
                             if (focusedWindow) {
                                 invokeCommand(focusedWindow, "BulletSquare");
                             }
@@ -310,16 +333,16 @@ let template = [{
             {
                 label: 'Number list',
                 submenu: [{
-                        label: 'Default',
-                        click: function(item, focusedWindow) {
-                            if (focusedWindow) {
-                                invokeCommand(focusedWindow, "NumberDefault");
-                            }
+                    label: 'Default',
+                    click: function (item, focusedWindow) {
+                        if (focusedWindow) {
+                            invokeCommand(focusedWindow, "NumberDefault");
                         }
-                    },
+                    }
+                },
                     {
                         label: 'Lower Alpha',
-                        click: function(item, focusedWindow) {
+                        click: function (item, focusedWindow) {
                             if (focusedWindow) {
                                 invokeCommand(focusedWindow, "NumberLowerAlpha");
                             }
@@ -327,7 +350,7 @@ let template = [{
                     },
                     {
                         label: 'Lower Greek',
-                        click: function(item, focusedWindow) {
+                        click: function (item, focusedWindow) {
                             if (focusedWindow) {
                                 invokeCommand(focusedWindow, "NumberLowerGreek");
                             }
@@ -335,7 +358,7 @@ let template = [{
                     },
                     {
                         label: 'Lower Roman',
-                        click: function(item, focusedWindow) {
+                        click: function (item, focusedWindow) {
                             if (focusedWindow) {
                                 invokeCommand(focusedWindow, "NumberLowerRoman");
                             }
@@ -343,7 +366,7 @@ let template = [{
                     },
                     {
                         label: 'Upper Alpha',
-                        click: function(item, focusedWindow) {
+                        click: function (item, focusedWindow) {
                             if (focusedWindow) {
                                 invokeCommand(focusedWindow, "NumberupperAlpha");
                             }
@@ -351,7 +374,7 @@ let template = [{
                     },
                     {
                         label: 'Upper Roman',
-                        click: function(item, focusedWindow) {
+                        click: function (item, focusedWindow) {
                             if (focusedWindow) {
                                 invokeCommand(focusedWindow, "NumberUpperRoman");
                             }
@@ -362,9 +385,9 @@ let template = [{
             { type: 'separator' },
             {
                 label: 'Clear format',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
-                        invokeCommand(focusedWindow, "ClearFormat");
+                        invokeCommand(focusedWindow, "RemoveFormat");
                     }
                 }
             },
@@ -372,16 +395,16 @@ let template = [{
     }, {
         label: 'Insert',
         submenu: [{
-                label: 'Hyperlink',
-                click: function(item, focusedWindow) {
-                    if (focusedWindow) {
-                        invokeCommand(focusedWindow, "InsertHyperlink");
-                    }
+            label: 'Hyperlink',
+            click: function (item, focusedWindow) {
+                if (focusedWindow) {
+                    invokeCommand(focusedWindow, "InsertLink");
                 }
-            },
+            }
+        },
             {
                 label: 'Emoticon',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
                         invokeCommand(focusedWindow, "InsertEmoticon");
                     }
@@ -389,15 +412,15 @@ let template = [{
             },
             {
                 label: 'Horizontal line',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
-                        invokeCommand(focusedWindow, "InsertHorizontalLine");
+                        invokeCommand(focusedWindow, "InsertHorizontalRule");
                     }
                 }
             },
             {
                 label: 'Date',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
                         invokeCommand(focusedWindow, "InsertDate");
                     }
@@ -406,15 +429,15 @@ let template = [{
             { type: 'separator' },
             {
                 label: 'Picture',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
-                        invokeCommand(focusedWindow, "InsertPicture");
+                        invokeCommand(focusedWindow, "InsertImage");
                     }
                 }
             },
             {
                 label: 'Screenshot',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
                         invokeCommand(focusedWindow, "InsertScreenshot");
                     }
@@ -422,7 +445,7 @@ let template = [{
             },
             {
                 label: 'Video',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
                         invokeCommand(focusedWindow, "InsertVideo");
                     }
@@ -430,7 +453,7 @@ let template = [{
             },
             {
                 label: 'Map',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
                         invokeCommand(focusedWindow, "InsertMap");
                     }
@@ -438,16 +461,16 @@ let template = [{
             },
             {
                 label: 'Code sample',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
-                        invokeCommand(focusedWindow, "InsertCode");
+                        invokeCommand(focusedWindow, "CodeEditor");
                     }
                 }
             },
             { type: 'separator' },
             {
                 label: 'Table',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
                         invokeCommand(focusedWindow, "InsertTable");
                     }
@@ -458,17 +481,17 @@ let template = [{
     {
         label: 'View',
         submenu: [{
-                label: 'Show welcome',
-                click: function(item, focusedWindow) {
-                    if (focusedWindow) {
-                        invokeCommand(focusedWindow, "ShowWelcome");
-                    }
+            label: 'Show welcome',
+            click: function (item, focusedWindow) {
+                if (focusedWindow) {
+                    invokeCommand(focusedWindow, "ShowWelcome");
                 }
-            },
+            }
+        },
             { type: 'separator' },
             {
                 label: 'Visual aid',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
                         invokeCommand(focusedWindow, "ToggleVisualAid");
                     }
@@ -476,9 +499,9 @@ let template = [{
             },
             {
                 label: 'Visual blocks',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
-                        invokeCommand(focusedWindow, "ToggleVisualBlocks");
+                        invokeCommand(focusedWindow, "VisualBlocks");
                     }
                 }
             },
@@ -486,12 +509,12 @@ let template = [{
             {
                 label: 'Reload',
                 accelerator: 'CmdOrCtrl+R',
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
                         // on reload, start fresh and close any old
                         // open secondary windows
                         if (focusedWindow.id === 1) {
-                            BrowserWindow.getAllWindows().forEach(function(win) {
+                            BrowserWindow.getAllWindows().forEach(function (win) {
                                 if (win.id > 1) {
                                     win.close()
                                 }
@@ -502,28 +525,28 @@ let template = [{
                 }
             }, {
                 label: 'Toggle Full Screen',
-                accelerator: (function() {
+                accelerator: (function () {
                     if (process.platform === 'darwin') {
                         return 'Ctrl+Command+F'
                     } else {
                         return 'F11'
                     }
                 })(),
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
                         focusedWindow.setFullScreen(!focusedWindow.isFullScreen())
                     }
                 }
             }, {
                 label: 'Toggle Developer Tools',
-                accelerator: (function() {
+                accelerator: (function () {
                     if (process.platform === 'darwin') {
                         return 'Alt+Command+I'
                     } else {
                         return 'Ctrl+Shift+I'
                     }
                 })(),
-                click: function(item, focusedWindow) {
+                click: function (item, focusedWindow) {
                     if (focusedWindow) {
                         focusedWindow.toggleDevTools()
                     }
@@ -540,7 +563,7 @@ let template = [{
         role: 'help',
         submenu: [{
             label: 'About',
-            click: function() {
+            click: function () {
                 invokeCommand(focusedWindow, "ShowAbout");
                 electron.shell.openExternal('http://electron.atom.io')
             }
@@ -556,25 +579,25 @@ function addUpdateMenuItems(items, position) {
         label: `Version ${version}`,
         enabled: false
     }, {
-        label: 'Checking for Update',
-        enabled: false,
-        key: 'checkingForUpdate'
-    }, {
-        label: 'Check for Update',
-        visible: false,
-        key: 'checkForUpdate',
-        click: function() {
-            require('electron').autoUpdater.checkForUpdates()
-        }
-    }, {
-        label: 'Restart and Install Update',
-        enabled: true,
-        visible: false,
-        key: 'restartToUpdate',
-        click: function() {
-            require('electron').autoUpdater.quitAndInstall()
-        }
-    }]
+            label: 'Checking for Update',
+            enabled: false,
+            key: 'checkingForUpdate'
+        }, {
+            label: 'Check for Update',
+            visible: false,
+            key: 'checkForUpdate',
+            click: function () {
+                require('electron').autoUpdater.checkForUpdates()
+            }
+        }, {
+            label: 'Restart and Install Update',
+            enabled: true,
+            visible: false,
+            key: 'restartToUpdate',
+            click: function () {
+                require('electron').autoUpdater.quitAndInstall()
+            }
+        }]
 
     items.splice.apply(items, [position, 0].concat(updateItems))
 }
@@ -584,9 +607,9 @@ function findReopenMenuItem() {
     if (!menu) return
 
     let reopenMenuItem
-    menu.items.forEach(function(item) {
+    menu.items.forEach(function (item) {
         if (item.submenu) {
-            item.submenu.items.forEach(function(item) {
+            item.submenu.items.forEach(function (item) {
                 if (item.key === 'reopenMenuItem') {
                     reopenMenuItem = item
                 }
@@ -604,42 +627,42 @@ if (process.platform === 'darwin') {
             label: `About ${name}`,
             role: 'about'
         }, {
-            type: 'separator'
-        }, {
-            label: 'Services',
-            role: 'services',
-            submenu: []
-        }, {
-            type: 'separator'
-        }, {
-            label: `Hide ${name}`,
-            accelerator: 'Command+H',
-            role: 'hide'
-        }, {
-            label: 'Hide Others',
-            accelerator: 'Command+Alt+H',
-            role: 'hideothers'
-        }, {
-            label: 'Show All',
-            role: 'unhide'
-        }, {
-            type: 'separator'
-        }, {
-            label: 'Quit',
-            accelerator: 'Command+Q',
-            click: function() {
-                app.quit()
-            }
-        }]
+                type: 'separator'
+            }, {
+                label: 'Services',
+                role: 'services',
+                submenu: []
+            }, {
+                type: 'separator'
+            }, {
+                label: `Hide ${name}`,
+                accelerator: 'Command+H',
+                role: 'hide'
+            }, {
+                label: 'Hide Others',
+                accelerator: 'Command+Alt+H',
+                role: 'hideothers'
+            }, {
+                label: 'Show All',
+                role: 'unhide'
+            }, {
+                type: 'separator'
+            }, {
+                label: 'Quit',
+                accelerator: 'Command+Q',
+                click: function () {
+                    app.quit()
+                }
+            }]
     })
 
     // Window menu.
     template[3].submenu.push({
         type: 'separator'
     }, {
-        label: 'Bring All to Front',
-        role: 'front'
-    })
+            label: 'Bring All to Front',
+            role: 'front'
+        })
 
     addUpdateMenuItems(template[0].submenu, 1)
 }
@@ -649,27 +672,27 @@ if (process.platform === 'win32') {
     addUpdateMenuItems(helpMenu, 0)
 }
 
-app.on('ready', function() {
+app.on('ready', function () {
     const menu = Menu.buildFromTemplate(template)
     Menu.setApplicationMenu(menu)
 })
 
-app.on('browser-window-created', function() {
+app.on('browser-window-created', function () {
     let reopenMenuItem = findReopenMenuItem()
     if (reopenMenuItem)
         reopenMenuItem.enabled = false
 })
 
-app.on('window-all-closed', function() {
+app.on('window-all-closed', function () {
     let reopenMenuItem = findReopenMenuItem()
     if (reopenMenuItem)
         reopenMenuItem.enabled = true
 })
 
-ipc.on('mw:ShowMainMenu', function(event) {
+ipc.on('mw:ShowMainMenu', function (event) {
     const menu = Menu.buildFromTemplate(template)
     Menu.setApplicationMenu(menu)
 });
-ipc.on('mw:HideMainMenu', function(event) {
+ipc.on('mw:HideMainMenu', function (event) {
     Menu.setApplicationMenu(null);
 });

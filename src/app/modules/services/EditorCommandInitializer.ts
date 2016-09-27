@@ -58,7 +58,7 @@ export class EditorCommandInitializer extends CommandInitializer {
         this.RegisterCommand(KnownCommandNames.DirectionRTL, (param) => { this.htmlEditorService.DirectionRTL(); });
         this.RegisterCommand(KnownCommandNames.FullPageProperties, (param) => { this.htmlEditorService.FullPageProperties(); });
         this.RegisterCommand(KnownCommandNames.FullScreen, (param) => { this.htmlEditorService.FullScreen(); });
-        this.RegisterCommand(KnownCommandNames.Image, (param) => { this.htmlEditorService.InsertImage(); });
+        this.RegisterCommand(KnownCommandNames.InsertImage, (param) => { this.htmlEditorService.InsertImage(); });
         this.RegisterCommand(KnownCommandNames.InsertDate, (param) => { this.htmlEditorService.InsertDate(); });
         this.RegisterCommand(KnownCommandNames.InsertTime, (param) => { this.htmlEditorService.InsertTime(); });
         this.RegisterCommand(KnownCommandNames.InsertDefinitionList, (param) => { this.htmlEditorService.InsertDefinitionList(); });
@@ -72,7 +72,7 @@ export class EditorCommandInitializer extends CommandInitializer {
         this.RegisterCommand(KnownCommandNames.InsertTemplate, (param) => { this.htmlEditorService.InsertTemplate(); });
         this.RegisterCommand(KnownCommandNames.VisualBlocks, (param) => { this.htmlEditorService.ToggleVisualBlocks(); });
         this.RegisterCommand(KnownCommandNames.VisualChars, (param) => { this.htmlEditorService.ToggleVisualChars(); });
-        this.RegisterCommand(KnownCommandNames.Media, (param) => { this.htmlEditorService.InsertMedia(); });
+        this.RegisterCommand(KnownCommandNames.InsertVideo, (param) => { this.htmlEditorService.InsertMedia(); });
         this.RegisterCommand(KnownCommandNames.Anchor, (param) => { this.htmlEditorService.InsertAnchor(); });
         this.RegisterCommand(KnownCommandNames.TableSplitCells, (param) => { this.htmlEditorService.TableSplitCells(); });
         this.RegisterCommand(KnownCommandNames.TableMergeCells, (param) => { this.htmlEditorService.TableMergeCells(); });
