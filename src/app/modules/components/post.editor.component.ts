@@ -24,8 +24,11 @@ export class PostEditorComponent implements OnInit {
         private dialogService: Services.DialogService,
         private postFileService: Services.PostFileService,
         private postManageService: Services.PostManageService,
-        private electronEvent: Services.ElectronEventService) { }
+        private electronEvent: Services.ElectronEventService) { 
+            console.log("constructor of post editor");
+        }
 
+    
     ngOnInit(): any {
         this.editorService.InitializeEditor("div.htmlEditor");
 

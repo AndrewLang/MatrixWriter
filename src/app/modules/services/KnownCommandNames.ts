@@ -8,6 +8,7 @@ export class KnownCommandNames {
     static PrintPost = "PrintPost";
     static ShowOptions = "ShowOptions";
     static Exit = "Exit";
+    static ShowWelcome = "ShowWelcome";
 
     static BlockQuoteName = "BlockQuote";
     static InsertLinkName = "InsertLink";
