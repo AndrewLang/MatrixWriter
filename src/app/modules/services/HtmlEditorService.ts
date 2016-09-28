@@ -158,6 +158,9 @@ export class HtmlEditorService {
     InsertOrderedList(): void {
         this.InvokeEditorCommand(KnownCommandNames.InsertOrderedList);
     }
+    InsertEmoticon():void{
+        this.InvokeEditorCommand(KnownCommandNames.InsertEmoticons, true);
+    }
     ForeColor(): void {
         this.InvokeEditorCommand(KnownCommandNames.ForeColor);
     }
@@ -198,7 +201,7 @@ export class HtmlEditorService {
         this.InvokeEditorCommand(KnownCommandNames.InsertHorizontalRule);
     }
     ToggleVisualAid(): void {
-        this.InvokeEditorCommand(KnownCommandNames.ToggleVisualAid);
+        this.InvokeEditorCommand(KnownCommandNames.VisualAid);
     }
     InsertLink(): void {
         this.InvokeEditorCommand(KnownCommandNames.InsertLink, true);
@@ -250,6 +253,9 @@ export class HtmlEditorService {
     }
     InsertDefinitionList(): void {
         this.InvokeEditorCommand(KnownCommandNames.InsertDefinitionList);
+    }
+    InsertCode():void{
+        this.InvokeEditorCommand(KnownCommandNames.InsertCodeSample);
     }
     NonBreaking(): void {
         this.InvokeEditorCommand(KnownCommandNames.NonBreaking);

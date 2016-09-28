@@ -11,6 +11,16 @@ export class KnownCommandNames {
 
     static BlockQuoteName = "BlockQuote";
     static InsertLinkName = "InsertLink";
+    static EmoticonName = "InsertEmoticons";
+    static InsertPageBreakName = "InsertPageBreak";
+    static InsertDateName = "InsertDate";
+    static InsertImageName = "InsertImage";
+    static InsertVideoName = "InsertVideo";
+    static InsertCodeSampleName = "InsertCode";
+    static InsertTableName = "InsertTable";
+    static CodeEditorName = "ViewSourceCode";
+    static ToggleVisualBlocks = "ToggleVisualBlocks";
+    static ToggleVisualAid = "ToggleVisualAid";
 
 
     // Editor commands
@@ -44,7 +54,7 @@ export class KnownCommandNames {
     static Indent = "Indent";
     static Outdent = "Outdent";
     static InsertHorizontalRule = "InsertHorizontalRule";
-    static ToggleVisualAid = "mceToggleVisualAid";
+    static VisualAid = "mceToggleVisualAid";
     static InsertLink = "mceLink";
     static SelectAll = "selectAll";
     static Delete = "Delete";
@@ -57,10 +67,11 @@ export class KnownCommandNames {
     static DirectionLTR = "mceDirectionLTR";
     static DirectionRTL = "mceDirectionRTL";
     static FullPageProperties = "mceFullPageProperties";
-    static FullScreen= "Fullscreen";
+    static FullScreen = "Fullscreen";
     static InsertImage = "mceImage";
     static InsertDate = "mceInsertDate";
     static InsertTime = "mceInsertTime";
+    static InsertCodeSample = "codesample";
     static InsertDefinitionList = "mceInsertDefinitionList";
     static NonBreaking = "mceNonBreaking";
     static InsertPageBreak = "mcePageBreak";
@@ -70,12 +81,13 @@ export class KnownCommandNames {
     static SearchReplace = "SearchReplace";
     static Spellcheck = "mceSpellcheck";
     static InsertTemplate = "mceInsertTemplate";
+    static InsertEmoticons = "emoticons";
     static VisualBlocks = "mceVisualBlocks";
     static VisualChars = "mceVisualChars";
     static InsertVideo = "mceMedia";
     static Anchor = "mceAnchor";
     static TableSplitCells = "mceTableSplitCells";
-    static TableMergeCells= "mceTableMergeCells";
+    static TableMergeCells = "mceTableMergeCells";
     static TableInsertRowBefore = "mceTableInsertRowBefore";
     static TableInsertRowAfter = "mceTableInsertRowAfter";
     static TableInsertColBefore = "mceTableInsertColBefore";

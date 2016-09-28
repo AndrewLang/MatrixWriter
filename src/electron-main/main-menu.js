@@ -410,14 +410,14 @@ let template = [{
                     }
                 }
             },
-            {
-                label: 'Emoticon',
-                click: function(item, focusedWindow) {
-                    if (focusedWindow) {
-                        invokeCommand(focusedWindow, "InsertEmoticon");
-                    }
-                }
-            },
+            // {
+            //     label: 'Emoticon',
+            //     click: function(item, focusedWindow) {
+            //         if (focusedWindow) {
+            //             invokeCommand(focusedWindow, "InsertEmoticons");
+            //         }
+            //     }
+            // },
             {
                 label: 'Horizontal line',
                 click: function(item, focusedWindow) {
@@ -487,7 +487,7 @@ let template = [{
                 label: 'Code sample',
                 click: function(item, focusedWindow) {
                     if (focusedWindow) {
-                        invokeCommand(focusedWindow, "CodeEditor");
+                        invokeCommand(focusedWindow, "InsertCode");
                     }
                 }
             },
@@ -525,7 +525,7 @@ let template = [{
                 label: 'Visual blocks',
                 click: function(item, focusedWindow) {
                     if (focusedWindow) {
-                        invokeCommand(focusedWindow, "VisualBlocks");
+                        invokeCommand(focusedWindow, "ToggleVisualBlocks");
                     }
                 }
             },
