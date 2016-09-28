@@ -27,6 +27,9 @@ export class PostEditorComponent implements OnInit {
         console.log("constructor of post editor");
     }
 
+    get CurrentPost(): Common.PostFile {
+        return this.postManageService.CurrentPost;
+    }
 
     ngOnInit(): any {
         this.editorService.InitializeEditor("div.htmlEditor");
@@ -49,7 +52,7 @@ export class PostEditorComponent implements OnInit {
         this.mContentChanged = this.editorService
             .ContentChanged
             .subscribe(value => {
-                this.postManageService.UpdatePostContent( value );
+                this.postManageService.UpdatePostContent(value);
             });
 
         this.electronEvent.ShowMainMenu();
