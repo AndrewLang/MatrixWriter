@@ -1,11 +1,13 @@
 
 import { Injectable, EventEmitter } from '@angular/core';
 import {KnownCommandNames}          from './KnownCommandNames';
+import * as Common                  from '../../common/index';
 
 declare var tinymce: any;
 
 @Injectable()
 export class HtmlEditorService {
+    
     private mContent: string;
     ContentChanged: EventEmitter<string> = new EventEmitter<string>();
 

@@ -1,5 +1,5 @@
 import {Component, OnInit, AfterViewInit }          from '@angular/core';
-import {DomSanitizer, SafeHtml }                     from '@angular/platform-browser';
+import {DomSanitizer, SafeHtml }                    from '@angular/platform-browser';
 import { Router, ActivatedRoute }                   from '@angular/router';
 
 import * as Common                  from '../../common/index';
