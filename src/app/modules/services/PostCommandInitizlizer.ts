@@ -14,10 +14,18 @@ export class PostCommandInitizlizer extends CommandInitializer {
 
     InitializeCommands(): void {
         console.log("Start register command.");
-        this.RegisterCommand(KnownCommandNames.NewPost, (param) => { console.log("create post"); });
-        this.RegisterCommand(KnownCommandNames.OpenLocalPost, (param) => { });
-        this.RegisterCommand(KnownCommandNames.SavePost, (param) => { });
-        this.RegisterCommand(KnownCommandNames.PublishPost, (param) => { });
+        this.RegisterCommand(KnownCommandNames.NewPost, (param) => {
+
+        });
+        this.RegisterCommand(KnownCommandNames.OpenLocalPost, (param) => {
+
+        });
+        this.RegisterCommand(KnownCommandNames.SavePost, (param) => {
+
+        });
+        this.RegisterCommand(KnownCommandNames.PublishPost, (param) => {
+
+        });
         this.RegisterCommand(KnownCommandNames.ShowWelcome, (param) => {
             this.mRouter.navigate(['welcome']);
         });

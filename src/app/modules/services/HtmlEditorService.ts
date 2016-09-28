@@ -57,7 +57,7 @@ export class HtmlEditorService {
                 'emoticons template paste textcolor colorpicker textpattern imagetools codesample bbcode',
                 'importcss spellchecker template'
             ],
-            toolbar1: 'undo redo | cut copy paste pastetext | fontsizeselect fontnameselect | bold italic underline strikethrough superscript subscript blockquote | forecolor backcolor ',
+            toolbar1: 'undo redo | cut copy paste pastetext | fontsizeselect fontselect | bold italic underline strikethrough superscript subscript blockquote | forecolor backcolor ',
             toolbar2: 'alignleft aligncenter alignright alignjustify | bullist numlist | indent outdent | code searchreplace | link image media |  emoticons codesample hr importcss insertdatetime table',
             image_advtab: true,
             inline_styles: false,
@@ -66,7 +66,7 @@ export class HtmlEditorService {
                 strikethrough: { inline: 'strike' }
             },
             block_formats: 'Paragraph=p;Header 1=h1;Header 2=h2;Header 3=h3',
-            font_formats: 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n',
+            //font_formats: 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n',
             fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
             content_css: [
                 //'//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
