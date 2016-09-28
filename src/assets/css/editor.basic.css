@@ -1,12 +1,11 @@
 @font-face{font-family:Lato;font-style:normal;font-weight:400;src:local('Lato Regular'),local('Lato-Regular'),url(https://fonts.gstatic.com/s/lato/v11/v0SdcGFAl2aezM9Vq_aFTQ.ttf) format('truetype')}
-*{border:0;padding:0;margin:0;background:50% 50% no-repeat;text-decoration:none;color:inherit;box-sizing:border-box;font-weight:400}
+*{border:0;padding:0;margin:0;background:50% 50% no-repeat;color:inherit;box-sizing:border-box;font-weight:400}
 :focus{outline:0}
 b,b *,strong,strong *{font-weight:700}
 ol,ul{list-style:none}
 button,input,input:not([type]),input[type=number],input[type=password],input[type=search],input[type=tel],input[type=text],input[type=time],input[type=url],input[type=week],input[type=button],input[type=reset],input[type=submit],input[type=color],input[type=date],input[type=datetime],input[type=datetime-local],input[type=email],input[type=month],pre,select,textarea{font:inherit}
 @font-face{font-family:aileron;font-style:normal;font-weight:200;src:url(../src/assets/fonts/aileron-ultra-light.eot?#iefix) format("embedded-opentype"),url(./src/assets/fonts/aileron-ultra-light.woff) format("woff"),url(./src/assets/fonts/aileron-ultra-light.ttf) format("truetype")}
-.codepen body{margin:10px 0 0}
-.codepen body textarea{display:none}
+
 .mce-container textarea{display:initial!important}
 .mce-content-body{font-family:Lato!important;font-size:14px;color:#828282;padding:0 25px 25px;}
 .mce-content-body h1,.mce-content-body h2,.mce-content-body h3,.mce-content-body h4,.mce-content-body h5,.mce-content-body h6{font-family:aileron;font-weight:200;line-height:1.4em;margin:25px 0 15px}
@@ -27,6 +26,27 @@ button,input,input:not([type]),input[type=number],input[type=password],input[typ
 .mce-content-body table caption,.mce-content-body table td,.mce-content-body table th{padding:15px 7px;font:inherit}
 .mce-content-body table th{font-weight:400;color:#6E6E6E;background-position:100% 100%;background-size:2px 10px;background-repeat:no-repeat}
 .mce-content-body table th:last-child{background:0 0}
- .mce-edit-focus{
+.mce-edit-focus{
       outline: none;
+  }
+
+.mce-content-body    blockquote {
+      background: #f9f9f9;
+      border-left: 10px solid #ccc;
+      margin: 1.5em 10px;
+      padding: 0.5em 10px;
+      quotes: "\201C""\201D""\2018""\2019";
+  }
+  
+.mce-content-body  blockquote:before {
+      color: #ccc;
+      content: open-quote;
+      font-size: 4em;
+      line-height: 0.1em;
+      margin-right: 0.25em;
+      vertical-align: -0.4em;
+  }
+  
+.mce-content-body blockquote p {
+      display: inline;
   }

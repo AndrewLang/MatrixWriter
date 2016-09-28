@@ -304,91 +304,101 @@ let template = [{
             },
             {
                 label: 'Bullet list',
-                submenu: [{
-                        label: 'Default',
-                        click: function(item, focusedWindow) {
-                            if (focusedWindow) {
-                                invokeCommand(focusedWindow, "BulletDefault");
-                            }
-                        }
-                    },
-                    {
-                        label: 'Circle',
-                        click: function(item, focusedWindow) {
-                            if (focusedWindow) {
-                                invokeCommand(focusedWindow, "BulletCircle");
-                            }
-                        }
-                    },
-                    {
-                        label: 'Disc',
-                        click: function(item, focusedWindow) {
-                            if (focusedWindow) {
-                                invokeCommand(focusedWindow, "BulletDisc");
-                            }
-                        }
-                    },
-                    {
-                        label: 'Square',
-                        click: function(item, focusedWindow) {
-                            if (focusedWindow) {
-                                invokeCommand(focusedWindow, "BulletSquare");
-                            }
+                click: function(item, focusedWindow) {
+                        if (focusedWindow) {
+                            invokeCommand(focusedWindow, "InsertUnorderedList");
                         }
                     }
-                ]
+                    /*submenu: [{
+                            label: 'Default',
+                            click: function(item, focusedWindow) {
+                                if (focusedWindow) {
+                                    invokeCommand(focusedWindow, "InsertUnorderedList");
+                                }
+                            }
+                        },
+                        {
+                            label: 'Circle',
+                            click: function(item, focusedWindow) {
+                                if (focusedWindow) {
+                                    invokeCommand(focusedWindow, "BulletCircle");
+                                }
+                            }
+                        },
+                        {
+                            label: 'Disc',
+                            click: function(item, focusedWindow) {
+                                if (focusedWindow) {
+                                    invokeCommand(focusedWindow, "BulletDisc");
+                                }
+                            }
+                        },
+                        {
+                            label: 'Square',
+                            click: function(item, focusedWindow) {
+                                if (focusedWindow) {
+                                    invokeCommand(focusedWindow, "BulletSquare");
+                                }
+                            }
+                        }
+                    ]*/
             },
             {
                 label: 'Number list',
-                submenu: [{
-                        label: 'Default',
-                        click: function(item, focusedWindow) {
-                            if (focusedWindow) {
-                                invokeCommand(focusedWindow, "NumberDefault");
-                            }
-                        }
-                    },
-                    {
-                        label: 'Lower Alpha',
-                        click: function(item, focusedWindow) {
-                            if (focusedWindow) {
-                                invokeCommand(focusedWindow, "NumberLowerAlpha");
-                            }
-                        }
-                    },
-                    {
-                        label: 'Lower Greek',
-                        click: function(item, focusedWindow) {
-                            if (focusedWindow) {
-                                invokeCommand(focusedWindow, "NumberLowerGreek");
-                            }
-                        }
-                    },
-                    {
-                        label: 'Lower Roman',
-                        click: function(item, focusedWindow) {
-                            if (focusedWindow) {
-                                invokeCommand(focusedWindow, "NumberLowerRoman");
-                            }
-                        }
-                    },
-                    {
-                        label: 'Upper Alpha',
-                        click: function(item, focusedWindow) {
-                            if (focusedWindow) {
-                                invokeCommand(focusedWindow, "NumberupperAlpha");
-                            }
-                        }
-                    },
-                    {
-                        label: 'Upper Roman',
-                        click: function(item, focusedWindow) {
-                            if (focusedWindow) {
-                                invokeCommand(focusedWindow, "NumberUpperRoman");
-                            }
+                click: function(item, focusedWindow) {
+                        if (focusedWindow) {
+                            invokeCommand(focusedWindow, "InsertOrderedList");
                         }
                     }
-                ]
+                    /*submenu: [{
+                            label: 'Default',
+                            click: function(item, focusedWindow) {
+                                if (focusedWindow) {
+                                    invokeCommand(focusedWindow, "InsertOrderedList");
+                                }
+                            }
+                        },
+                        {
+                            label: 'Lower Alpha',
+                            click: function(item, focusedWindow) {
+                                if (focusedWindow) {
+                                    invokeCommand(focusedWindow, "NumberLowerAlpha");
+                                }
+                            }
+                        },
+                        {
+                            label: 'Lower Greek',
+                            click: function(item, focusedWindow) {
+                                if (focusedWindow) {
+                                    invokeCommand(focusedWindow, "NumberLowerGreek");
+                                }
+                            }
+                        },
+                        {
+                            label: 'Lower Roman',
+                            click: function(item, focusedWindow) {
+                                if (focusedWindow) {
+                                    invokeCommand(focusedWindow, "NumberLowerRoman");
+                                }
+                            }
+                        },
+                        {
+                            label: 'Upper Alpha',
+                            click: function(item, focusedWindow) {
+                                if (focusedWindow) {
+                                    invokeCommand(focusedWindow, "NumberupperAlpha");
+                                }
+                            }
+                        },
+                        {
+                            label: 'Upper Roman',
+                            click: function(item, focusedWindow) {
+                                if (focusedWindow) {
+                                    invokeCommand(focusedWindow, "NumberUpperRoman");
+                                }
+                            }
+                        }
+                    ] */
             },
             { type: 'separator' },
             {
@@ -451,22 +461,22 @@ let template = [{
                     }
                 }
             },
-            {
-                label: 'Screenshot',
-                click: function(item, focusedWindow) {
-                    if (focusedWindow) {
-                        invokeCommand(focusedWindow, "InsertScreenshot");
-                    }
-                }
-            },
-            {
-                label: 'OneDrive',
-                click: function(item, focusedWindow) {
-                    if (focusedWindow) {
-                        invokeCommand(focusedWindow, "InsertFromOneDrive");
-                    }
-                }
-            },
+            // {
+            //     label: 'Screenshot',
+            //     click: function(item, focusedWindow) {
+            //         if (focusedWindow) {
+            //             invokeCommand(focusedWindow, "InsertScreenshot");
+            //         }
+            //     }
+            // },
+            // {
+            //     label: 'OneDrive',
+            //     click: function(item, focusedWindow) {
+            //         if (focusedWindow) {
+            //             invokeCommand(focusedWindow, "InsertFromOneDrive");
+            //         }
+            //     }
+            // },
             {
                 label: 'Video',
                 click: function(item, focusedWindow) {
@@ -475,14 +485,14 @@ let template = [{
                     }
                 }
             },
-            {
-                label: 'Map',
-                click: function(item, focusedWindow) {
-                    if (focusedWindow) {
-                        invokeCommand(focusedWindow, "InsertMap");
-                    }
-                }
-            },
+            // {
+            //     label: 'Map',
+            //     click: function(item, focusedWindow) {
+            //         if (focusedWindow) {
+            //             invokeCommand(focusedWindow, "InsertMap");
+            //         }
+            //     }
+            // },
             {
                 label: 'Code sample',
                 click: function(item, focusedWindow) {
