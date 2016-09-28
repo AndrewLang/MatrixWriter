@@ -29,14 +29,14 @@ export class HtmlEditorService {
             fixed_toolbar_container: "div#textEditorToolbar",
             theme: 'modern',
             statusbar: false,
-            menu: {
-                file: { title: 'File', items: 'newdocument | print' },
-                edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall ' },
-                format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript | formats | removeformat' },
-                insert: { title: 'Insert', items: 'link image media | emoticons codesample hr importcss insertdatetime | inserttable tableprops deletetable | cell row column | table template' },
-                view: { title: 'View', items: 'visualaid visualblocks' },
-                help: { title: 'Help', items: 'print' }
-            },
+            // menu: {
+            //     file: { title: 'File', items: 'newdocument | print' },
+            //     edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall ' },
+            //     format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript | formats | removeformat' },
+            //     insert: { title: 'Insert', items: 'link image media | emoticons codesample hr importcss insertdatetime | inserttable tableprops deletetable | cell row column | table template' },
+            //     view: { title: 'View', items: 'visualaid visualblocks' },
+            //     help: { title: 'Help', items: 'print' }
+            // },
             codesample_languages: [
                 { text: 'HTML/XML', value: 'markup' },
                 { text: 'JavaScript', value: 'javascript' },
@@ -51,11 +51,12 @@ export class HtmlEditorService {
             ],
             menubar: false, // 'file edit format insert view help',
             plugins: [
+                // fullscreen wordcount save
                 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-                'searchreplace wordcount visualblocks visualchars code fullscreen',
-                'insertdatetime media nonbreaking save table contextmenu directionality',
+                'searchreplace visualblocks visualchars code ',
+                'insertdatetime media nonbreaking table contextmenu directionality',
                 'emoticons template paste textcolor colorpicker textpattern imagetools codesample bbcode',
-                'importcss spellchecker template'
+                'importcss spellchecker'
             ],
             toolbar1: 'undo redo | cut copy paste pastetext | fontsizeselect fontselect | bold italic underline strikethrough superscript subscript blockquote | forecolor backcolor ',
             toolbar2: 'alignleft aligncenter alignright alignjustify | bullist numlist | indent outdent | code searchreplace | link image media |  emoticons codesample hr importcss insertdatetime table',
@@ -65,17 +66,16 @@ export class HtmlEditorService {
                 underline: { inline: 'u', exact: true },
                 strikethrough: { inline: 'strike' }
             },
-            block_formats: 'Paragraph=p;Header 1=h1;Header 2=h2;Header 3=h3',
-            //font_formats: 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n',
+            block_formats: 'Paragraph=p;Header 1=h1;Header 2=h2;Header 3=h3',            
             fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
             content_css: [
                 //'//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
                 'src/assets/css/editor.basic.css'
             ],
-            templates: [
-                { title: 'Some title 1', description: 'Some desc 1', content: 'My content' },
-                { title: 'Some title 2', description: 'Some desc 2', url: 'development.html' }
-            ],
+            // templates: [
+            //     { title: 'Some title 1', description: 'Some desc 1', content: 'My content' },
+            //     { title: 'Some title 2', description: 'Some desc 2', url: 'development.html' }
+            // ],
             textpattern_patterns: [
                 { start: '*', end: '*', format: 'italic' },
                 { start: '**', end: '**', format: 'bold' },
@@ -102,6 +102,7 @@ export class HtmlEditorService {
                 });
                 editor.on('change', function (e) {
                     self.Content = editor.getContent({ format: 'raw' });
+                    console.log("HTML editor content changed.");
                 });
             }
         });
@@ -349,6 +350,8 @@ export class HtmlEditorService {
 
     private InvokeEditorCommand(name: string, showUi?: boolean, value?: any, args?: any): void {
         console.log("Invoke Tinymce command: " + name + " showUI: " + showUi + " value: " + value + " args: " + args);
-        tinymce.activeEditor.execCommand(name, showUi, value, args);
+
+        let editor = tinymce.activeEditor;
+        editor.execCommand(name, showUi, value, args);
     }
 }

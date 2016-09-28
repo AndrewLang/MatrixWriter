@@ -12,7 +12,6 @@ import {PostPublishComponent}       from './post.publish.component';
 })
 export class PostEditorComponent implements OnInit {
 
-    PostFile: Common.PostFile = new Common.PostFile();
     HtmlContent: SafeHtml;
     private mContentChanged: any;
 
@@ -24,11 +23,11 @@ export class PostEditorComponent implements OnInit {
         private dialogService: Services.DialogService,
         private postFileService: Services.PostFileService,
         private postManageService: Services.PostManageService,
-        private electronEvent: Services.ElectronEventService) { 
-            console.log("constructor of post editor");
-        }
+        private electronEvent: Services.ElectronEventService) {
+        console.log("constructor of post editor");
+    }
 
-    
+
     ngOnInit(): any {
         this.editorService.InitializeEditor("div.htmlEditor");
 
@@ -40,18 +39,19 @@ export class PostEditorComponent implements OnInit {
 
         if (postFile) {
             this.postFileService.Load(postFile)
-                .then(data => this.PostFile = data)
+                .then(data => {
+                    this.postManageService.CurrentPost = data;
+                    this.HtmlContent = this.postManageService.CurrentPost.Post.Description;
+                })
                 .catch(reason => console.log(reason));
         }
 
         this.mContentChanged = this.editorService
             .ContentChanged
             .subscribe(value => {
-                this.PostFile.Post.Description = value;
-                this.HtmlContent = this.sanitizer.bypassSecurityTrustHtml(value);
+                this.postManageService.UpdatePostContent( value );
             });
 
-        this.postManageService.CurrentPost = this.PostFile;
         this.electronEvent.ShowMainMenu();
     }
 
