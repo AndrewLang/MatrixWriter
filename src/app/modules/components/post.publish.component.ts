@@ -8,7 +8,7 @@ import {ModalBase}                  from './ModalBase';
 @Component({
     templateUrl: 'src/views/post-publish.html',
 })
-export class PostPublishComponent extends ModalBase implements OnInit {
+export class PostPublishComponent extends ModalBase implements OnInit, AfterViewInit {
     Status: string;
     Finished: boolean = false;
     Success: boolean;
@@ -30,6 +30,16 @@ export class PostPublishComponent extends ModalBase implements OnInit {
         return false;
     }
     ngOnInit(): any {
+          this.StartPublish();
+    }
+    ngAfterViewInit(): void {
+        
+    }
+    ngAfterContentInit():void{
+      
+    }
+
+    private StartPublish():void{
         let file = this.postManageService.CurrentPost;
         let account = this.settingService.DefaultAccount;
         let xmlRpcRequest = new Common.XmlRpcRequest();
@@ -39,7 +49,7 @@ export class PostPublishComponent extends ModalBase implements OnInit {
         file.Post.DateCreated = now;
         file.Post.DateModified = now;
         file.PostTitle = file.Post.Title;
-        if(!file.CreatedDate)
+        if (!file.CreatedDate)
             file.CreatedDate = now;
 
         this.Title = "Publish";
@@ -70,5 +80,4 @@ export class PostPublishComponent extends ModalBase implements OnInit {
                 this.mCanSubmit = true;
             });
     }
-
 }

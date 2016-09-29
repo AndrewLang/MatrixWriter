@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, NgZone} from '@angular/core';
 
 import {Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
@@ -10,7 +10,9 @@ declare var window: any;
 
 @Injectable()
 export class ElectronEventService {
-    constructor(private electronService: ElectronService,
+    constructor(
+        private zone: NgZone,
+        private electronService: ElectronService,
         private commandRepository: Common.CommandRepository,
         private errorHandlingService: ErrorHandlingService) {
 
@@ -26,16 +28,18 @@ export class ElectronEventService {
             let command = commandRepository.GetCommand(commandName);
             if (command && command.CanExecute(commandArgument)) {
                 try {
-                    console.log( "Get command to invoke.");
-                    command.Execute(commandArgument);
+                    console.log("Get command ${commandName} to invoke.");
+                    zone.run(() => {
+                        command.Execute(commandArgument);
+                    });
                 }
                 catch (error) {
                     //throw error;
                     errorHandlingService.HandleError(error);
                 }
             }
-            else{
-                console.log( "Command '" + commandName +"' is not found.");
+            else {
+                console.log("Command '" + commandName + "' is not found.");
             }
         });
     }

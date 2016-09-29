@@ -23,7 +23,8 @@ export class PostEditorComponent implements OnInit {
         private dialogService: Services.DialogService,
         private postFileService: Services.PostFileService,
         private postManageService: Services.PostManageService,
-        private electronEvent: Services.ElectronEventService) {
+        private electronEvent: Services.ElectronEventService,
+        private commandRepository: Common.CommandRepository) {
         console.log("constructor of post editor");
     }
 
@@ -56,10 +57,22 @@ export class PostEditorComponent implements OnInit {
             });
 
         this.electronEvent.ShowMainMenu();
-    }
 
+        this.commandRepository.Register(Services.KnownCommandNames.PublishPost,
+            new Common.DelegateCommand(
+                (param) => { return this.CanPublish(); },
+                (param) => { this.Publish(); }));      
+    }
+   
     Publish(): void {
         this.editorService.UpdateContent();
         this.dialogService.ShowDialog(PostPublishComponent);
+    }
+
+    CanPublish(): boolean {
+        let post = this.postManageService.CurrentPost;
+        return post.Post != null
+            && post.Post.Title != null
+            && post.Post.Description != null;
     }
 }

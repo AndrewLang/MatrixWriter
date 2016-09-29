@@ -23,9 +23,9 @@ export class PostCommandInitizlizer extends CommandInitializer {
         this.RegisterCommand(KnownCommandNames.SavePost, (param) => {
 
         });
-        this.RegisterCommand(KnownCommandNames.PublishPost, (param) => {
+        // this.RegisterCommand(KnownCommandNames.PublishPost, (param) => {
 
-        });
+        // });
         this.RegisterCommand(KnownCommandNames.ShowWelcome, (param) => {
             this.mRouter.navigate(['welcome']);
         });
