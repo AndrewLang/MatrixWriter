@@ -302,6 +302,7 @@ let template = [{
                     }
                 ]
             },
+            { type: 'separator' },
             {
                 label: 'Bullet list',
                 click: function(item, focusedWindow) {
