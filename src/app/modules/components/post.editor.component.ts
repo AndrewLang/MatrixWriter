@@ -65,6 +65,9 @@ export class PostEditorComponent implements OnInit {
     }
    
     Publish(): void {
+        if( !this.CanPublish())
+            return;
+            
         this.editorService.UpdateContent();
         this.dialogService.ShowDialog(PostPublishComponent);
     }

@@ -1,7 +1,7 @@
 <header>
     <div class="row">
         <div class="quick-tools">
-            <button class="toolbar-btn"  [ngClass]="{'disabled':!CanPublish()}"  (click)="CanPublish() && Publish()" title="Publish">
+            <button class="toolbar-btn" [ngClass]="{'mce-disabled':!CanPublish()}" (click)="CanPublish() && Publish()" title="Publish">
                 <figure>
                     <i class="fa fa-cloud-upload fa-2x"></i>
                     <figcaption> Publish </figcaption>
