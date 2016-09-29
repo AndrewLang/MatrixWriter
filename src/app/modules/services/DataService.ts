@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/Rx';
+import { Observable }     from 'rxjs/Observable';
 
 import {ErrorHandlingService} from './ErrorHandlingService'
 
@@ -30,18 +31,26 @@ export class DataService {
                 callback(response);
             })
             .subscribe(
-                response => { },
-                error => { this.errorHandlingService.HandleError(error); }
+            response => { },
+            error => { this.errorHandlingService.HandleError(error); }
             );
     }
 
     Get(url: string, callback: (data: any) => void): void {
         this.http.get(url).map(response => {
-                callback(response);
-            })
+            callback(response);
+        })
             .subscribe(
-                response => { },
-                error => { this.errorHandlingService.HandleError(error); }
+            response => { },
+            error => { this.errorHandlingService.HandleError(error); }
             );
+    }
+
+    GetAsync(url: string): Promise<any> {
+        return new Promise(function (resolve, reject) {
+            this.http.get(url)
+                .map(response => { })
+                ;
+        });
     }
 }
