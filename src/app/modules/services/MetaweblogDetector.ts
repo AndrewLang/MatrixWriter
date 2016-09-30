@@ -49,7 +49,7 @@ export class MetaweblogDetector implements IBlogDetector {
                 })
                 .then(response => {
                     self.logService.Log('process RSD response', response);
-                   
+
                     let xml = parser.parseFromString(response._body, "text/xml");
                     let apiLink = xml.querySelector("service apis api[preferred='true']").getAttribute("apiLink");
 
@@ -58,9 +58,16 @@ export class MetaweblogDetector implements IBlogDetector {
 
                     blog.ApiUrl = apiLink;
 
+                    return self.dataService.GetAsync(rsdLink);
+                })
+                .then(response => {
+
                     resolve(blog);
                 })
-                .catch(error => { console.log(error); });
+                .catch(error => {
+                    self.logService.LogMessage(error);
+                    reject(error);
+                });
 
             // self.dataService.Get(account.HomeUrl, (response: any) => {
             //     var parser = new DOMParser()
