@@ -47,10 +47,20 @@ export class DataService {
     }
 
     GetAsync(url: string): Promise<any> {
+        let self = this;
         return new Promise(function (resolve, reject) {
-            this.http.get(url)
-                .map(response => { })
-                ;
+            self.http.get(url)
+                .map(response => {
+                    console.log("get response from " + url);
+                    console.log(response);
+                    resolve(response);
+                    //return response;
+                })
+                .subscribe(
+                    response => { },
+                    error => { this.errorHandlingService.HandleError(error); }
+                );
+            //.toPromise();
         });
     }
 }

@@ -21,6 +21,7 @@ import { routing, appRoutingProviders }     from './app.routing';
         Services.ComponentCreator, Services.PostManageService, Services.MetaweblogDetector,
         Services.PostFileService, Services.ElectronEventService, Services.HtmlEditorService,
         Services.EditorCommandInitializer, Services.PostCommandInitizlizer, Services.CommandsService,
+        Services.LogService,
         appRoutingProviders,],
     bootstrap: [Components.AppComponent]
 })

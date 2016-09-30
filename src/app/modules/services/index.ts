@@ -17,6 +17,7 @@ export *        from './EditorCommandInitializer';
 export *        from './PostCommandInitizlizer';
 export *        from './CommandsService';
 export *        from './ICommandInitializer';
+export *        from "./LogService";
 
 export *        from './Blog';
 export *        from './BlogAccount';
