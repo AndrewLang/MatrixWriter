@@ -4,6 +4,7 @@ export class Blog{
     HomeUrl:string;
     BlogName:string;
     XmlRpc:string;
+    WlwManifest: string;
     Service: string;
     IsAdmin:boolean;    
 
@@ -29,6 +30,7 @@ export class Blog{
     SupportsPages:boolean;
     SupportsPageParent:boolean;
     SupportsPageOrder:boolean;
+    SupportsGetTags:boolean;
 
     SupportsEmptyTitles:boolean = true;
     RequiresHtmlTitles = true;

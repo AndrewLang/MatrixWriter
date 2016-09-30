@@ -1,9 +1,10 @@
-import {Injectable} from '@angular/core';
-import {Http, Headers} from '@angular/http';
+import {Injectable}             from '@angular/core';
+import {Http, Headers}          from '@angular/http';
 import 'rxjs/Rx';
-import { Observable }     from 'rxjs/Observable';
+import { Observable }           from 'rxjs/Observable';
 
-import {ErrorHandlingService} from './ErrorHandlingService'
+import {ErrorHandlingService}   from './ErrorHandlingService'
+import {LogService}             from './LogService';
 
 @Injectable()
 export class DataService {
@@ -12,7 +13,8 @@ export class DataService {
     http: Http;
     headers: Headers;
 
-    constructor(http: Http, errorHandlingService: ErrorHandlingService) {
+    constructor(http: Http, errorHandlingService: ErrorHandlingService,
+        private logService: LogService) {
 
         this.http = http;
         this.errorHandlingService = errorHandlingService;
@@ -51,16 +53,14 @@ export class DataService {
         return new Promise(function (resolve, reject) {
             self.http.get(url)
                 .map(response => {
-                    console.log("get response from " + url);
-                    console.log(response);
+                    self.logService.Log(" Get response from " + url, response);
+                    
                     resolve(response);
-                    //return response;
                 })
                 .subscribe(
                     response => { },
                     error => { this.errorHandlingService.HandleError(error); }
                 );
-            //.toPromise();
         });
     }
 }
