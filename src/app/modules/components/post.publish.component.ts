@@ -58,9 +58,9 @@ export class PostPublishComponent extends ModalBase implements OnInit, AfterView
 
         this.logService.Log("Prepare to publish: ", file);
 
-        try {
+        try {            
             this.logService.Log("Account ", account);
-            let published = file.HasPublished( account.ApiUrl);
+            let published = file.HasPublishedTo(account.ApiUrl);
             if (published) {
                 this.logService.LogMessage("Publish post as edit.");
                 this.PublishEdit(xmlRpcRequest, account, methods, file);

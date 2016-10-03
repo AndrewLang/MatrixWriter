@@ -20,15 +20,15 @@ export class PostFile {
             && this.History.length > 0;
     }
 
-    HasPublished(apiUrl: string): boolean {
+    HasPublishedTo(apiUrl: string): boolean {
         console.log( "URL: " + apiUrl);
-
+        let self = this;
         if (!apiUrl)
             return false;
 
-        return this.History != null
-            && this.History.length > 0
-            && this.History.some(x => x.Blog == apiUrl);
+        return self.History != null
+            && self.History.length > 0
+            && self.History.some(x => x.Blog == apiUrl);
     }
 
     RecordPublish(record: PostPublishHistory): void {
