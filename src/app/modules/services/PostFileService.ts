@@ -20,7 +20,7 @@ export class PostFileService {
         if (!post)
             throw new Error("Given post is null.")
 
-        let folder = post.IsPublished ? this.GetPostDataFolder() : this.GetDraftFolder();
+        let folder = post.IsPublished? this.GetPostDataFolder() : this.GetDraftFolder();
         let file = this.electronService.CombinePath(folder, post.PostTitle);
         file = this.GenerateFilename(file, PostFileService.DefaultExtension);
 

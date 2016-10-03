@@ -462,22 +462,24 @@ let template = [{
                     }
                 }
             },
-            // {
-            //     label: 'Screenshot',
-            //     click: function(item, focusedWindow) {
-            //         if (focusedWindow) {
-            //             invokeCommand(focusedWindow, "InsertScreenshot");
-            //         }
-            //     }
-            // },
-            // {
-            //     label: 'OneDrive',
-            //     click: function(item, focusedWindow) {
-            //         if (focusedWindow) {
-            //             invokeCommand(focusedWindow, "InsertFromOneDrive");
-            //         }
-            //     }
-            // },
+            {
+                label: 'Screenshot',
+                enabled: false,
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "InsertScreenshot");
+                    }
+                }
+            },
+            {
+                label: 'OneDrive',
+                enabled: false,
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "InsertFromOneDrive");
+                    }
+                }
+            },
             {
                 label: 'Video',
                 click: function(item, focusedWindow) {
@@ -486,14 +488,15 @@ let template = [{
                     }
                 }
             },
-            // {
-            //     label: 'Map',
-            //     click: function(item, focusedWindow) {
-            //         if (focusedWindow) {
-            //             invokeCommand(focusedWindow, "InsertMap");
-            //         }
-            //     }
-            // },
+            {
+                label: 'Map',
+                enabled: false,
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        invokeCommand(focusedWindow, "InsertMap");
+                    }
+                }
+            },
             {
                 label: 'Code sample',
                 click: function(item, focusedWindow) {
@@ -691,8 +694,8 @@ if (process.platform === 'win32') {
 }
 
 app.on('ready', function() {
-    const menu = Menu.buildFromTemplate(template)
-    Menu.setApplicationMenu(menu)
+    //const menu = Menu.buildFromTemplate(template)
+    //Menu.setApplicationMenu(menu)
 })
 
 app.on('browser-window-created', function() {

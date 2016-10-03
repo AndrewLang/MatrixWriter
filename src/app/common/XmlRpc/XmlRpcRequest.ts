@@ -52,6 +52,16 @@ export class XmlRpcRequest {
                 .catch(reason => { reject(reason); });
         });
     }
+    EditPost( url : string, method: XmlRpcMethod):Promise<any>{
+            let self = this;
+        return new Promise(function (resolve, reject) {
+            self.Send(url, method)
+                .then(response => {
+                    resolve(self.mPostParser.ParsePublishResponse(response));
+                })
+                .catch(reason => { reject(reason); });
+        });    
+    }
 
     GetRecentPosts(url: string, method: XmlRpcMethod): Promise<Array<Models.Post>> {
         let self = this;

@@ -37,7 +37,7 @@ export class MetaweblogMethods {
         return method;
     }
 
-    NewPost(blogId: string, user: string, password: string, post: Models.Post, publish :boolean= true): XmlRpcMethod {
+    NewPost(blogId: string, user: string, password: string, post: Models.Post, publish: boolean = true): XmlRpcMethod {
         let method = new XmlRpcMethod();
         let parser = new PostParser();
         method.Name = MetaweblogNames.NewPost;// "metaWeblog.newPost";
@@ -49,12 +49,15 @@ export class MetaweblogMethods {
             ;
         return method;
     }
-    EditPost(postId: string, user: string, password: string, post: Models.Post, publish: boolean): XmlRpcMethod {
+    EditPost(postId: string, user: string, password: string, post: Models.Post, publish: boolean = true): XmlRpcMethod {
         let method = new XmlRpcMethod();
+        let parser = new PostParser();
         method.Name = MetaweblogNames.EditPost;// "metaWeblog.editPost";
         method.AddStringParameter(postId)
             .AddStringParameter(user)
-            .AddStringParameter(password);
+            .AddStringParameter(password)
+            .AddParameter(parser.ToXml(post))
+            .AddBoolParameter(publish);
         return method;
     }
     DeletePost(appKey: string, postId: string, user: string, password: string, publish: boolean): XmlRpcMethod {

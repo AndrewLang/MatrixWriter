@@ -34,6 +34,9 @@ export class ElectronService {
     GetPictureFolder(): string {
         return this.App.getPath('pictures');
     }
+    GetAppName():string{
+        return this.App.getName();
+    }
     OpenFileDialog(filters: any = null): string {
         let fileName = electron.remote.showOpenDialog({
             properties: ['openFile', 'openDirectory'],

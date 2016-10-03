@@ -19,7 +19,8 @@ export class PostPublishComponent extends ModalBase implements OnInit, AfterView
         private postManageService: Services.PostManageService,
         private metaweblogService: Services.MetaweblogService,
         private electronService: Services.ElectronService,
-        private postFileService: Services.PostFileService) {
+        private postFileService: Services.PostFileService,
+        private logService: Services.LogService) {
         super();
     }
 
@@ -30,16 +31,16 @@ export class PostPublishComponent extends ModalBase implements OnInit, AfterView
         return false;
     }
     ngOnInit(): any {
-          this.StartPublish();
+        this.StartPublish();
     }
     ngAfterViewInit(): void {
-        
+
     }
-    ngAfterContentInit():void{
-      
+    ngAfterContentInit(): void {
+
     }
 
-    private StartPublish():void{
+    private StartPublish(): void {
         let file = this.postManageService.CurrentPost;
         let account = this.settingService.DefaultAccount;
         let xmlRpcRequest = new Common.XmlRpcRequest();
@@ -55,29 +56,85 @@ export class PostPublishComponent extends ModalBase implements OnInit, AfterView
         this.Title = "Publish";
         this.Status = "Publishing '" + file.Post.Title + "' to blog '" + account.NickName + "'.";
 
+        this.logService.Log("Prepare to publish: ", file);
+
+        try {
+            if (file.HasPublishedTo(account.ApiUrl)) {
+                this.logService.LogMessage("Publish post as edit.");
+                this.PublishEdit(xmlRpcRequest, account, methods, file);
+            }
+            else {
+                this.logService.LogMessage("Publish post as new.");
+                this.PublishNew(xmlRpcRequest, account, methods, file);
+            }
+        }
+        catch (error) {
+            this.logService.Log(error);
+        }
+
+        try {
+            this.logService.Log("Saving post file", file);
+            this.postFileService.Save(file);
+        }
+        catch (error) {
+            throw error;
+        }
+    }
+
+    private PublishNew(xmlRpcRequest: Common.XmlRpcRequest,
+        account: Services.BlogAccount,
+        methods: Common.MetaweblogMethods,
+        file: Common.PostFile): void {
+
+        this.logService.Log("Publish new post ", file);
         xmlRpcRequest.NewPost(account.ApiUrl, methods.NewPost("blogid", account.UserName, account.Password, file.Post))
             .then(response => {
                 console.log("Post published.")
                 console.log(response);
-                file.IsPublished = true;
-                this.postFileService.Save(file)
-                    .then(response => { })
-                    .catch(reason => console.log(reason));
 
-                this.Status = "Publish success.";
-                this.Finished = true;
-                this.Success = true;
-                this.mCanSubmit = true;
+                // save publish history
+                var historyRecord = new Common.PostPublishHistory();
+                historyRecord.Blog = account.ApiUrl;
+                historyRecord.Date = Date.now().toString();
+                historyRecord.PostId = response;
+                file.RecordPublish(historyRecord);
 
-                this.electronService.OpenExternal(account.HomeUrl);
+                this.PublishSuccessed(account.HomeUrl);
             })
             .catch(reason => {
-                console.log("Publis post error: " + reason);
-                this.postFileService.Save(file);
-                this.Status = "Publish failed for " + reason;
-                this.Finished = true;
-                this.Failed = true;
-                this.mCanSubmit = true;
+                this.PublishFailed(reason);
             });
+    }
+
+    private PublishEdit(xmlRpcRequest: Common.XmlRpcRequest,
+        account: Services.BlogAccount,
+        methods: Common.MetaweblogMethods,
+        file: Common.PostFile): void {
+
+        this.logService.Log("Publish edit post ", file);
+        let record = file.History.find(x => x.Blog == account.ApiUrl);
+        let postId = record.PostId;
+        xmlRpcRequest.EditPost(account.ApiUrl, methods.EditPost(postId, account.UserName, account.Password, file.Post))
+            .then(response => {
+                this.PublishSuccessed(account.HomeUrl);
+            })
+            .catch(reason => {
+                this.PublishFailed(reason);
+            });
+    }
+    private PublishSuccessed(url: string): void {
+        this.Status = "Publish success.";
+        this.Finished = true;
+        this.Success = true;
+        this.mCanSubmit = true;
+
+        this.electronService.OpenExternal(url);
+    }
+    private PublishFailed(reason: any): void {
+        console.log("Publis post error: " + reason);
+        this.Status = "Publish failed for " + reason;
+        this.Finished = true;
+        this.Failed = true;
+        this.mCanSubmit = true;
     }
 }

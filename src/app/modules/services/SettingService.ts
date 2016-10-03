@@ -9,9 +9,9 @@ export class SettingService {
     private mConfiFileName: string = "matrix-writer-config.dat";
     private mSetting: BlogSettings = new BlogSettings();
     private mDefaultAccount: BlogAccount;
-    
 
-    constructor(private mElectron: ElectronService) {}
+
+    constructor(private mElectron: ElectronService) { }
 
     get DefaultAccount(): BlogAccount {
         return this.mDefaultAccount;
@@ -61,23 +61,23 @@ export class SettingService {
             });
     }
     AddRecentPost(post: PostFileDescriptor): void {
-        if( !post)
-            throw new Error("Give post is null");
-            
+        if (!post)
+            throw new Error("Given post is null");
+
         let exist = this.mSetting.RecentPosts.find(x => x.Name == post.Name);
-        if( exist ){
-            this.mSetting.RecentPosts = this.mSetting.RecentPosts.filter( x=> x.Name == post.Name);
+        if (exist) {
+            this.mSetting.RecentPosts = this.mSetting.RecentPosts.filter(x => x.Name != post.Name);
         }
 
-        this.mSetting.RecentPosts.unshift( post );
+        this.mSetting.RecentPosts.unshift(post);
     }
     private GetFolder(): string {
-        return this.mElectron.GetAppDataFolder();
+        return this.mElectron.CombinePath(this.mElectron.GetAppDataFolder(), this.mElectron.GetAppName());
     }
     private GetDefaultAccount(): BlogAccount {
         let defaultAccount: BlogAccount;
 
-        try {            
+        try {
 
             for (let account of this.Setting.BlogAccounts) {
                 if (account.IsDefault) {
