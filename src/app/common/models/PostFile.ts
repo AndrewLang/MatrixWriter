@@ -19,8 +19,10 @@ export class PostFile {
         return this.History != null
             && this.History.length > 0;
     }
-    
-    HasPublishedTo(apiUrl: string): boolean {
+
+    HasPublished(apiUrl: string): boolean {
+        console.log( "URL: " + apiUrl);
+
         if (!apiUrl)
             return false;
 
