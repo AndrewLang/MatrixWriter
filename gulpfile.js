@@ -16,48 +16,59 @@ var del = require('del');
 var dist = 'dist';
 var folder = 'src/app/';
 
-gulp.task('compile', function () {
-    return gulp.src('/')
-        .pipe(shell('tsc && concurrently'));
+var useAot = true;
+
+gulp.task('compile', function() {
+
+    if (useAot) {
+
+    } else {
+        return gulp.src('/')
+            .pipe(shell('tsc && concurrently'));
+    }
 });
 
-gulp.task('sass', function () {
+gulp.task('sass', function() {
     console.log("Compile sass to css.")
 
     var folder = 'src/assets/styles/';
     return merge(
-        gulp.src(folder + '*.scss')
+            gulp.src(folder + '*.scss')
             .pipe(sass().on('error', sass.logError))
             //.pipe(minify())
-            .pipe(rename({ suffix: '.min' }))
-    )
+            .pipe(rename({
+                suffix: '.min'
+            }))
+        )
         .pipe(concat('app.css'))
         .pipe(gulp.dest(dist));
 });
 
-gulp.task('electron', function () {
-  return gulp.src('/')
-    .pipe(shell('electron .'));
+gulp.task('electron', function() {
+    return gulp.src('/')
+        .pipe(shell('electron .'));
 });
 
-gulp.task('start:server', function () {
+gulp.task('start:server', function() {
     return gulp.src('/')
         .pipe(shell('concurrently \"npm run tsc:w\" \"npm run lite\" \"gulp sass:watch\"'));
 });
 
-gulp.task('sass:watch', function () {
+gulp.task('sass:watch', function() {
     gulp.watch('app/assets/styles/*.scss', ['sass']);
     //gulp.watch('*.ts', ['scripts'])
 });
 
-gulp.task('start', function (callback) {
-    sequence(["compile", "sass"], "electron", function () {
-        console.log("gulp task finish");      
+gulp.task('start', function(callback) {
+    sequence(["compile", "sass"], "electron", function() {
+        console.log("gulp task finish");
     });
 });
 
-gulp.task('run',function(){
-    childProcess.spawn(electron, ['--debug=5858','./src'], { stdio: 'inherit' });
+gulp.task('run', function() {
+    childProcess.spawn(electron, ['--debug=5858', './src'], {
+        stdio: 'inherit'
+    });
 });
 // backup of npm
 // tsc && concurrently  && electron .
