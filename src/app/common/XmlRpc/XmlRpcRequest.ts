@@ -57,7 +57,7 @@ export class XmlRpcRequest {
         return new Promise(function (resolve, reject) {
             self.Send(url, method)
                 .then(response => {
-                    resolve(self.mPostParser.ParsePublishResponse(response));
+                    resolve(response);
                 })
                 .catch(reason => { reject(reason); });
         });    

@@ -58,9 +58,15 @@ export class PostPublishComponent extends ModalBase implements OnInit, AfterView
 
         this.logService.Log("Prepare to publish: ", file);
 
-        try {            
+        try {
             this.logService.Log("Account ", account);
-            let published = file.HasPublishedTo(account.ApiUrl);
+            let predicate = (postFile: Common.PostFile, blogName:string): boolean => {
+                return postFile.History != null
+                    && postFile.History.length > 0
+                    && postFile.History.some(x => x.Blog == blogName);
+            }
+
+            let published = predicate( file, account.ApiUrl); //file.HasPublishedTo(account.ApiUrl);
             if (published) {
                 this.logService.LogMessage("Publish post as edit.");
                 this.PublishEdit(xmlRpcRequest, account, methods, file);
@@ -118,6 +124,7 @@ export class PostPublishComponent extends ModalBase implements OnInit, AfterView
         let postId = record.PostId;
         xmlRpcRequest.EditPost(account.ApiUrl, methods.EditPost(postId, account.UserName, account.Password, file.Post))
             .then(response => {
+                
                 this.PublishSuccessed(account.HomeUrl);
             })
             .catch(reason => {
@@ -133,7 +140,7 @@ export class PostPublishComponent extends ModalBase implements OnInit, AfterView
         this.electronService.OpenExternal(url);
     }
     private PublishFailed(reason: any): void {
-        console.log("Publis post error: " + reason);
+        console.log("Publish post error: " + reason);
         this.Status = "Publish failed for " + reason;
         this.Finished = true;
         this.Failed = true;
