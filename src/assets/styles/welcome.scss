@@ -43,6 +43,23 @@ $welcome-space: 4rem;
     padding: 2rem;
 }
 
+.welcome .card-link {
+    padding: .3rem;
+}
+
+.welcome .card-link:hover,
+.welcome .card-link:focus:not(.is-selected) {
+    background-color: hsla(0, 0%, 0%, .1);
+}
+
+.welcome .card-link.is-selected:focus {
+    opacity: .8;
+}
+
+.welcome .card-link.is-selected {
+    background-color: var(--color-accent);
+}
+
 .section-icon {
     width: 32px;
     height: 32px;
@@ -52,9 +69,8 @@ $welcome-space: 4rem;
 
 .nav-button {
     display: block;
-    width: 100%;
     padding: .3rem;
-    padding-left: calc(2rem);
+    padding-left: .8rem;
     /* padding + icon + magic */
     line-height: 2;
     text-align: left;
@@ -65,6 +81,11 @@ $welcome-space: 4rem;
     background-color: transparent;
     cursor: default;
     outline: none;
+}
+
+.nav-button.full {
+    width: 100%;
+    padding-left: 2rem;
 }
 
 .nav-button:hover,
@@ -97,6 +118,12 @@ $welcome-space: 4rem;
     font-size: 16px;
     margin-right: 8px;
     vertical-align: middle;
+}
+
+.light-header {
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    padding-bottom: .5rem;
+    margin-bottom: 1rem;
 }
 
 @media (min-width: 940px) {

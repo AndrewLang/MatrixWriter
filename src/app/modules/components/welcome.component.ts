@@ -21,6 +21,9 @@ export class WelcomeComponent implements OnInit {
 
     }
 
+    get HasAccount():boolean{
+        return this.mAccounts && this.Accounts.length > 0;
+    }
     get Accounts(): Services.BlogAccount[] {
         return this.mAccounts;
     }

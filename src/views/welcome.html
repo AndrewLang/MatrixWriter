@@ -24,23 +24,54 @@
                             <use xlink:href="src/assets/img/icons.svg#icon-windows"></use>
                         </svg> Quick Start
                     </div>
+
                     <div class="card-block">
-                        <div class="text-xs-right" *ngIf="SelectAccount">
-                            <div class="btn-group">
-
-                                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa fa-rss"></i>  {{SelectAccount.NickName}}
+                        <div class="row">
+                            <div class="col-xs-10">
+                                <div class="light-header">My Blogs</div>
+                            </div>
+                            <div class="col-xs-2">
+                                <button type="button" id="button-open-post" title="Connect to a blog account" class="nav-button text-xs-right" (click)="CreateAccount()" *ngIf="HasAccount">
+                                    <i class="fa fa-user-plus"></i>
                                 </button>
+                            </div>
+                        </div>
 
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#" *ngFor="let blog of Accounts"> <i class="fa fa-rss"></i> {{blog.NickName}}</a>
+                        <div class="row">
+                            <div class="col-sm-4 col-xs-6" *ngFor="let blog of Accounts">
+                                <div class="card">
+                                    <div class="card-block">
+                                        <div class="row">
+                                            <div class="col-xs-6 col-sm-8">
+                                                <p class="card-title"> <i class="fa fa-rss"></i> {{blog.NickName}}</p>
+                                            </div>
+
+                                            <div class="col-xs-6 col-sm-4">
+                                                <button type="button" id="button-open-post" title="More" class="nav-button text-xs-right dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <!--<i class="fa fa-ellipsis-v"></i>-->
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" title="View this blog"><i class="fa fa-eye"></i> View Blog</a>
+                                                    <a class="dropdown-item" title="Remove this blog"><i class="fa fa-times"></i> Remove </a>
+                                                    <a class="dropdown-item" title="Update this blog"><i class="fa fa-refresh"></i> Update</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                 </div>
                             </div>
                         </div>
-                        <button type="button" id="button-open-post" title="Connect to a blog account" class="nav-button" (click)="CreateAccount()"><i class="fa fa-user-plus"></i> <em>Connect to a blog account</em></button>
+
+                        <button type="button" id="button-open-post" title="Connect to a blog account" class="nav-button full" (click)="CreateAccount()" *ngIf="!HasAccount">
+                            <i class="fa fa-user-plus"></i> <em>Connect to a blog account</em>
+                        </button>
+
+
                         <hr/>
-                        <button type="button" id="button-create-post" title="Write a new post" class="nav-button" (click)="CreatePost()"> <i class="fa fa-file-o"></i> <em>Write a new post</em></button>
-                        <button type="button" id="button-open-post" title="Open an existing post" class="nav-button" (click)="OpenPostFromFolder()"><i class="fa fa-folder-open-o"></i> <em>Open post</em></button>
+                        <button type="button" id="button-create-post" title="Write a new post" class="nav-button full" (click)="CreatePost()"> <i class="fa fa-file-o"></i> <em>Write a new post</em></button>
+                        <button type="button" id="button-open-post" title="Open an existing post" class="nav-button full" (click)="OpenPostFromFolder()"><i class="fa fa-folder-open-o"></i> <em>Open post</em></button>
                     </div>
                 </div>
 
@@ -52,11 +83,13 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item" *ngFor="let post of RecentPosts" title="{{post.FullName}}">
-                            <button type="button" id="button-open-post" title="Open {{post.Name}}" class="nav-button" (click)="OpenPost(post)"><i class="fa fa-file-text-o"></i> {{post.Name}} <span class="pull-right"> {{post.CreatedDate | date}}</span></button>
+                            <button type="button" id="button-open-post" title="Open {{post.Name}}" class="nav-button full" (click)="OpenPost(post)"><i class="fa fa-file-text-o"></i> {{post.Name}} <span class="pull-right"> {{post.CreatedDate | date}}</span></button>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
+
     </div>
+
 </div>
