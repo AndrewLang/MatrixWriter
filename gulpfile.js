@@ -15,32 +15,25 @@ var uglify = require('gulp-uglify');
 var del = require('del');
 var dist = 'dist';
 var folder = 'src/app/';
-
-var useAot = true;
+var useAot = false;
 
 gulp.task('compile', function() {
+    return gulp.src('/')
+        .pipe(shell('tsc && concurrently'));
 
-    if (useAot) {
-
-    } else {
-        return gulp.src('/')
-            .pipe(shell('tsc && concurrently'));
-    }
 });
 
 gulp.task('sass', function() {
     console.log("Compile sass to css.")
 
-    var folder = 'src/assets/styles/';
+    var folder = 'src/assets/';
     return merge(
-            gulp.src(folder + '*.scss')
+            gulp.src(folder + "css/*.css"),
+            gulp.src(folder + 'styles/*.scss')
             .pipe(sass().on('error', sass.logError))
-            //.pipe(minify())
-            .pipe(rename({
-                suffix: '.min'
-            }))
         )
         .pipe(concat('app.css'))
+        .pipe(minify())
         .pipe(gulp.dest(dist));
 });
 
